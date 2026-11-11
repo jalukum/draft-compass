@@ -5,6 +5,7 @@ import type { Catalog, StatsSnapshot } from './data/types';
 import type { PresetId, Weights } from './engine/weights';
 import { PRESETS } from './engine/weights';
 import { emptyDraft, type DraftState } from './engine/draft';
+import { DEFAULT_SORT, type SortPref } from './engine/sort';
 
 const key = (k: string) => `${APP.storagePrefix}:${k}`;
 export function load<T>(k: string, fallback: T): T {
@@ -24,9 +25,12 @@ export interface Settings {
   rarityTint: boolean;
   favorites: number[];
   tourDone: boolean;
+  /** Remembered sort per brawler list. */
+  sorts: { roster: SortPref; brawlers: SortPref };
 }
 export const defaultSettings: Settings = {
   preset: 'climber', custom: { ...PRESETS[0].weights }, offMeta: false, rarityTint: true, favorites: [], tourDone: false,
+  sorts: { roster: { ...DEFAULT_SORT }, brawlers: { ...DEFAULT_SORT } },
 };
 
 /** usePersisted: state mirrored to localStorage. */

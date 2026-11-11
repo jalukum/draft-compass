@@ -8,6 +8,8 @@ import { presetWeights, PRESETS } from '../engine/weights';
 import { RANGE_LABEL, traitsOf } from '../engine/traits';
 import type { Settings } from '../store';
 import { fmtDate, Portrait, Segmented, Sheet } from './bits';
+import { groupBrawlers, DEFAULT_SORT, type BrawlerGroup } from '../engine/sort';
+import { SortControl } from './SortControl';
 import { MapPicker } from './MapPicker';
 
 interface Props {
@@ -163,7 +165,7 @@ export function DraftScreen({ catalog, draft, setDraft, settings, setSettings, s
       </section>
 
       <section class="col col-roster">
-        <Roster catalog={catalog} draft={draft} settings={settings} onAct={act} setDraft={setDraft} me={me} disabled={!map} />
+        <Roster catalog={catalog} draft={draft} settings={settings} setSettings={setSettings} onAct={act} setDraft={setDraft} me={me} disabled={!map} />
       </section>
 
       {pickerOpen && <MapPicker maps={catalog.maps} selected={draft.mapSlug} onPick={pickMap} onClose={() => setPickerOpen(false)} />}
@@ -234,26 +236,26 @@ function RecRow({ r, rank, open, onToggle, onAct, onFav, fav, tint, tour }: {
   );
 }
 
-function Roster({ catalog, draft, settings, onAct, setDraft, me, disabled }: {
-  catalog: Catalog; draft: DraftState; settings: Settings; onAct: (b: Brawler, how?: 'ban' | 'pick') => void;
+function Roster({ catalog, draft, settings, setSettings, onAct, setDraft, me, disabled }: {
+  catalog: Catalog; draft: DraftState; settings: Settings; setSettings: Props['setSettings']; onAct: (b: Brawler, how?: 'ban' | 'pick') => void;
   setDraft: Props['setDraft']; me: Side; disabled: boolean;
 }) {
   const [q, setQ] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
   const favs = new Set(settings.favorites);
-  const list = useMemo(() => {
+  const sort = settings.sorts?.roster ?? DEFAULT_SORT;
+  const groups = useMemo<BrawlerGroup[]>(() => {
     const qq = q.trim().toLowerCase();
-    return catalog.brawlers
-      .filter((b) => !qq || b.name.toLowerCase().startsWith(qq) || b.name.toLowerCase().includes(qq))
-      .sort((a, b) => {
-        if (qq) {
-          const sa = a.name.toLowerCase().startsWith(qq) ? 0 : 1, sb = b.name.toLowerCase().startsWith(qq) ? 0 : 1;
-          if (sa !== sb) return sa - sb;
-        }
-        return Number(favs.has(b.id)) - Number(favs.has(a.id)) || a.name.localeCompare(b.name);
-      });
+    if (qq) {
+      // While typing, relevance wins: prefix matches first, so Enter grabs the obvious one.
+      const hits = catalog.brawlers.filter((b) => b.name.toLowerCase().includes(qq))
+        .sort((a, b) => Number(!a.name.toLowerCase().startsWith(qq)) - Number(!b.name.toLowerCase().startsWith(qq)) || a.name.localeCompare(b.name));
+      return [{ key: 'search', label: null, items: hits }];
+    }
+    return groupBrawlers(catalog.brawlers, sort, favs);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [catalog, q, settings.favorites]);
+  }, [catalog, q, settings.favorites, sort.by, sort.dir]);
+  const list = groups.flatMap((g) => g.items);
   const taken = (id: number) => draft.bans.includes(id) ? 'ban' : draft.ally.includes(id) || draft.opp.includes(id) ? 'pick' : null;
   const firstFree = list.find((b) => !taken(b.id));
 
@@ -294,21 +296,29 @@ function Roster({ catalog, draft, settings, onAct, setDraft, me, disabled }: {
       </div>
       <p class="hint desktop-only">Keyboard: <kbd>/</kbd> search · <kbd>Enter</kbd> pick first match · <kbd>Shift</kbd>+<kbd>Enter</kbd> ban it</p>
       {disabled && <p class="hint">Choose a map to start logging bans and picks.</p>}
+      {!q.trim() && (
+        <SortControl value={sort} label="Sort roster" onChange={(v) => setSettings((st) => ({ ...st, sorts: { ...(st.sorts ?? { roster: DEFAULT_SORT, brawlers: DEFAULT_SORT }), roster: v } }))} />
+      )}
       <div class="roster-grid">
-        {list.map((b, i) => {
-          const tk = taken(b.id);
-          return (
-            <button
-              type="button" class={`roster-cell ${tk ? `taken ${tk}` : ''} ${b === firstFree && q ? 'first' : ''}`}
-              disabled={!!tk || disabled} aria-label={`${draft.phase === 'ban' ? 'Ban' : 'Pick'} ${b.name}`}
-              data-tour={i === 0 ? 'roster' : undefined}
-              onClick={() => onAct(b)}
-            >
-              <Portrait b={b} size={52} tint={settings.rarityTint} dim={!!tk} />
-              <span class="cell-name">{favs.has(b.id) ? '★ ' : ''}{b.name}</span>
-            </button>
-          );
-        })}
+        {groups.map((g) => (
+          <>
+            {g.label && <div class="group-head" role="presentation"><span>{g.label}</span><small>{g.items.length}</small></div>}
+            {g.items.map((b) => {
+              const tk = taken(b.id);
+              return (
+                <button
+                  type="button" class={`roster-cell ${tk ? `taken ${tk}` : ''} ${b === firstFree && q ? 'first' : ''}`}
+                  disabled={!!tk || disabled} aria-label={`${draft.phase === 'ban' ? 'Ban' : 'Pick'} ${b.name}`}
+                  data-tour={b === list[0] ? 'roster' : undefined}
+                  onClick={() => onAct(b)}
+                >
+                  <Portrait b={b} size={52} tint={settings.rarityTint} dim={!!tk} />
+                  <span class="cell-name">{favs.has(b.id) ? '★ ' : ''}{b.name}</span>
+                </button>
+              );
+            })}
+          </>
+        ))}
       </div>
     </div>
   );

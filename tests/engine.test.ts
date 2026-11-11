@@ -4,6 +4,7 @@ import { lanePlan, readDraft, recommend, toScore, type EngineInput } from '../sr
 import { PRESETS, presetWeights } from '../src/engine/weights';
 import { applyBan, applyPick, emptyDraft, pickTurn, removeFrom, resetDraft, type DraftState } from '../src/engine/draft';
 import { traitsOf } from '../src/engine/traits';
+import { groupBrawlers, rarityRank, sortBrawlers } from '../src/engine/sort';
 import { ALL, BALL, KO, ROSTER as R, ZONE } from './fixtures';
 import type { MapStats } from '../src/data/types';
 
@@ -162,5 +163,28 @@ describe('draft state', () => {
     expect(d.turn).toBe('opp');
     expect(resetDraft(d).ally).toHaveLength(0);
     expect(resetDraft(d).mapSlug).toBe('m');
+  });
+});
+
+describe('brawler sorting', () => {
+  const b = (name: string, cls: any, rarity: string) => ({ ...R.bull, id: name.length * 1000 + name.charCodeAt(0), name, cls, rarity });
+  const list = [b('Zed', 'Tank', 'Epic'), b('Amy', 'Support', 'Mythic'), b('Kip', 'Tank', 'Common'), b('Bo', 'Assassin', 'Ultra Legendary'), b('Lu', 'Marksman', 'Super Rare'), b('Ray', 'Tank', 'Rare')];
+  it('orders rarity like the game, both ways', () => {
+    expect(rarityRank('Starting')).toBe(rarityRank('Common'));
+    expect(sortBrawlers(list, { by: 'rarity', dir: 'asc' }).map((x) => x.rarity)).toEqual(['Common', 'Rare', 'Super Rare', 'Epic', 'Mythic', 'Ultra Legendary']);
+    expect(sortBrawlers(list, { by: 'rarity', dir: 'desc' })[0].name).toBe('Bo');
+  });
+  it('groups by class alphabetically, names A–Z inside', () => {
+    const g = groupBrawlers(list, { by: 'class', dir: 'asc' });
+    expect(g.map((x) => x.label)).toEqual(['Assassin', 'Marksman', 'Support', 'Tank']);
+    expect(g[3].items.map((x) => x.name)).toEqual(['Kip', 'Ray', 'Zed']);
+  });
+  it('name sort has no headers unless favorites are pinned', () => {
+    expect(groupBrawlers(list, { by: 'name', dir: 'asc' })).toHaveLength(1);
+    expect(groupBrawlers(list, { by: 'name', dir: 'desc' })[0].items[0].name).toBe('Zed');
+    const pinned = groupBrawlers(list, { by: 'rarity', dir: 'asc' }, new Set([list[0].id]));
+    expect(pinned[0].label).toBe('★ Favorites');
+    expect(pinned[0].items.map((x) => x.name)).toEqual(['Zed']);
+    expect(pinned.slice(1).flatMap((x) => x.items).some((x) => x.name === 'Zed')).toBe(false);
   });
 });

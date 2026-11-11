@@ -316,3 +316,14 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 3px solid 
   .col-board { position: sticky; top: 12px; }
 }
 .map-bar .info-btn { height: auto; font-size: 0.8rem; padding: 0 10px; }
+
+/* ---------- sort control + group headers ---------- */
+.sort-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 8px; margin: 10px 0 2px; }
+.sort-label { font: 400 0.75rem 'Bungee'; color: var(--muted); }
+.sort-opts { display: flex; flex-wrap: wrap; gap: 6px; }
+.sort-chip, .sort-dir { min-height: 44px; padding: 0 14px; }
+.sort-dir { background: transparent; border-style: dashed; border-color: var(--line); color: var(--paper); }
+.group-head { grid-column: 1 / -1; display: flex; align-items: center; gap: 8px; margin: 6px 0 -2px; font: 400 0.78rem 'Bungee'; color: var(--sun); text-shadow: 0 2px 0 var(--ink); list-style: none; }
+.group-head::after { content: ''; flex: 1; height: 3px; border-radius: 3px; background: repeating-linear-gradient(90deg, var(--line) 0 8px, transparent 8px 14px); }
+.group-head small { font: 800 0.7rem 'Rubik'; color: var(--ink); background: var(--sun); border: 2px solid var(--ink); border-radius: 999px; padding: 0 7px; text-shadow: none; order: 2; }
+.group-head::after { order: 3; }
