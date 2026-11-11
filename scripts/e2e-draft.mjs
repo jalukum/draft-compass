@@ -14,7 +14,7 @@ const shot = async (name) => { await settle(); await page.screenshot({ path: `${
 let failures = 0;
 const check = (ok, msg) => { console.log(`${ok ? 'PASS' : 'FAIL'} ${msg}`); if (!ok) failures++; };
 const counts = async () => ({ us: await page.locator('.team.ally .slot.filled').count(), them: await page.locator('.team.opp .slot.filled').count() });
-const heading = () => page.locator('.block h3').first().innerText().catch(() => '');
+const heading = () => page.locator('.block h2.us, .block h2.them').first().innerText().catch(() => '');
 const top3 = async () => (await page.locator('.sugg li').allInnerTexts()).slice(0, 3).map((t) => t.replace(/\s+/g, ' ')).join(', ');
 
 async function newDraft(first) {
@@ -23,7 +23,7 @@ async function newDraft(first) {
   await page.reload();
   await page.waitForFunction(() => document.body.innerText.includes('Based on'), null, { timeout: 20000 });
   await page.locator('input[aria-label="Search maps"]').fill('hard rock');
-  await page.locator('.results li button').first().click();
+  await page.locator('.maplist button').first().click();
   await page.locator('.order .seg button', { hasText: first === 'ally' ? 'Us' : 'Them' }).click();
 }
 
@@ -64,11 +64,11 @@ for (const first of ['ally', 'opp']) {
 
 // Maps tab
 await page.goto(`${base}#/maps`);
-await page.waitForSelector('.results a');
-const groups = await page.locator('.block h2').allInnerTexts();
-console.log('mode groups:', groups.join(', '), '| maps:', await page.locator('.results a').count());
+await page.waitForSelector('.maplist a');
+const groups = await page.locator('.mode-group h4').allInnerTexts();
+console.log('mode groups:', groups.join(', '), '| maps:', await page.locator('.maplist a').count());
 await shot('maps-list');
-await page.locator('.results a', { hasText: 'Out In The Open' }).first().click();
+await page.locator('.maplist a', { hasText: 'Out In The Open' }).first().click();
 await page.waitForSelector('.top10 li');
 console.log('Out in the Open top 10:', (await page.locator('.top10 li').allInnerTexts()).map((t) => t.replace(/\s+/g, ' ')).join(' | '));
 await shot('maps-top10');

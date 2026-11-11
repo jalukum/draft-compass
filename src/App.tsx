@@ -62,134 +62,185 @@ export function App() {
   const setMap = (slug: string | null) => setDraft((d) => ({ ...emptyDraft(slug), firstPick: d.firstPick, turn: d.firstPick }));
   const reset = () => setDraft((d) => ({ ...emptyDraft(d.mapSlug), firstPick: d.firstPick, turn: d.firstPick }));
 
+  const sub = stats ? `Based on ${totalGames.toLocaleString()} Ranked games · updated ${fmtDate(stats.generatedAt ?? stats.updatedAt)}` : 'Loading ladder data…';
+  const wide = useMedia('(min-width: 900px)');
+
   if (route.tab === 'maps') {
     return (
       <div class="app">
-        <header class="top"><div><h1>Ranked maps</h1>
-          <p class="sub">{stats ? `Top picks from ${totalGames.toLocaleString()} Ranked games · updated ${fmtDate(stats.generatedAt ?? stats.updatedAt)}` : 'Loading ladder data…'}</p></div></header>
-        <MapsTab pool={pool} stats={stats} brawlers={brawlers} slug={route.slug}
+        <Header title="Ranked maps" sub={sub} tab="maps" />
+        <MapsTab pool={pool} stats={stats} brawlers={brawlers} slug={route.slug} wide={wide}
           onDraft={(slug) => { setMap(slug); location.hash = '#/draft'; }} />
-        <Nav tab="maps" />
+        <Footer />
       </div>
     );
   }
 
+  if (!map) {
+    return (
+      <div class="app">
+        <Header title={APP.name} sub={sub} tab="draft" />
+        <section class="block start">
+          <h2><span class="step">1</span> Pick the map</h2>
+          <MapSearch maps={pool} onPick={(m) => setMap(m.slug)} />
+        </section>
+        <Footer />
+      </div>
+    );
+  }
+
+  const mapBlock = (
+    <section class="block">
+      <h2><span class="step">1</span> Map</h2>
+      <button type="button" class="map-chosen" onClick={() => setMap(null)} aria-label="Change map">
+        {map.modeIcon && <img src={map.modeIcon} alt="" width={22} height={22} />}
+        <span class="grow"><b>{map.name}</b><small>{map.mode} · {map.games.toLocaleString()} games</small></span>
+        <span class="muted">Change</span>
+      </button>
+    </section>
+  );
+  const bansBlock = (
+    <section class="block">
+      <h2><span class="step">2</span> Bans <span class="count">{draft.bans.length}/{MAX_BANS}</span></h2>
+      {draft.bans.length > 0 && (
+        <div class="chips">
+          {draft.bans.map((id) => byId.get(id)).filter(Boolean).map((b) => (
+            <button type="button" class="chip ban" onClick={() => setDraft((d) => removeFrom(d, 'bans', b!.id))} aria-label={`Remove ban ${b!.name}`}>
+              <Portrait b={b!} size={24} /> {b!.name} <span class="x">×</span>
+            </button>
+          ))}
+        </div>
+      )}
+      {draft.bans.length < MAX_BANS && (
+        <BrawlerSearch brawlers={brawlers} taken={taken} placeholder="Search a brawler to ban" onPick={(b) => setDraft((d) => applyBan(d, b.id))} />
+      )}
+    </section>
+  );
+  const pickSearch = next && (
+    <BrawlerSearch brawlers={brawlers} taken={taken} placeholder={next === 'ally' ? 'Search our pick' : 'Search their pick'} onPick={(b) => pickNow(b.id)} />
+  );
+  const picksBlock = (
+    <section class="block">
+      <h2><span class="step">3</span> Picks</h2>
+      <div class="order">
+        <span>First pick</span>
+        <div class="seg">
+          {(['ally', 'opp'] as Side[]).map((s) => (
+            <button type="button" class={draft.firstPick === s ? 'on' : ''} disabled={picks > 0}
+              onClick={() => setDraft((d) => ({ ...d, firstPick: s, turn: s }))}>{s === 'ally' ? 'Us' : 'Them'}</button>
+          ))}
+        </div>
+        {next ? <span class="next">Pick {picks + 1} of 6: <b class={next}>{next === 'ally' ? 'Us' : 'Them'}</b></span> : <span class="next">Draft complete</span>}
+      </div>
+      <Team label="Us" side="ally" ids={draft.ally} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'ally', id))} />
+      <Team label="Them" side="opp" ids={draft.opp} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'opp', id))} />
+      {wide && pickSearch && <div class="pick-search">{pickSearch}</div>}
+    </section>
+  );
+  const suggBlock = sugg.length > 0 && (
+    <section class="block">
+      <h2 class={next === 'opp' ? 'them' : 'us'}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}</h2>
+      <ol class="sugg">
+        {sugg.map((x) => (
+          <li>
+            <button type="button" onClick={() => pickNow(x.brawler.id)} aria-label={`Pick ${x.brawler.name} for ${next === 'ally' ? 'us' : 'them'}, score ${x.score}`}>
+              <Portrait b={x.brawler} size={36} />
+              <span class="grow">{x.brawler.name}</span>
+              <span class={`score ${x.score >= 70 ? 'hi' : x.score >= 50 ? 'mid' : 'lo'}`}>{x.score}</span>
+            </button>
+          </li>
+        ))}
+      </ol>
+      {!wide && pickSearch && <div class="pick-search">{pickSearch}</div>}
+    </section>
+  );
+  const lanesBlock = draft.ally.length > 0 && draft.opp.length > 0 && (
+    <Lanes key={`${map.slug}|${[...draft.ally].sort().join()}|${[...draft.opp].sort().join()}`}
+      map={map} st={st} ally={draft.ally.map((id) => byId.get(id)!).filter(Boolean)} opp={draft.opp.map((id) => byId.get(id)!).filter(Boolean)} />
+  );
+
   return (
     <div class="app">
-      <header class="top">
-        <div>
-          <h1>{APP.name}</h1>
-          <p class="sub">{stats ? `Based on ${totalGames.toLocaleString()} Ranked games · updated ${fmtDate(stats.generatedAt ?? stats.updatedAt)}` : 'Loading ladder data…'}</p>
+      <Header title={APP.name} sub={sub} tab="draft" right={<button type="button" class="btn" onClick={reset}>Reset</button>} />
+      {wide ? (
+        <div class="cols">
+          <div class="col">{mapBlock}{bansBlock}{picksBlock}</div>
+          <div class="col">{suggBlock}{lanesBlock}</div>
         </div>
-        {map && <button type="button" class="btn" onClick={reset}>Reset</button>}
-      </header>
-
-      <section class="block">
-        <h2><span class="step">1</span> Map</h2>
-        {map ? (
-          <button type="button" class="map-chosen" onClick={() => setMap(null)} aria-label="Change map">
-            {map.modeIcon && <img src={map.modeIcon} alt="" width={22} height={22} />}
-            <span class="grow"><b>{map.name}</b><small>{map.mode} · {map.games.toLocaleString()} games</small></span>
-            <span class="muted">Change</span>
-          </button>
-        ) : (
-          <MapSearch maps={pool} onPick={(m) => setMap(m.slug)} />
-        )}
-      </section>
-
-      {map && (
-        <>
-          <section class="block">
-            <h2><span class="step">2</span> Bans <span class="count">{draft.bans.length}/{MAX_BANS}</span></h2>
-            {draft.bans.length > 0 && (
-              <div class="chips">
-                {draft.bans.map((id) => byId.get(id)).filter(Boolean).map((b) => (
-                  <button type="button" class="chip ban" onClick={() => setDraft((d) => removeFrom(d, 'bans', b!.id))} aria-label={`Remove ban ${b!.name}`}>
-                    <Portrait b={b!} size={24} /> {b!.name} <span class="x">×</span>
-                  </button>
-                ))}
-              </div>
-            )}
-            {draft.bans.length < MAX_BANS && (
-              <BrawlerSearch brawlers={brawlers} taken={taken} placeholder="Search a brawler to ban" onPick={(b) => setDraft((d) => applyBan(d, b.id))} />
-            )}
-          </section>
-
-          <section class="block">
-            <h2><span class="step">3</span> Picks</h2>
-            <div class="order">
-              <span>First pick</span>
-              <div class="seg">
-                {(['ally', 'opp'] as Side[]).map((s) => (
-                  <button type="button" class={draft.firstPick === s ? 'on' : ''} disabled={picks > 0}
-                    onClick={() => setDraft((d) => ({ ...d, firstPick: s, turn: s }))}>{s === 'ally' ? 'Us' : 'Them'}</button>
-                ))}
-              </div>
-              {next ? <span class="next">Pick {picks + 1} of 6: <b class={next}>{next === 'ally' ? 'Us' : 'Them'}</b></span> : <span class="next">Draft complete</span>}
-            </div>
-            <Team label="Us" side="ally" ids={draft.ally} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'ally', id))} />
-            <Team label="Them" side="opp" ids={draft.opp} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'opp', id))} />
-
-            {sugg.length > 0 && (
-              <>
-                <h3 class={next === 'opp' ? 'them' : 'us'}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}</h3>
-                <ol class="sugg">
-                  {sugg.map((x) => (
-                    <li>
-                      <button type="button" onClick={() => pickNow(x.brawler.id)} aria-label={`Pick ${x.brawler.name} for ${next === 'ally' ? 'us' : 'them'}, score ${x.score}`}>
-                        <Portrait b={x.brawler} size={36} />
-                        <span class="grow">{x.brawler.name}</span>
-                        <span class={`score ${x.score >= 70 ? 'hi' : x.score >= 50 ? 'mid' : 'lo'}`}>{x.score}</span>
-                      </button>
-                    </li>
-                  ))}
-                </ol>
-              </>
-            )}
-
-            {next && (
-              <BrawlerSearch brawlers={brawlers} taken={taken} placeholder={next === 'ally' ? 'Search our pick' : 'Search their pick'}
-                onPick={(b) => pickNow(b.id)} />
-            )}
-          </section>
-
-          {draft.ally.length > 0 && draft.opp.length > 0 && (
-            <Lanes key={`${map.slug}|${[...draft.ally].sort().join()}|${[...draft.opp].sort().join()}`}
-              map={map} st={st} ally={draft.ally.map((id) => byId.get(id)!).filter(Boolean)} opp={draft.opp.map((id) => byId.get(id)!).filter(Boolean)} />
-          )}
-        </>
+      ) : (
+        <>{mapBlock}{bansBlock}{picksBlock}{suggBlock}{lanesBlock}</>
       )}
-
-      <Nav tab="draft" />
-      <footer class="foot">
-        Unofficial fan app, not affiliated with Supercell. This material is unofficial and is not endorsed by Supercell. For more
-        information see <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.
-        Stats from our own sample of Ranked battle logs (official Brawl Stars API); catalog from <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; art via Brawlify.
-      </footer>
+      <Footer />
     </div>
+  );
+}
+
+function useMedia(q: string) {
+  const [m, setM] = useState(() => typeof matchMedia !== 'undefined' && matchMedia(q).matches);
+  useEffect(() => {
+    const mq = matchMedia(q);
+    const on = () => setM(mq.matches);
+    mq.addEventListener('change', on);
+    return () => mq.removeEventListener('change', on);
+  }, [q]);
+  return m;
+}
+
+function Header({ title, sub, tab, right }: { title: string; sub: string; tab: 'draft' | 'maps'; right?: preact.ComponentChildren }) {
+  return (
+    <header class="top">
+      <div class="top-text">
+        <h1>{title}</h1>
+        <p class="sub">{sub}</p>
+      </div>
+      <Nav tab={tab} />
+      {right && <div class="top-right">{right}</div>}
+    </header>
+  );
+}
+
+function Footer() {
+  return (
+    <footer class="foot">
+      Unofficial fan app, not affiliated with Supercell. This material is unofficial and is not endorsed by Supercell. For more
+      information see <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.
+      Stats from our own sample of Ranked battle logs (official Brawl Stars API); catalog from <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; art via Brawlify.
+    </footer>
   );
 }
 
 function MapSearch({ maps, onPick }: { maps: PoolMap[]; onPick: (m: PoolMap) => void }) {
   const [q, setQ] = useState('');
-  const [open, setOpen] = useState(false);
   const hits = maps.filter((m) => !q || norm(m.name).includes(norm(q)) || norm(m.mode).includes(norm(q)));
   return (
     <div class="search">
       <input type="search" placeholder={`Search ${maps.length} Ranked maps`} value={q}
-        onFocus={() => setOpen(true)} onInput={(e) => { setQ((e.target as HTMLInputElement).value); setOpen(true); }}
+        onInput={(e) => setQ((e.target as HTMLInputElement).value)}
         onKeyDown={(e) => { if (e.key === 'Enter' && hits[0]) onPick(hits[0]); }} aria-label="Search maps" />
-      {(open || q) && (
-        <ul class="results">
-          {hits.map((m) => (
-            <li><button type="button" onClick={() => onPick(m)}>
-              {m.modeIcon ? <img src={m.modeIcon} alt="" width={20} height={20} /> : <span class="dot" style={{ background: m.modeColor }} />}
-              <span class="grow">{m.name}</span><small class="muted">{m.mode}</small>
-            </button></li>
-          ))}
-          {!hits.length && <li class="empty">No Ranked map matches.</li>}
-        </ul>
-      )}
+      <MapList maps={hits} onPick={onPick} />
+      {!hits.length && <p class="hint">No Ranked map matches.</p>}
+    </div>
+  );
+}
+
+/** Current Ranked maps grouped by mode, as tappable rows. */
+function MapList({ maps, onPick, href, active }: { maps: PoolMap[]; onPick?: (m: PoolMap) => void; href?: (m: PoolMap) => string; active?: string | null }) {
+  const modes = [...new Set(maps.map((m) => m.mode))];
+  return (
+    <div class="maplist">
+      {modes.map((mode) => (
+        <div class="mode-group">
+          <h4>{maps.find((m) => m.mode === mode)?.modeIcon && <img src={maps.find((m) => m.mode === mode)!.modeIcon} alt="" width={16} height={16} />}{mode}</h4>
+          <ul>
+            {maps.filter((m) => m.mode === mode).map((m) => (
+              <li>{href
+                ? <a href={href(m)} class={active === m.slug ? 'on' : ''}><span class="grow">{m.name}</span><small class="muted">{m.games.toLocaleString()}</small></a>
+                : <button type="button" onClick={() => onPick?.(m)}><span class="grow">{m.name}</span><small class="muted">{m.games.toLocaleString()} games</small></button>}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 }
@@ -278,16 +329,26 @@ function Nav({ tab }: { tab: 'draft' | 'maps' }) {
   );
 }
 
-function MapsTab({ pool, stats, brawlers, slug, onDraft }: {
-  pool: PoolMap[]; stats: ReturnType<typeof useStats>; brawlers: Brawler[]; slug: string | null; onDraft: (slug: string) => void;
+function MapsTab({ pool, stats, brawlers, slug, wide, onDraft }: {
+  pool: PoolMap[]; stats: ReturnType<typeof useStats>; brawlers: Brawler[]; slug: string | null; wide: boolean; onDraft: (slug: string) => void;
 }) {
   const [q, setQ] = useState('');
-  const map = slug ? pool.find((m) => m.slug === slug) : null;
-  if (map && stats) {
+  const map = (slug ? pool.find((m) => m.slug === slug) : null) ?? (wide ? pool[0] ?? null : null);
+  const hits = pool.filter((m) => !q || norm(m.name).includes(norm(q)) || norm(m.mode).includes(norm(q)));
+  const list = (
+    <section class="block">
+      <div class="search">
+        <input type="search" placeholder={`Search ${pool.length} Ranked maps`} value={q} aria-label="Search Ranked maps" onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
+      </div>
+      <MapList maps={hits} href={(m) => `#/maps/${encodeURIComponent(m.slug)}`} active={map?.slug} />
+      {!hits.length && <p class="hint">No Ranked map matches.</p>}
+    </section>
+  );
+  const detail = map && stats && (() => {
     const top = suggest({ brawlers, map, stats: stats.maps[map.slug] ?? null, bans: [], mine: [], theirs: [] }).slice(0, 10);
     return (
       <section class="block">
-        <a class="back" href="#/maps">‹ All maps</a>
+        {!wide && <a class="back" href="#/maps">‹ All maps</a>}
         <div class="map-head">
           {map.modeIcon && <img src={map.modeIcon} alt="" width={26} height={26} />}
           <div class="grow"><b>{map.name}</b><small>{map.mode} · {map.games.toLocaleString()} games</small></div>
@@ -306,28 +367,7 @@ function MapsTab({ pool, stats, brawlers, slug, onDraft }: {
         <button type="button" class="btn primary wide" onClick={() => onDraft(map.slug)}>Draft on this map</button>
       </section>
     );
-  }
-  const hits = pool.filter((m) => !q || norm(m.name).includes(norm(q)) || norm(m.mode).includes(norm(q)));
-  const modes = [...new Set(hits.map((m) => m.mode))];
-  return (
-    <>
-      <div class="search maps-search">
-        <input type="search" placeholder={`Search ${pool.length} Ranked maps`} value={q} aria-label="Search Ranked maps" onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
-      </div>
-      {modes.map((mode) => (
-        <section class="block">
-          <h2>{mode}</h2>
-          <ul class="results flat">
-            {hits.filter((m) => m.mode === mode).map((m) => (
-              <li><a href={`#/maps/${encodeURIComponent(m.slug)}`}>
-                {m.modeIcon ? <img src={m.modeIcon} alt="" width={20} height={20} /> : <span class="dot" style={{ background: m.modeColor }} />}
-                <span class="grow">{m.name}</span><small class="muted">{m.games.toLocaleString()} games ›</small>
-              </a></li>
-            ))}
-          </ul>
-        </section>
-      ))}
-      {!hits.length && <p class="hint">No Ranked map matches.</p>}
-    </>
-  );
+  })();
+  if (wide) return <div class="cols maps-cols"><div class="col">{list}</div><div class="col">{detail}</div></div>;
+  return slug && detail ? detail : list;
 }
