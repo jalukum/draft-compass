@@ -157,3 +157,8 @@ a { color: var(--muted); }
 .sugg-head { display: flex; align-items: baseline; }
 .sugg-head .cols-label { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 400; text-transform: uppercase; letter-spacing: .04em; }
 .lane { grid-template-columns: 42px 1fr 52px 1fr; }
+.about-link { display: block; margin: 14px auto 0; font-size: 12px; color: var(--muted); text-decoration: underline; text-align: center; }
+.sheet-bg { position: fixed; inset: 0; background: #0009; z-index: 20; display: grid; place-items: end center; padding: 0 0 var(--sab); }
+.sheet { width: min(520px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px 14px 0 0; padding: 14px 16px calc(18px + var(--sab)); font-size: 14px; color: var(--muted); }
+.sheet-top { display: flex; align-items: center; justify-content: space-between; color: var(--text); margin-bottom: 6px; }
+@media (min-width: 768px) { .sheet-bg { place-items: center; } .sheet { border-radius: 14px; } }

@@ -71,7 +71,7 @@ export function App() {
         <Header title="Ranked maps" sub={sub} tab="maps" />
         <MapsTab pool={pool} stats={stats} brawlers={brawlers} slug={route.slug} wide={wide}
           onDraft={(slug) => { setMap(slug); location.hash = '#/draft'; }} />
-        <Footer />
+        <About />
       </div>
     );
   }
@@ -84,7 +84,6 @@ export function App() {
           <h2><span class="step">1</span> Pick the map</h2>
           <MapSearch maps={pool} onPick={(m) => setMap(m.slug)} />
         </section>
-        <Footer />
       </div>
     );
   }
@@ -171,7 +170,6 @@ export function App() {
       ) : (
         <>{mapBlock}{bansBlock}{picksBlock}{suggBlock}{lanesBlock}</>
       )}
-      <Footer />
     </div>
   );
 }
@@ -200,13 +198,24 @@ function Header({ title, sub, tab, right }: { title: string; sub: string; tab: '
   );
 }
 
-function Footer() {
+/** Tiny About link (Maps tab only) opening the Fan Content Policy notice and credits. */
+function About() {
+  const [open, setOpen] = useState(false);
   return (
-    <footer class="foot">
-      Unofficial fan app, not affiliated with Supercell. This material is unofficial and is not endorsed by Supercell. For more
-      information see <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.
-      Stats from our own sample of Ranked battle logs (official Brawl Stars API); catalog from <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; art via Brawlify.
-    </footer>
+    <>
+      <button type="button" class="about-link" onClick={() => setOpen(true)}>About</button>
+      {open && (
+        <div class="sheet-bg" onClick={(e) => { if (e.target === e.currentTarget) setOpen(false); }}>
+          <div class="sheet" role="dialog" aria-modal="true" aria-label="About">
+            <div class="sheet-top"><b>About</b><button type="button" class="btn" onClick={() => setOpen(false)}>Close</button></div>
+            <p>This material is unofficial and is not endorsed by Supercell. For more information see{' '}
+              <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.</p>
+            <p>Stats come from our own daily sample of Ranked battle logs (official Brawl Stars API). Brawler catalog from{' '}
+              <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; art via Brawlify.</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
