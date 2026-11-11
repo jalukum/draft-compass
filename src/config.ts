@@ -8,9 +8,9 @@ export const APP = {
   tagline: 'Ranked pick & ban helper',
   /** localStorage key prefix. Changing it resets saved settings. */
   storagePrefix: 'dc',
-  themeColor: '#1a3bc4',
-  backgroundColor: '#1a3bc4',
-  version: '0.1.0',
+  themeColor: '#0f1115',
+  backgroundColor: '#0f1115',
+  version: '0.2.0',
 } as const;
 
 export const DATA = {

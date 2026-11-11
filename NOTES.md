@@ -12,78 +12,59 @@ Last updated 10 Nov 2026 (America/Chicago).
 | `GET /v1/maps/{id}` | Same fields plus `stats` and `teamStats`. **Both are empty arrays on all 140 active maps in the six Ranked modes** (Gem Grab, Brawl Ball, Knockout, Heist, Hot Zone, Bounty); every map was fetched one by one. |
 | `GET /v1/gamemodes` | 70 modes with colours, icons and a `disabled` flag. |
 
-So BrawlAPI currently publishes **no per-map win/use rates and no dates for them**. The app:
+So BrawlAPI publishes **no per-map win/use rates** and no live rotation. The app therefore uses BrawlAPI only for brawler names and portraits. The map pool, map art and all stats come from our own daily sample of Ranked battle logs (below).
 
-- shows maps as "In catalog" (not disabled) vs "Vaulted". BrawlAPI has no live rotation (`/events` is empty), so "active" only means "not retired".
-- scores from its own role model and labels that **Role model** / **Thin data**, never as ladder stats.
-- already has a `stats` signal wired through the engine and UI. Load a snapshot in **Me → Import stats JSON** (format below), or let the daily sampler publish one (below), and scores, labels and the "updated on" date switch over automatically.
+The app is one screen: (1) map search over the current Ranked pool, (2) ban search, (3) top picks with a score plus a pick search for either team, (4) lane matchups with scores. A short Fan Content Policy footer sits at the bottom. There are no presets, tours or settings.
 
 The catalog also lists some maps several times (re-releases); the app keeps one per name+mode, preferring the active entry.
 
-### Stats snapshot format (published daily, or a hand import)
+### Stats snapshot format (format 2, published daily)
 
-The app fetches `<BASE>/data/stats-latest.json` on load (network-first, not precached). A file imported in
-**Me → Import stats JSON** overrides it until you tap **Use daily snapshot**.
+The app fetches `<BASE>/data/stats-latest.json` on load (network-first, not precached).
 
 ```json
 {
-  "source": "our daily Ranked sample",
-  "updatedAt": "2026-11-11",
-  "generatedAt": "2026-11-11T10:09:12.000Z",
-  "window": { "days": 6, "from": "2026-11-06", "to": "2026-11-11" },
-  "sample": { "games": 21000, "playersReadLastRun": 1990, "maps": 40, "rankHist": { "18": 900 } },
-  "perDay": { "2026-11-10": 5000 },
+  "source": "our daily Ranked sample", "format": 2,
+  "updatedAt": "2026-11-11", "generatedAt": "2026-11-11T03:58:00.000Z",
+  "window": { "days": 9, "from": "2026-11-03", "to": "2026-11-11" },
+  "sample": { "games": 86873, "maps": 26, "rankHist": { "18": 900 } },
+  "pool": ["hard-rock-mine-gem-grab", "..."],
   "banData": false,
   "maps": {
     "hard-rock-mine-gem-grab": {
-      "name": "Hard Rock Mine", "mode": "Gem Grab", "mapId": 15000007,
-      "sample": 4200,
-      "brawlers": { "16000000": { "winRate": 52.1, "useRate": 14.3, "games": 600, "banRate": null } },
-      "matchups": { "16000000": { "16000003": [120, 47.5] } },
-      "synergy":  { "16000000": { "16000035": [40, 55.0] } }
+      "name": "Hard Rock Mine", "mode": "Gem Grab", "mapId": 15000007, "img": "...", "modeIcon": "...",
+      "sample": 3286, "recent": 3275, "inPool": true,
+      "brawlers": { "16000000": { "games": 600, "wins": 320, "winRate": 53.1, "useRate": 18.3, "banRate": null } },
+      "matchups": { "16000000": { "16000003": [120, 57] } },
+      "synergy":  { "16000000": { "16000035": [40, 22] } }
     }
   }
 }
 ```
 
-- Only `source`, `updatedAt` and `maps[*].sample/brawlers[*].winRate/useRate` are required; everything else is optional, so old hand-made files still import.
-- Map key = the app's map slug (`<map name>-<mode>`, lower-case, dashes). Brawler key = official/BrawlAPI id.
-- `sample` = Ranked games on the map in the window. `useRate` = % of those games where the brawler was picked (either team). `winRate` is smoothed toward 50% (as if 20 extra even games).
-- `matchups[a][b]` = `[games, a's win %]` with a and b on opposite teams; `synergy[a][b]` = `[games, win %]` on the same team. Stored once per pair with the lower id first (`pairStat()` in `src/data/types.ts` reads either way round). Pairs need ≥ 8 games and are smoothed toward 50% (prior 10).
-- **Bans:** battle logs record picks only, so `banRate` is `null` and `banData` is `false`. Ban advice stays model-based.
-- Under 1,000 games a map's stats weight is scaled down (√(sample/1000)) and rows are labelled by the model, not "Ladder data".
+- `pool` = the current Ranked map pool: maps with at least 40 Ranked games in the last 7 days of the sample. The app's map search only offers these.
+- `useRate` = % of the map's games where the brawler was picked (either team). `winRate` is a display value smoothed toward 50%; the engine uses raw `games`/`wins`.
+- `matchups[a][b]` / `synergy[a][b]` = `[games, wins for the lower id a]`, raw; opposite teams / same team. Pairs need ≥ 5 games.
+- **Bans:** battle logs record picks only, so `banRate` is `null` and `banData` is `false`.
+
+### Scoring (`src/engine/meta.ts`)
+
+Score 1–99 for each brawler that is still available, for our next pick:
+- **Map strength:** win rate shrunk toward 50% as if it had 100 extra even games (Bayesian), so small samples can't top the list.
+- **Popularity:** log of the pick rate vs. an even share. High-rank players pick what is meta, so this weighs heavily.
+- **Counters:** for each enemy pick, the real head-to-head result on this map minus what the two win rates predict, shrunk with a 25-game prior.
+- **Synergy:** the same, for brawlers on our team.
+- The hand-made role/mode-fit model (`heuristics.ts`, `traits.ts`) only nudges brawlers with under 30 games on the map.
+
+**Lanes:** each team is placed left/mid/right by role (controllers, supports and long range mid; tanks mid in Brawl Ball). Our side is then arranged to win the most lane matchups. Each lane shows our chance to win that matchup (head-to-head data, shrunk toward the win-rate expectation). Tap two brawlers on one side to swap them.
 
 ### How the sampler works (`scripts/collect-stats.mjs`)
 
-- Players: top 200 of the global list plus the top 200 of US, BR, MX, DE, FR, ES, TR, RU, KR, JP, GB player rankings, deduped and capped at 2,000 (`MAX_PLAYERS`). `SNOWBALL=1` would also add players met in Ranked games (off by default).
-- Each player's battle log (last 25 games). Games with `battle.type` `soloRanked` or `teamRanked`, two teams of three, win or loss (draws skipped). In real data, `type: "ranked"` is *trophy* ladder and is ignored. In Ranked games `brawler.trophies` holds the player's Ranked tier number; the snapshot keeps a histogram of the per-game average (`rankHist`).
+- Players: top 200 of the global list plus the top 200 of US, BR, MX, DE, FR, ES, TR, RU, KR, JP, GB (about 2,300 unique). Snowball is on by default, so players met in Ranked games are read too, capped at 8,000 battle logs per run (`MAX_PLAYERS`). `SNOWBALL=0` turns it off.
+- Each player's battle log (last 25 games). Keeps `soloRanked`/`teamRanked` 3v3 games, win or loss. `type: "ranked"` is the *trophy* ladder and is ignored. In Ranked games `brawler.trophies` holds the Ranked tier number (`rankHist`).
 - Dedupe key: battle time + the six player tags. Mirror picks are left out of matchups.
-- Each game is filed under the UTC day it was played and added to `data/daily/<day>.json`. A run only counts games played after the previous run's cutoff (`data/state.json`), so days are never double counted, and the first run reaches back as far as the logs go.
-- The published file merges the last 28 days (`WINDOW_DAYS`). Older day files and dated copies are pruned.
-- Concurrency 6 with retries and exponential backoff on 429/5xx; 404s (players whose logs are hidden) are skipped.
-
-## Scoring engine (src/engine)
-
-All original. Nothing here comes from the reference site.
-
-- `traits.ts`: hand-written range band and kit tags (wall breaker, over walls, heals, control, burst, splash, mobile, tank shredder, anti-heal) for about 85 brawlers. Brawlers not in the table, mostly the newest ones, fall back to class defaults and get a **Thin data** label.
-- `heuristics.ts`: class×mode fit table, tag×mode bonuses, ideal range per mode, a class-pressure matrix for matchups (made antisymmetric, so `matchup(a,b) = −matchup(b,a)`), and team-shape scoring (role spread, range mix, stacked classes, a few synergies, missing wall-breaker/zone control).
-- `score.ts`: five signals, each in −1…1 and blended by weight into a 0–100 score:
-  1. **Ladder stats** (only when a snapshot has the map)
-  2. **Mode fit**
-  3. **Team fit**: how much the pick improves your team's shape
-  4. **Matchups** against enemy picks already locked
-  5. **Blind-pick safety**: how many strong, still-available brawlers punish it. This fades out as the enemy fills its team.
-
-  Ban mode scores each brawler from the enemy's side ("how much would this hurt us"). Each row leads with the note that sets it apart from the field. After a full 3v3 you get a lean, capped to 30–70% and worded as a lean, plus a left/mid/right lane plan chosen by brute force over lane fit and lane matchups.
-- `weights.ts`: three presets plus a Custom mix with sliders:
-  - **Steady Climber**: map-fit heavy, for lower ranks.
-  - **Counter-Puncher**: matchup and safety heavy, for Mythic and up.
-  - **Team Glue**: composition heavy, for solo queue with randoms.
-- **Off-meta toggle**: softens negative mode fit, and the low-use penalty once stats exist.
-- `draft.ts`: board state. Six bans, then picks in 1-2-2-1 order with auto turn advance. Tap any slot to undo it.
-
-Tests: `tests/engine.test.ts` (23 tests).
+- Games are filed by the UTC day they were played (`data/daily/<day>.json`). A run only counts games played after the previous run's cutoff (`data/state.json`), so nothing is counted twice. The published file merges the last 28 days.
+- Concurrency 8, retries with backoff on 429/5xx. A run takes about 6–7 minutes.
 
 ## Player-tag import (phase 2, not built): cleanest free route
 

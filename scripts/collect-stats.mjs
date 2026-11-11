@@ -16,7 +16,7 @@
 // The API key comes only from the BRAWL_STARS_API_KEY environment variable. It is never
 // logged or written anywhere.
 //
-// Env knobs: MAX_PLAYERS (default 2000), SNOWBALL (0/1, default 0: only ranking-list players), CONCURRENCY (6), WINDOW_DAYS (28),
+// Env knobs: MAX_PLAYERS (default 8000), SNOWBALL (default on: also read players met in Ranked games; 0 = ranking lists only), CONCURRENCY (8), WINDOW_DAYS (28),
 // COUNTRIES (comma list, default below), MIN_RANK (lowest Ranked tier counted, default 0).
 
 import { mkdirSync, readFileSync, writeFileSync, readdirSync, existsSync, unlinkSync } from 'node:fs';
@@ -29,20 +29,23 @@ const BRAWLAPI = 'https://api.brawlapi.com/v1';
 const KEY = process.env.BRAWL_STARS_API_KEY?.trim();
 if (!KEY) { console.error('BRAWL_STARS_API_KEY is not set.'); process.exit(1); }
 
-const MAX_PLAYERS = +(process.env.MAX_PLAYERS ?? 2000);
-const CONCURRENCY = +(process.env.CONCURRENCY ?? 6);
+const MAX_PLAYERS = +(process.env.MAX_PLAYERS ?? 8000);
+const CONCURRENCY = +(process.env.CONCURRENCY ?? 8);
 const WINDOW_DAYS = +(process.env.WINDOW_DAYS ?? 28);
 const MIN_RANK = +(process.env.MIN_RANK ?? 0);
 const COUNTRIES = (process.env.COUNTRIES ?? 'us,br,mx,de,fr,es,tr,ru,kr,jp,gb').split(',').map((s) => s.trim()).filter(Boolean);
-const SNOWBALL = process.env.SNOWBALL === '1';
+const SNOWBALL = process.env.SNOWBALL !== '0';
 const RANKED_TYPES = new Set(['soloRanked', 'teamRanked']);
 const SOURCE = 'our daily Ranked sample';
 
 // Smoothing / thresholds for the published file.
 const WR_PRIOR = 20;        // brawler win rate: pull toward 50% as if 20 extra even games
 const PAIR_PRIOR = 10;      // pair win rate prior
-const PAIR_MIN = 8;         // publish a matchup/synergy pair only with at least this many games
-const MAP_MIN = 30;         // publish a map only with at least this many games
+const PAIR_MIN = 5;         // publish a matchup/synergy pair only with at least this many games
+const MAP_MIN = 30; 
+const POOL_DAYS = 7;          // ranked pool = maps seen in Ranked games in the last 7 days...
+const POOL_MIN = 40;         // ...with at least this many games
+        // publish a map only with at least this many games
 
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 let calls = 0, fails = 0, notFound = 0, throttled = 0;
@@ -117,8 +120,9 @@ await pool(lists, 3, async (c) => {
   for (const p of j?.items ?? []) seeds.push(p.tag);
 });
 const queue = [...new Set(seeds)].slice(0, MAX_PLAYERS);
+const seedCount = queue.length;
 const queued = new Set(queue);
-console.log(`seed players: ${queue.length} from ${lists.length} ranking lists`);
+console.log(`seed players: ${queue.length} from ${lists.length} ranking lists (snowball ${SNOWBALL ? 'on' : 'off'}, cap ${MAX_PLAYERS})`);
 
 // ---- crawl battle logs (snowballing into players met in Ranked games) -------
 const games = new Map(); // key -> game
@@ -203,13 +207,15 @@ const cutoffDay = day(new Date(now - (WINDOW_DAYS - 1) * 86400e3));
 const files = readdirSync(dailyDir).filter((f) => /^\d{4}-\d{2}-\d{2}\.json$/.test(f)).sort();
 for (const f of files) if (f.slice(0, 10) < cutoffDay) unlinkSync(join(dailyDir, f));
 const keep = files.filter((f) => f.slice(0, 10) >= cutoffDay);
-const merged = {}; let totGames = 0; const perDay = {}; const totRanks = {};
+const merged = {}; let totGames = 0; const perDay = {}; const recentGames = {}; const totRanks = {};
 const addInto = (dst, src) => { for (const [k, [n, w]] of Object.entries(src)) { const r = (dst[k] ??= [0, 0]); r[0] += n; r[1] += w; } };
 for (const f of keep) {
   const d = JSON.parse(readFileSync(join(dailyDir, f), 'utf8'));
   totGames += d.games; perDay[d.date] = d.games;
   for (const [r, n] of Object.entries(d.rankHist ?? {})) totRanks[r] = (totRanks[r] ?? 0) + n;
+  const recent = f.slice(0, 10) >= day(new Date(now - (POOL_DAYS - 1) * 86400e3));
   for (const [slug, m] of Object.entries(d.maps)) {
+    if (recent) recentGames[slug] = (recentGames[slug] ?? 0) + m.games;
     const t = (merged[slug] ??= { mapId: m.mapId, name: m.name, mode: m.mode, games: 0, b: {}, vs: {}, syn: {} });
     t.games += m.games; addInto(t.b, m.b); addInto(t.vs, m.vs); addInto(t.syn, m.syn);
   }
@@ -223,32 +229,38 @@ const out = {
   updatedAt: runDate,
   generatedAt: new Date(now).toISOString(),
   window: { days: keep.length, from: keep[0]?.slice(0, 10) ?? runDate, to: runDate },
-  sample: { games: totGames, playersReadLastRun: logsRead, logsReadInWindow: runs.filter((r) => r.date >= cutoffDay).reduce((a, r) => a + r.logsRead, 0), maps: 0, rankHist: totRanks },
+  sample: { games: totGames, playersReadLastRun: logsRead, seedPlayersLastRun: seedCount, logsReadInWindow: runs.filter((r) => r.date >= cutoffDay).reduce((a, r) => a + r.logsRead, 0), maps: 0, rankHist: totRanks },
   perDay: {},
+  format: 2,
   banData: false,
-  notes: 'Win rates are smoothed toward 50%. useRate = % of games on the map where the brawler was picked (either team). Ban rate is null: battle logs do not record bans.',
+  pool: [],
+  notes: 'brawlers: raw games/wins plus winRate smoothed toward 50%. useRate = % of games on the map where the brawler was picked (either team). matchups/synergy: [games, wins for the lower id] (raw). pool = maps with Ranked games in the last 7 days. Ban rate is null: battle logs do not record bans.',
   maps: {},
 };
 for (const [slug, m] of Object.entries(merged).sort((a, b) => b[1].games - a[1].games)) {
   if (m.games < MAP_MIN) continue;
   const brawlers = {};
   for (const [id, [n, w]] of Object.entries(m.b)) {
-    brawlers[id] = { winRate: r1(smooth(w, n, WR_PRIOR)), useRate: r1((100 * n) / m.games), games: n, banRate: null };
+    brawlers[id] = { games: n, wins: w, winRate: r1(smooth(w, n, WR_PRIOR)), useRate: r1((100 * n) / m.games), banRate: null };
   }
-  const matchups = {};
-  for (const [k, [n, w]] of Object.entries(m.vs)) {
-    if (n < PAIR_MIN) continue;
-    const [a, b] = k.split('|');
-    (matchups[a] ??= {})[b] = [n, r1(smooth(w, n, PAIR_PRIOR))];
-  }
-  const synergy = {};
-  for (const [k, [n, w]] of Object.entries(m.syn)) {
-    if (n < PAIR_MIN) continue;
-    const [a, b] = k.split('|');
-    (synergy[a] ??= {})[b] = [n, r1(smooth(w, n, PAIR_PRIOR))];
-  }
-  out.maps[slug] = { name: m.name, mode: m.mode, mapId: m.mapId, sample: m.games, brawlers, matchups, synergy };
+  const pairs = (src) => {
+    const o = {};
+    for (const [k, [n, w]] of Object.entries(src)) {
+      if (n < PAIR_MIN) continue;
+      const [a, b] = k.split('|');
+      (o[a] ??= {})[b] = [n, w];
+    }
+    return o;
+  };
+  const raw = mapById.get(m.mapId);
+  out.maps[slug] = {
+    name: m.name, mode: m.mode, mapId: m.mapId,
+    img: raw?.imageUrl ?? '', modeIcon: raw?.gameMode?.imageUrl ?? '', modeColor: raw?.gameMode?.color ?? '',
+    sample: m.games, recent: recentGames[slug] ?? 0, inPool: (recentGames[slug] ?? 0) >= POOL_MIN,
+    brawlers, matchups: pairs(m.vs), synergy: pairs(m.syn),
+  };
 }
+out.pool = Object.entries(out.maps).filter(([, m]) => m.inPool).map(([k]) => k);
 out.sample.maps = Object.keys(out.maps).length;
 out.perDay = perDay;
 
@@ -268,4 +280,4 @@ console.log(`new games by day: ${JSON.stringify(newPerDay)}`);
 console.log(`run ${runDate}: ${games.size} new ranked games from ${logsRead} logs (${logsWithRanked} with ranked games)`);
 console.log(`window ${out.window.from}..${out.window.to}: ${totGames} games, ${out.sample.maps} maps published`);
 console.log(`api calls ${calls}, 404s ${notFound}, 429s ${throttled}, gave up ${fails}; stats-latest ${(json.length / 1024).toFixed(0)} KB`);
-for (const [slug, m] of Object.entries(out.maps)) console.log(`  ${slug}: ${m.sample}`);
+for (const [slug, m] of Object.entries(out.maps)) console.log(`  ${m.inPool ? 'POOL' : '    '} ${slug}: ${m.sample} (last ${POOL_DAYS}d: ${m.recent})`);

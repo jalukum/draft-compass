@@ -42,12 +42,13 @@ export interface Catalog {
 /** Per-map ladder stats. BrawlAPI has none; our daily sampler publishes them (or import a JSON). */
 export interface BrawlerMapStat {
   winRate: number; useRate: number;
-  /** games this brawler appeared in on the map */
+  /** games this brawler appeared in on the map, and how many it won (raw) */
   games?: number;
+  wins?: number;
   /** null: battle logs don't record bans */
   banRate?: number | null;
 }
-/** [games, win% for the outer key] for a brawler pair. Stored once per pair, lower id first. */
+/** Format 2: [games, wins for the lower id]. Stored once per pair, lower id first. */
 export type PairStat = [number, number];
 export interface MapStats {
   sample: number;
@@ -57,6 +58,9 @@ export interface MapStats {
   /** synergy[a][b]: a with b on the same team, a < b */
   synergy?: Record<string, Record<string, PairStat>>;
   name?: string; mode?: string; mapId?: number;
+  img?: string; modeIcon?: string; modeColor?: string;
+  /** Ranked games on this map in the last 7 days; inPool = part of the current Ranked pool */
+  recent?: number; inPool?: boolean;
 }
 export interface StatsSnapshot {
   source: string;
@@ -65,15 +69,9 @@ export interface StatsSnapshot {
   window?: { days: number; from: string; to: string };
   sample?: { games: number; maps: number; playersReadLastRun?: number };
   banData?: boolean;
+  format?: number;
+  /** map slugs in the current Ranked pool */
+  pool?: string[];
   /** keyed by map slug */
   maps: Record<string, MapStats>;
-}
-
-/** Look up a pair from either side. Returns [games, win% for a] or null. */
-export function pairStat(t: MapStats['matchups'] | undefined, a: number, b: number, mirror: boolean): PairStat | null {
-  if (!t) return null;
-  const [lo, hi] = a < b ? [a, b] : [b, a];
-  const r = t[String(lo)]?.[String(hi)];
-  if (!r) return null;
-  return a < b || !mirror ? r : [r[0], 100 - r[1]];
 }

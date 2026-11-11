@@ -2,10 +2,7 @@ import { useCallback, useEffect, useState } from 'preact/hooks';
 import { APP, DATA } from './config';
 import { fetchLiveRaw, normalizeCatalog } from './data/catalog';
 import type { Catalog, StatsSnapshot } from './data/types';
-import type { PresetId, Weights } from './engine/weights';
-import { PRESETS } from './engine/weights';
 import { emptyDraft, type DraftState } from './engine/draft';
-import { DEFAULT_SORT, type SortPref } from './engine/sort';
 
 const key = (k: string) => `${APP.storagePrefix}:${k}`;
 export function load<T>(k: string, fallback: T): T {
@@ -17,21 +14,6 @@ export function load<T>(k: string, fallback: T): T {
 export function save(k: string, v: unknown) {
   try { localStorage.setItem(key(k), JSON.stringify(v)); } catch { /* storage full or blocked */ }
 }
-
-export interface Settings {
-  preset: PresetId;
-  custom: Weights;
-  offMeta: boolean;
-  rarityTint: boolean;
-  favorites: number[];
-  tourDone: boolean;
-  /** Remembered sort per brawler list. */
-  sorts: { roster: SortPref; brawlers: SortPref };
-}
-export const defaultSettings: Settings = {
-  preset: 'climber', custom: { ...PRESETS[0].weights }, offMeta: false, rarityTint: true, favorites: [], tourDone: false,
-  sorts: { roster: { ...DEFAULT_SORT }, brawlers: { ...DEFAULT_SORT } },
-};
 
 /** usePersisted: state mirrored to localStorage. */
 export function usePersisted<T extends object>(k: string, init: T): [T, (u: T | ((p: T) => T)) => void] {
@@ -46,7 +28,6 @@ export function usePersisted<T extends object>(k: string, init: T): [T, (u: T | 
   return [v, set];
 }
 
-export const useSettings = () => usePersisted<Settings>('settings', defaultSettings);
 export const useDraft = () => usePersisted<DraftState>('draft', emptyDraft());
 
 // ---- Catalog --------------------------------------------------------------
@@ -110,33 +91,16 @@ export function useCatalog(): CatalogState {
   return { catalog, error, refreshing, refresh };
 }
 
-// ---- Stats snapshot: the daily published file, or a hand-imported one -------
-export type StatsOrigin = 'published' | 'imported' | null;
-export function useStats(): [StatsSnapshot | null, (s: StatsSnapshot | null) => void, StatsOrigin] {
-  const [imported, setImported] = useState<StatsSnapshot | null>(() => {
-    try { const v = localStorage.getItem(key('stats')); return v ? JSON.parse(v) : null; } catch { return null; }
-  });
-  const [published, setPublished] = useState<StatsSnapshot | null>(null);
+// ---- Stats snapshot: published daily next to the app -----------------------
+export function useStats(): StatsSnapshot | null {
+  const [s, setS] = useState<StatsSnapshot | null>(null);
   useEffect(() => {
     let off = false;
     fetch(`${import.meta.env.BASE_URL}data/stats-latest.json`, { cache: 'no-cache' })
       .then((r) => (r.ok ? r.json() : null))
-      .then((j) => { if (!off && j) setPublished(validateStats(j)); })
-      .catch(() => { /* offline or not published yet */ });
+      .then((j) => { if (!off && j) setS(j as StatsSnapshot); })
+      .catch(() => { /* offline and never cached */ });
     return () => { off = true; };
   }, []);
-  const set = (v: StatsSnapshot | null) => {
-    if (v) save('stats', v); else localStorage.removeItem(key('stats'));
-    setImported(v);
-  };
-  const s = imported ?? published;
-  return [s, set, imported ? 'imported' : published ? 'published' : null];
-}
-
-export function validateStats(j: any): StatsSnapshot {
-  if (!j || typeof j !== 'object' || typeof j.maps !== 'object') throw new Error('Expected { source, updatedAt, maps: { <map-slug>: { sample, brawlers } } }');
-  for (const [slug, m] of Object.entries<any>(j.maps)) {
-    if (typeof m.sample !== 'number' || typeof m.brawlers !== 'object') throw new Error(`Map ${slug} needs "sample" and "brawlers"`);
-  }
-  return { ...j, source: String(j.source ?? 'imported file'), updatedAt: String(j.updatedAt ?? new Date().toISOString()), maps: j.maps };
+  return s;
 }
