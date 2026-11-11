@@ -223,7 +223,7 @@ const out = {
   updatedAt: runDate,
   generatedAt: new Date(now).toISOString(),
   window: { days: keep.length, from: keep[0]?.slice(0, 10) ?? runDate, to: runDate },
-  sample: { games: totGames, playersReadLastRun: logsRead, playersReadInWindow: runs.filter((r) => r.date >= cutoffDay).reduce((a, r) => a + r.logsRead, 0), maps: 0, rankHist: totRanks },
+  sample: { games: totGames, playersReadLastRun: logsRead, logsReadInWindow: runs.filter((r) => r.date >= cutoffDay).reduce((a, r) => a + r.logsRead, 0), maps: 0, rankHist: totRanks },
   perDay: {},
   banData: false,
   notes: 'Win rates are smoothed toward 50%. useRate = % of games on the map where the brawler was picked (either team). Ban rate is null: battle logs do not record bans.',

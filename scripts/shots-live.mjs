@@ -17,6 +17,7 @@ await page.evaluate(() => localStorage.setItem('dc:settings', JSON.stringify({ t
 await page.evaluate((m) => localStorage.setItem('dc:draft', JSON.stringify({ mapSlug: m, phase: 'pick' })), map);
 await page.goto(`${base}#/draft?map=${map}`); await page.reload();
 await page.waitForSelector('.rec');
+await page.getByRole('radio', { name: 'Pick' }).first().click().catch(() => {});
 await page.waitForFunction(() => document.body.innerText.includes('Ladder stats:'), null, { timeout: 15000 }).catch(() => {});
 await settle();
 // Count confidence labels by opening each of the top rows.

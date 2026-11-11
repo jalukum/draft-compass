@@ -88,7 +88,7 @@ export function MeScreen({ catalog, cat, settings, setSettings, stats, statsOrig
       </section>
 
       <section class="card about">
-        <div class="about-head"><Logo size={48} /><div><h3>{APP.name}</h3><span class="hint">v{APP.version} · private build</span></div></div>
+        <div class="about-head"><Logo size={48} /><div><h3>{APP.name}</h3><span class="hint">v{APP.version} · fan build</span></div></div>
         <p><b>Unofficial fan app, not affiliated with Supercell.</b> This material is unofficial and is not endorsed by Supercell. For more information see Supercell's Fan Content Policy: <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">supercell.com/en/fan-content-policy</a>.</p>
         <p>Brawl Stars names, portraits, map and mode art belong to Supercell. Catalog data from <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; images served by the <a href="https://brawlify.com" target="_blank" rel="noopener">Brawlify</a> CDN.</p>
         <p>Suggestions, traits and matchup rules are {APP.name}'s own read, written for this app. They're opinions, not guarantees.</p>
