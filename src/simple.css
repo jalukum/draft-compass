@@ -162,3 +162,11 @@ a { color: var(--muted); }
 .sheet { width: min(520px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px 14px 0 0; padding: 14px 16px calc(18px + var(--sab)); font-size: 14px; color: var(--muted); }
 .sheet-top { display: flex; align-items: center; justify-content: space-between; color: var(--text); margin-bottom: 6px; }
 @media (min-width: 768px) { .sheet-bg { place-items: center; } .sheet { border-radius: 14px; } }
+
+/* No zoom, no bounce: no pinch/double-tap zoom, no focus zoom (inputs >= 16px), no rubber-band overscroll, no motion. */
+html, body { overscroll-behavior: none; touch-action: manipulation; }
+.results, .sheet-bg, .maplist { overscroll-behavior: contain; }
+* { -webkit-tap-highlight-color: transparent; }
+*, *::before, *::after { animation: none !important; transition: none !important; }
+button, a, input, select, textarea { touch-action: manipulation; }
+input, select, textarea { font-size: 16px !important; }
