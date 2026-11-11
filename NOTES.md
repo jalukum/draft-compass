@@ -58,6 +58,19 @@ Score 1–99 for each brawler that is still available, for the side whose turn i
 
 **Lanes:** each team is placed left/mid/right by role (controllers, supports and long range mid; tanks mid in Brawl Ball). Our side is then arranged to win the most lane matchups. Each lane shows our chance to win that matchup (head-to-head data, shrunk toward the win-rate expectation). Tap two brawlers on one side to swap them.
 
+### Team win chance (`src/engine/winchance.ts`)
+
+Shown under the pick slots once each side has a pick, as "Win chance so far N%" while picking and "Win chance N%" when all six are in. It's a logistic model on three log-odds features:
+- **strength:** Σ logit(shrunk map win rate), ours minus theirs
+- **matchups:** every our-vs-their pair: logit(shrunk pair result) − logit(expectation from the two win rates)
+- **synergy:** every same-team pair, the same way, ours minus theirs
+
+Weights (strength 0.66, matchups 0.268, synergy 0.054) were fitted by `scripts/fit-winchance.ts` on Ranked games played **after** the snapshot, so none of them were in the stats. On 11 Nov 2026 that was 6,610 games, split 60/40: 3,966 to fit and 2,644 held out.
+- Held-out accuracy is **58.2%** (coin flip 50%), and log loss is 0.674 vs 0.693. Strength alone gets 57.9%; matchups add a little, synergy almost nothing.
+- Calibration on the held-out games, predicted → actual: 32%→42%, 41%→36%, 50%→50%, 59%→62%, 68%→74%.
+- The output is clamped to 25–75%. A draft only explains part of a Ranked game; skill and execution are the rest.
+- Rerun the fit now and then: `BRAWL_STARS_API_KEY=... npx vite-node scripts/fit-winchance.ts`.
+
 ### How the sampler works (`scripts/collect-stats.mjs`)
 
 - Players: top 200 of the global list plus the top 200 of US, BR, MX, DE, FR, ES, TR, RU, KR, JP, GB (about 2,300 unique). Snowball is on by default, so players met in Ranked games are read too, capped at 8,000 battle logs per run (`MAX_PLAYERS`). `SNOWBALL=0` turns it off.

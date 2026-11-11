@@ -170,3 +170,9 @@ html, body { overscroll-behavior: none; touch-action: manipulation; }
 *, *::before, *::after { animation: none !important; transition: none !important; }
 button, a, input, select, textarea { touch-action: manipulation; }
 input, select, textarea { font-size: 16px !important; }
+.winbar { margin-top: 10px; }
+.winbar-label { display: flex; justify-content: space-between; font-size: 14px; margin-bottom: 5px; }
+.winbar-label b { font-variant-numeric: tabular-nums; }
+.winbar-label b.good { color: var(--good); } .winbar-label b.bad { color: var(--bad); }
+.winbar-track { height: 8px; border-radius: 4px; background: var(--them); overflow: hidden; display: flex; }
+.winbar-us { background: var(--us); height: 100%; }

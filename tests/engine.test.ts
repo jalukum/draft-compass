@@ -155,3 +155,17 @@ describe('ranked pick order', () => {
     expect(lateGain).toBeGreaterThan(earlyGain * 0.9);
   });
 });
+
+describe('team win chance', () => {
+  it('is symmetric, favours the stronger side and stays clamped', async () => {
+    const { winChance, WIN_CLAMP } = await import('../src/engine/winchance');
+    const st = SAMPLE();
+    const a = winChance(st, [R.piper.id, R.brock.id], [R.bull.id, R.colt.id]);
+    const b = winChance(st, [R.bull.id, R.colt.id], [R.piper.id, R.brock.id]);
+    expect(a).toBeGreaterThan(0.5);
+    expect(a + b).toBeCloseTo(1, 6);
+    expect(winChance(st, [R.colt.id], [R.colt.id === R.gene.id ? R.poco.id : R.gene.id])).toBeCloseTo(0.5, 1);
+    expect(a).toBeLessThanOrEqual(WIN_CLAMP[1]);
+    expect(b).toBeGreaterThanOrEqual(WIN_CLAMP[0]);
+  });
+});

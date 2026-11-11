@@ -4,6 +4,7 @@ import { useCatalog, useDraft, useStats } from './store';
 import type { Brawler, GameMap, MapStats } from './data/types';
 import { applyBan, applyPick, emptyDraft, MAX_BANS, nextPicker, removeFrom, type Side } from './engine/draft';
 import { autoLanes, laneEdge, LANES, suggest } from './engine/meta';
+import { winChance } from './engine/winchance';
 import { fmtDate, Portrait } from './ui/bits';
 
 const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
@@ -133,6 +134,7 @@ export function App() {
       </div>
       <Team label="Us" side="ally" ids={draft.ally} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'ally', id))} />
       <Team label="Them" side="opp" ids={draft.opp} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'opp', id))} />
+      {draft.ally.length > 0 && draft.opp.length > 0 && <WinBar p={winChance(st, draft.ally, draft.opp)} final={picks === 6} />}
       {wide && pickSearch && <div class="pick-search">{pickSearch}</div>}
     </section>
   );
@@ -380,4 +382,14 @@ function MapsTab({ pool, stats, brawlers, slug, wide, onDraft }: {
   })();
   if (wide) return <div class="cols maps-cols"><div class="col">{list}</div><div class="col">{detail}</div></div>;
   return slug && detail ? detail : list;
+}
+
+function WinBar({ p, final }: { p: number; final: boolean }) {
+  const pct = Math.round(p * 100);
+  return (
+    <div class="winbar" aria-label={`Win chance ${pct}%`}>
+      <div class="winbar-label"><span>{final ? 'Win chance' : 'Win chance so far'} <b class={pct >= 53 ? 'good' : pct <= 47 ? 'bad' : ''}>{pct}%</b></span><span class="muted">Them {100 - pct}%</span></div>
+      <div class="winbar-track"><span class="winbar-us" style={{ width: `${pct}%` }} /></div>
+    </div>
+  );
 }
