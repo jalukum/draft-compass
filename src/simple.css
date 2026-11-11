@@ -106,3 +106,4 @@ a { color: var(--muted); }
 .rank { width: 18px; color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
 .btn.primary { background: var(--us); border-color: var(--us); color: #fff; font-weight: 600; }
 .btn.wide { display: block; width: 100%; text-align: center; padding: 11px; margin-top: 12px; font-size: 15px; }
+.top10 .grow small { white-space: normal; }
