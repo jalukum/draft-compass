@@ -11,7 +11,7 @@ button { font: inherit; color: inherit; background: none; border: 0; padding: 0;
 input { font: inherit; }
 a { color: var(--muted); }
 
-.app { max-width: 560px; margin: 0 auto; padding: 12px 14px calc(24px + env(safe-area-inset-bottom)); }
+.app { max-width: 560px; margin: 0 auto; padding: 12px 14px calc(76px + env(safe-area-inset-bottom)); }
 .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 6px 0 10px; }
 .top h1 { font-size: 18px; margin: 0; font-weight: 700; }
 .sub { margin: 2px 0 0; font-size: 12.5px; color: var(--muted); }
@@ -90,3 +90,19 @@ a { color: var(--muted); }
 .lanes + .hint { margin: 8px 0 0; }
 
 .foot { color: var(--muted); font-size: 11.5px; padding: 10px 2px; line-height: 1.5; }
+
+.block h3.us { color: var(--us); } .block h3.them { color: var(--them); }
+.nav { position: fixed; left: 0; right: 0; bottom: 0; display: flex; justify-content: center; gap: 0; background: #12151bf2; border-top: 1px solid var(--line); padding-bottom: env(safe-area-inset-bottom); backdrop-filter: blur(6px); z-index: 10; }
+.nav a { flex: 1; max-width: 280px; text-align: center; padding: 14px 0; color: var(--muted); text-decoration: none; font-weight: 600; font-size: 15px; }
+.nav a.on { color: var(--text); box-shadow: inset 0 2px 0 var(--us); }
+.maps-search { margin-bottom: 10px; }
+.results.flat { max-height: none; }
+.results a { display: flex; align-items: center; gap: 10px; padding: 9px 10px; color: var(--text); text-decoration: none; }
+.results a:active, .results a:hover { background: #1f2430; }
+.back { color: var(--muted); text-decoration: none; font-size: 14px; display: inline-block; margin-bottom: 8px; }
+.map-head { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
+.map-head small, .top10 small { display: block; color: var(--muted); font-size: 12px; }
+.top10 .row { display: flex; align-items: center; gap: 10px; padding: 7px 2px; font-size: 15px; }
+.rank { width: 18px; color: var(--muted); font-size: 13px; text-align: right; font-variant-numeric: tabular-nums; }
+.btn.primary { background: var(--us); border-color: var(--us); color: #fff; font-weight: 600; }
+.btn.wide { display: block; width: 100%; text-align: center; padding: 11px; margin-top: 12px; font-size: 15px; }

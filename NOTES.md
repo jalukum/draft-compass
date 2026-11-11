@@ -14,7 +14,7 @@ Last updated 10 Nov 2026 (America/Chicago).
 
 So BrawlAPI publishes **no per-map win/use rates** and no live rotation. The app therefore uses BrawlAPI only for brawler names and portraits. The map pool, map art and all stats come from our own daily sample of Ranked battle logs (below).
 
-The app is one screen: (1) map search over the current Ranked pool, (2) ban search, (3) top picks with a score plus a pick search for either team, (4) lane matchups with scores. A short Fan Content Policy footer sits at the bottom. There are no presets, tours or settings.
+Two tabs. **Draft:** (1) map search over the current Ranked pool, (2) ban search, (3) picks in Ranked order 1-2-2-1 (the first-pick toggle sets who starts). Every pick, from the list or the search bar, goes to whoever's turn it is. The list shows "Best picks for us" on our turn and "Likely enemy picks" (scored from their side) on theirs. (4) Lane matchups with scores. **Maps:** the current Ranked pool grouped by mode, with a search bar. Each map shows its top 10 (score, win rate, pick rate, games) and a "Draft on this map" button. A short Fan Content Policy footer sits at the bottom. There are no presets, tours or settings.
 
 The catalog also lists some maps several times (re-releases); the app keeps one per name+mode, preferring the active entry.
 
@@ -49,10 +49,10 @@ The app fetches `<BASE>/data/stats-latest.json` on load (network-first, not prec
 
 ### Scoring (`src/engine/meta.ts`)
 
-Score 1–99 for each brawler that is still available, for our next pick:
+Score 1–99 for each brawler that is still available, for the side whose turn it is (soft-capped, so late picks don't all read 99):
 - **Map strength:** win rate shrunk toward 50% as if it had 100 extra even games (Bayesian), so small samples can't top the list.
 - **Popularity:** log of the pick rate vs. an even share. High-rank players pick what is meta, so this weighs heavily.
-- **Counters:** for each enemy pick, the real head-to-head result on this map minus what the two win rates predict, shrunk with a 25-game prior.
+- **Counters:** for each enemy pick, the real head-to-head result on this map minus what the two win rates predict, shrunk with a 50-game prior. Summed over enemy picks, with more weight the later the pick (×0.28 per enemy on pick 1, up to ×0.81 on pick 6).
 - **Synergy:** the same, for brawlers on our team.
 - The hand-made role/mode-fit model (`heuristics.ts`, `traits.ts`) only nudges brawlers with under 30 games on the map.
 

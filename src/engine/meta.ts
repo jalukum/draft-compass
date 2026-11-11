@@ -12,7 +12,7 @@ import type { Brawler, GameMap, MapStats } from '../data/types';
 import { matchup, modeFit, modeKey } from './heuristics';
 
 export const WR_K = 100;    // win-rate prior strength (games): a brawler needs a few hundred games before its win rate counts fully
-export const PAIR_K = 25;   // pair prior strength (games)
+export const PAIR_K = 50;   // pair prior strength (games): head-to-head samples are small and noisy
 
 const clamp = (x: number, lo: number, hi: number) => Math.max(lo, Math.min(hi, x));
 
@@ -59,7 +59,10 @@ export interface SuggestInput {
   theirs: number[];
 }
 
-/** Ranked list of brawlers for our next pick. Banned and picked brawlers are left out. */
+/**
+ * Ranked list for the next pick of one side (`mine` = that side's picks, `theirs` = the other side's).
+ * Call it with the teams swapped to read the enemy's likely picks. Banned and picked brawlers are left out.
+ */
 export function suggest(inp: SuggestInput): Suggestion[] {
   const { stats: st, map } = inp;
   const byId = new Map(inp.brawlers.map((b) => [b.id, b]));
@@ -70,6 +73,9 @@ export function suggest(inp: SuggestInput): Suggestion[] {
   const nBrawlers = Math.max(1, Object.keys(st?.brawlers ?? {}).length);
   const avgUse = 600 / Math.max(nBrawlers, 60); // six picks per game spread over the field
 
+  // Counters matter more the later the pick: the last pick sees the whole enemy team.
+  const pickNo = inp.mine.length + inp.theirs.length; // 0..5
+  const counterW = 0.35 * (0.8 + 0.3 * pickNo); // per enemy pick, summed
   const out: Suggestion[] = [];
   for (const b of inp.brawlers) {
     if (taken.has(b.id)) continue;
@@ -81,7 +87,7 @@ export function suggest(inp: SuggestInput): Suggestion[] {
     for (const e of theirs) {
       const ex = laneEdge(st, map, b, e);
       const base = clamp(0.5 + ((r?.adj ?? 0.5) - (row(st, e.id)?.adj ?? 0.5)), 0.05, 0.95);
-      delta += ((ex.p - base) / theirs.length) * 0.9;
+      delta += (ex.p - base) * counterW;
     }
     // 3. synergy with our picks
     for (const a of mine) {
@@ -98,7 +104,8 @@ export function suggest(inp: SuggestInput): Suggestion[] {
     // 5. tie-break model, only meaningful when the brawler has almost no games here
     const thin = clamp(1 - games / 30, 0, 1);
     const fit = modeFit(b, mk).value * thin;
-    const score = clamp(Math.round(48 + 380 * delta + 13 * pop + 6 * fit), 1, 99);
+    const raw = 48 + 380 * delta + 13 * pop + 6 * fit;
+    const score = clamp(Math.round(50 + 49 * Math.tanh((raw - 50) / 40)), 1, 99); // soft cap so late picks don't all read 99
     out.push({ brawler: b, score, games, winRate: r && games ? r.wr * 100 : null, pickRate: use, delta });
   }
   return out.sort((a, b) => b.score - a.score || b.games - a.games || a.brawler.name.localeCompare(b.brawler.name));

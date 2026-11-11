@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { matchup, modeFit, modeKey, teamQuality } from '../src/engine/heuristics';
-import { applyBan, applyPick, emptyDraft, pickTurn, removeFrom, resetDraft, type DraftState } from '../src/engine/draft';
+import { applyBan, applyPick, emptyDraft, nextPicker, pickTurn, removeFrom, resetDraft, type DraftState } from '../src/engine/draft';
 import { traitsOf } from '../src/engine/traits';
 import { autoLanes, laneEdge, pair, row, suggest } from '../src/engine/meta';
 import { ALL, BALL, KO, ROSTER as R, ZONE } from './fixtures';
@@ -127,5 +127,31 @@ describe('lanes', () => {
   it('handles partial teams', () => {
     const l = autoLanes([R.bull], BALL, null);
     expect(l.filter(Boolean).length).toBe(1);
+  });
+});
+
+describe('ranked pick order', () => {
+  it('alternates 1-2-2-1 from either first pick', () => {
+    const walk = (first: 'ally' | 'opp') => {
+      let a = 0, o = 0; const seq: string[] = [];
+      for (let i = 0; i < 6; i++) { const s = nextPicker(first, a, o)!; seq.push(s); if (s === 'ally') a++; else o++; }
+      expect(nextPicker(first, a, o)).toBeNull();
+      return seq;
+    };
+    expect(walk('ally')).toEqual(['ally', 'opp', 'opp', 'ally', 'ally', 'opp']);
+    expect(walk('opp')).toEqual(['opp', 'ally', 'ally', 'opp', 'opp', 'ally']);
+  });
+  it('recomputes the turn after a pick is removed', () => {
+    expect(nextPicker('ally', 1, 2)).toBe('ally');      // us, them, them -> us
+    expect(nextPicker('ally', 0, 2)).toBe('ally');      // our first pick was removed -> us again
+    expect(nextPicker('ally', 2, 1)).toBe('opp');       // their second pick was removed -> them
+  });
+  it('weighs counters more on later picks', () => {
+    const d = (mine: number[], theirs: number[]) => suggest(inp({ mine, theirs })).find((s) => s.brawler.id === R.brock.id)!.delta;
+    const earlyGain = d([], [R.bull.id]) - d([], []);
+    const lateMine = [R.poco.id, R.colt.id];
+    const lateGain = d(lateMine, [R.bull.id, R.gene.id, R.tick.id]) - d(lateMine, [R.gene.id, R.tick.id]);
+    expect(earlyGain).toBeGreaterThan(0);
+    expect(lateGain).toBeGreaterThan(earlyGain * 0.9);
   });
 });

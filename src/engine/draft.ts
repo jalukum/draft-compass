@@ -62,3 +62,17 @@ export function removeFrom(d: DraftState, where: 'bans' | Side, id: number): Dra
 }
 
 export const resetDraft = (d: DraftState): DraftState => ({ ...emptyDraft(d.mapSlug), firstPick: d.firstPick, turn: d.firstPick });
+
+/**
+ * Whose pick is next in Ranked order (1-2-2-1) given how many each team has, or null when both are full.
+ * Works after removals too: the first slot in the order that the team hasn't filled is next.
+ */
+export function nextPicker(firstPick: Side, ally: number, opp: number): Side | null {
+  const left = { ally, opp };
+  const order: Side[] = [firstPick, other(firstPick), other(firstPick), firstPick, firstPick, other(firstPick)];
+  for (const s of order) {
+    if (left[s] > 0) { left[s]--; continue; }
+    return s;
+  }
+  return null;
+}

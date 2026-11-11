@@ -1,8 +1,8 @@
-import { useMemo, useState } from 'preact/hooks';
+import { useEffect, useMemo, useState } from 'preact/hooks';
 import { APP } from './config';
 import { useCatalog, useDraft, useStats } from './store';
 import type { Brawler, GameMap, MapStats } from './data/types';
-import { applyBan, applyPick, emptyDraft, MAX_BANS, pickTurn, removeFrom, type Side } from './engine/draft';
+import { applyBan, applyPick, emptyDraft, MAX_BANS, nextPicker, removeFrom, type Side } from './engine/draft';
 import { autoLanes, laneEdge, LANES, suggest } from './engine/meta';
 import { fmtDate, Portrait } from './ui/bits';
 
@@ -10,7 +10,19 @@ const norm = (s: string) => s.toLowerCase().replace(/[^a-z0-9]/g, '');
 
 type PoolMap = GameMap & { games: number };
 
+function readRoute() {
+  const h = location.hash.replace(/^#\/?/, '');
+  const [tab, slug] = h.split('/');
+  return { tab: tab === 'maps' ? 'maps' : 'draft', slug: slug ? decodeURIComponent(slug) : null } as { tab: 'draft' | 'maps'; slug: string | null };
+}
+
 export function App() {
+  const [route, setRoute] = useState(readRoute);
+  useEffect(() => {
+    const on = () => { setRoute(readRoute()); scrollTo(0, 0); };
+    addEventListener('hashchange', on);
+    return () => removeEventListener('hashchange', on);
+  }, []);
   const cat = useCatalog();
   const stats = useStats();
   const [draft, setDraft] = useDraft();
@@ -34,17 +46,33 @@ export function App() {
   const byId = useMemo(() => new Map(brawlers.map((b) => [b.id, b])), [brawlers]);
   const taken = new Set([...draft.bans, ...draft.ally, ...draft.opp]);
   const picks = draft.ally.length + draft.opp.length;
-  const next: Side | null = picks >= 6 ? null : draft.ally.length >= 3 ? 'opp' : draft.opp.length >= 3 ? 'ally' : pickTurn(draft.firstPick, picks);
-  const [target, setTarget] = useState<Side | 'auto'>('auto');
-  const side: Side = target === 'auto' ? (next ?? 'ally') : target;
+  // Ranked order 1-2-2-1. Every pick goes to whoever's turn it is.
+  const next: Side | null = nextPicker(draft.firstPick, draft.ally.length, draft.opp.length);
+  const pickNow = (id: number) => setDraft((d) => {
+    const s = nextPicker(d.firstPick, d.ally.length, d.opp.length);
+    return s ? applyPick(d, id, s) : d;
+  });
 
-  const sugg = useMemo(() => (map && brawlers.length && draft.ally.length < 3
-    ? suggest({ brawlers, map, stats: st, bans: draft.bans, mine: draft.ally, theirs: draft.opp }).slice(0, 10)
-    : []), [map, st, brawlers, draft.bans, draft.ally, draft.opp]);
+  // On our turn: best picks for us. On theirs: what they are likely/best to pick against us.
+  const sugg = useMemo(() => (map && brawlers.length && next
+    ? suggest({ brawlers, map, stats: st, bans: draft.bans, mine: next === 'ally' ? draft.ally : draft.opp, theirs: next === 'ally' ? draft.opp : draft.ally }).slice(0, 10)
+    : []), [map, st, brawlers, draft.bans, draft.ally, draft.opp, next]);
 
   const totalGames = stats?.sample?.games ?? 0;
   const setMap = (slug: string | null) => setDraft((d) => ({ ...emptyDraft(slug), firstPick: d.firstPick, turn: d.firstPick }));
-  const reset = () => { setDraft((d) => ({ ...emptyDraft(d.mapSlug), firstPick: d.firstPick, turn: d.firstPick })); setTarget('auto'); };
+  const reset = () => setDraft((d) => ({ ...emptyDraft(d.mapSlug), firstPick: d.firstPick, turn: d.firstPick }));
+
+  if (route.tab === 'maps') {
+    return (
+      <div class="app">
+        <header class="top"><div><h1>Ranked maps</h1>
+          <p class="sub">{stats ? `Top picks from ${totalGames.toLocaleString()} Ranked games · updated ${fmtDate(stats.generatedAt ?? stats.updatedAt)}` : 'Loading ladder data…'}</p></div></header>
+        <MapsTab pool={pool} stats={stats} brawlers={brawlers} slug={route.slug}
+          onDraft={(slug) => { setMap(slug); location.hash = '#/draft'; }} />
+        <Nav tab="maps" />
+      </div>
+    );
+  }
 
   return (
     <div class="app">
@@ -97,21 +125,21 @@ export function App() {
                     onClick={() => setDraft((d) => ({ ...d, firstPick: s, turn: s }))}>{s === 'ally' ? 'Us' : 'Them'}</button>
                 ))}
               </div>
-              {next && <span class="next">Next: <b class={next}>{next === 'ally' ? 'Us' : 'Them'}</b></span>}
+              {next ? <span class="next">Pick {picks + 1} of 6: <b class={next}>{next === 'ally' ? 'Us' : 'Them'}</b></span> : <span class="next">Draft complete</span>}
             </div>
             <Team label="Us" side="ally" ids={draft.ally} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'ally', id))} />
             <Team label="Them" side="opp" ids={draft.opp} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'opp', id))} />
 
             {sugg.length > 0 && (
               <>
-                <h3>Top picks for us</h3>
+                <h3 class={next === 'opp' ? 'them' : 'us'}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}</h3>
                 <ol class="sugg">
-                  {sugg.map((s) => (
+                  {sugg.map((x) => (
                     <li>
-                      <button type="button" onClick={() => setDraft((d) => applyPick(d, s.brawler.id, 'ally'))} aria-label={`Pick ${s.brawler.name} for us, score ${s.score}`}>
-                        <Portrait b={s.brawler} size={36} />
-                        <span class="grow">{s.brawler.name}</span>
-                        <span class={`score ${s.score >= 70 ? 'hi' : s.score >= 50 ? 'mid' : 'lo'}`}>{s.score}</span>
+                      <button type="button" onClick={() => pickNow(x.brawler.id)} aria-label={`Pick ${x.brawler.name} for ${next === 'ally' ? 'us' : 'them'}, score ${x.score}`}>
+                        <Portrait b={x.brawler} size={36} />
+                        <span class="grow">{x.brawler.name}</span>
+                        <span class={`score ${x.score >= 70 ? 'hi' : x.score >= 50 ? 'mid' : 'lo'}`}>{x.score}</span>
                       </button>
                     </li>
                   ))}
@@ -119,19 +147,9 @@ export function App() {
               </>
             )}
 
-            {picks < 6 && (
-              <>
-                <div class="add-to">
-                  <span>Add pick to</span>
-                  <div class="seg">
-                    {(['ally', 'opp'] as Side[]).map((s) => (
-                      <button type="button" class={side === s ? 'on' : ''} onClick={() => setTarget(s)}>{s === 'ally' ? 'Us' : 'Them'}</button>
-                    ))}
-                  </div>
-                </div>
-                <BrawlerSearch brawlers={brawlers} taken={taken} placeholder={`Search a pick for ${side === 'ally' ? 'us' : 'them'}`}
-                  onPick={(b) => { setDraft((d) => applyPick(d, b.id, side)); setTarget('auto'); }} />
-              </>
+            {next && (
+              <BrawlerSearch brawlers={brawlers} taken={taken} placeholder={next === 'ally' ? 'Search our pick' : 'Search their pick'}
+                onPick={(b) => pickNow(b.id)} />
             )}
           </section>
 
@@ -142,6 +160,7 @@ export function App() {
         </>
       )}
 
+      <Nav tab="draft" />
       <footer class="foot">
         Unofficial fan app, not affiliated with Supercell. This material is unofficial and is not endorsed by Supercell. For more
         information see <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.
@@ -247,5 +266,68 @@ function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally
       </div>
       <p class="hint">Number = our side's chance to win that matchup, from Ranked games on this map.</p>
     </section>
+  );
+}
+
+function Nav({ tab }: { tab: 'draft' | 'maps' }) {
+  return (
+    <nav class="nav">
+      <a href="#/draft" class={tab === 'draft' ? 'on' : ''}>Draft</a>
+      <a href="#/maps" class={tab === 'maps' ? 'on' : ''}>Maps</a>
+    </nav>
+  );
+}
+
+function MapsTab({ pool, stats, brawlers, slug, onDraft }: {
+  pool: PoolMap[]; stats: ReturnType<typeof useStats>; brawlers: Brawler[]; slug: string | null; onDraft: (slug: string) => void;
+}) {
+  const [q, setQ] = useState('');
+  const map = slug ? pool.find((m) => m.slug === slug) : null;
+  if (map && stats) {
+    const top = suggest({ brawlers, map, stats: stats.maps[map.slug] ?? null, bans: [], mine: [], theirs: [] }).slice(0, 10);
+    return (
+      <section class="block">
+        <a class="back" href="#/maps">‹ All maps</a>
+        <div class="map-head">
+          {map.modeIcon && <img src={map.modeIcon} alt="" width={26} height={26} />}
+          <div class="grow"><b>{map.name}</b><small>{map.mode} · {map.games.toLocaleString()} games</small></div>
+        </div>
+        <h3>Top 10 picks</h3>
+        <ol class="sugg top10">
+          {top.map((x, i) => (
+            <li><div class="row">
+              <span class="rank">{i + 1}</span>
+              <Portrait b={x.brawler} size={36} />
+              <span class="grow">{x.brawler.name}<small>{x.winRate === null ? 'no games' : `${x.winRate.toFixed(1)}% win · ${x.pickRate.toFixed(1)}% pick · ${x.games.toLocaleString()} games`}</small></span>
+              <span class={`score ${x.score >= 70 ? 'hi' : x.score >= 50 ? 'mid' : 'lo'}`}>{x.score}</span>
+            </div></li>
+          ))}
+        </ol>
+        <button type="button" class="btn primary wide" onClick={() => onDraft(map.slug)}>Draft on this map</button>
+      </section>
+    );
+  }
+  const hits = pool.filter((m) => !q || norm(m.name).includes(norm(q)) || norm(m.mode).includes(norm(q)));
+  const modes = [...new Set(hits.map((m) => m.mode))];
+  return (
+    <>
+      <div class="search maps-search">
+        <input type="search" placeholder={`Search ${pool.length} Ranked maps`} value={q} aria-label="Search Ranked maps" onInput={(e) => setQ((e.target as HTMLInputElement).value)} />
+      </div>
+      {modes.map((mode) => (
+        <section class="block">
+          <h2>{mode}</h2>
+          <ul class="results flat">
+            {hits.filter((m) => m.mode === mode).map((m) => (
+              <li><a href={`#/maps/${encodeURIComponent(m.slug)}`}>
+                {m.modeIcon ? <img src={m.modeIcon} alt="" width={20} height={20} /> : <span class="dot" style={{ background: m.modeColor }} />}
+                <span class="grow">{m.name}</span><small class="muted">{m.games.toLocaleString()} games ›</small>
+              </a></li>
+            ))}
+          </ul>
+        </section>
+      ))}
+      {!hits.length && <p class="hint">No Ranked map matches.</p>}
+    </>
   );
 }
