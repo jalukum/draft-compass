@@ -31,7 +31,7 @@ for (const d of devices) {
     console.log(`${d.name} ${label}: title top ${r.h1Top}px${d.safe ? ` (status bar ${d.safe.top}px)` : ''}, nav h ${r.navH}, overflow ${r.sw > r.cw} ${bad ? 'PROBLEM' : 'ok'}`);
   };
   await page.goto(`${base}#/draft`);
-  await page.evaluate(() => localStorage.clear());
+  await page.evaluate(() => { localStorage.clear(); localStorage.setItem('dc:tutorialDone', '1'); });
   await page.reload(); await safe();
   await page.waitForFunction(() => document.body.innerText.includes('Based on'), null, { timeout: 20000 });
   await check('opening');

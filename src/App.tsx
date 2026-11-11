@@ -19,6 +19,13 @@ function readRoute() {
 
 export function App() {
   const [route, setRoute] = useState(readRoute);
+  const [tour, setTour] = useState(() => { try { return !localStorage.getItem('dc:tutorialDone'); } catch { return false; } });
+  useEffect(() => {
+    const on = () => setTour(true);
+    addEventListener('dc-help', on);
+    return () => removeEventListener('dc-help', on);
+  }, []);
+  const tourEl = tour && <Tutorial onDone={() => { try { localStorage.setItem('dc:tutorialDone', '1'); } catch { /* private mode */ } setTour(false); }} />;
   useEffect(() => {
     const on = () => { setRoute(readRoute()); scrollTo(0, 0); };
     addEventListener('hashchange', on);
@@ -69,6 +76,7 @@ export function App() {
   if (route.tab === 'maps') {
     return (
       <div class="app">
+        {tourEl}
         <Header title="Ranked maps" sub={sub} tab="maps" />
         <MapsTab pool={pool} stats={stats} brawlers={brawlers} slug={route.slug} wide={wide}
           onDraft={(slug) => { setMap(slug); location.hash = '#/draft'; }} />
@@ -80,6 +88,7 @@ export function App() {
   if (!map) {
     return (
       <div class="app">
+        {tourEl}
         <Header title={APP.name} sub={sub} tab="draft" />
         <section class="block start">
           <h2><span class="step">1</span> Pick the map</h2>
@@ -163,6 +172,7 @@ export function App() {
 
   return (
     <div class="app">
+      {tourEl}
       <Header title={APP.name} sub={sub} tab="draft" right={<button type="button" class="btn" onClick={reset}>Reset</button>} />
       {wide ? (
         <div class="cols">
@@ -195,7 +205,10 @@ function Header({ title, sub, tab, right }: { title: string; sub: string; tab: '
         <p class="sub">{sub}</p>
       </div>
       <Nav tab={tab} />
-      {right && <div class="top-right">{right}</div>}
+      <div class="top-right">
+        {right}
+        <button type="button" class="btn help" aria-label="How to use" onClick={() => dispatchEvent(new Event('dc-help'))}>?</button>
+      </div>
     </header>
   );
 }
@@ -390,6 +403,34 @@ function WinBar({ p, final }: { p: number; final: boolean }) {
     <div class="winbar" aria-label={`Win chance ${pct}%`}>
       <div class="winbar-label"><span>{final ? 'Win chance' : 'Win chance so far'} <b class={pct >= 53 ? 'good' : pct <= 47 ? 'bad' : ''}>{pct}%</b></span><span class="muted">Them {100 - pct}%</span></div>
       <div class="winbar-track"><span class="winbar-us" style={{ width: `${pct}%` }} /></div>
+    </div>
+  );
+}
+
+const STEPS = [
+  { title: 'Pick the map', text: 'Search or tap one of the current Ranked maps to start a draft.' },
+  { title: 'Add bans', text: 'Type a brawler into the ban search bar and tap it; tap a ban again to remove it.' },
+  { title: 'Picks alternate 1-2-2-1', text: 'Set who picks first; tapping a suggestion or searching a brawler always fills whoever\'s turn it is, like Ranked.' },
+  { title: 'Read the suggestions', text: 'Each row shows a score and the brawler\'s win % on the map; on their turn the list switches to "Likely enemy picks".' },
+  { title: 'Win chance and lanes', text: 'The bar shows your team\'s win chance, lanes show each matchup (tap two of your brawlers to swap), and the Maps tab lists the top 10 per map.' },
+];
+
+function Tutorial({ onDone }: { onDone: () => void }) {
+  const [i, setI] = useState(0);
+  const s = STEPS[i];
+  const last = i === STEPS.length - 1;
+  return (
+    <div class="tour-bg" role="dialog" aria-modal="true" aria-label="How to use Draft Compass">
+      <div class="tour-card">
+        <div class="tour-top"><span class="muted">{i + 1} of {STEPS.length}</span><button type="button" class="tour-skip" onClick={onDone}>Skip</button></div>
+        <h2>{s.title}</h2>
+        <p>{s.text}</p>
+        <div class="tour-dots">{STEPS.map((_, k) => <span class={k === i ? 'on' : ''} />)}</div>
+        <div class="tour-btns">
+          <button type="button" class="btn" disabled={i === 0} onClick={() => setI(i - 1)}>Back</button>
+          <button type="button" class="btn primary" onClick={() => (last ? onDone() : setI(i + 1))}>{last ? 'Done' : 'Next'}</button>
+        </div>
+      </div>
     </div>
   );
 }

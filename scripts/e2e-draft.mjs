@@ -19,7 +19,7 @@ const top3 = async () => (await page.locator('.sugg li').allInnerTexts()).slice(
 
 async function newDraft(first) {
   await page.goto(`${base}#/draft`);
-  await page.evaluate(() => localStorage.clear());
+  await page.evaluate(() => { localStorage.clear(); localStorage.setItem('dc:tutorialDone', '1'); });
   await page.reload();
   await page.waitForFunction(() => document.body.innerText.includes('Based on'), null, { timeout: 20000 });
   await page.locator('input[aria-label="Search maps"]').fill('hard rock');

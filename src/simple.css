@@ -176,3 +176,19 @@ input, select, textarea { font-size: 16px !important; }
 .winbar-label b.good { color: var(--good); } .winbar-label b.bad { color: var(--bad); }
 .winbar-track { height: 8px; border-radius: 4px; background: var(--them); overflow: hidden; display: flex; }
 .winbar-us { background: var(--us); height: 100%; }
+.top-right { display: flex; gap: 6px; align-items: center; }
+.btn.help { width: 34px; padding: 6px 0; text-align: center; font-weight: 700; }
+.tour-bg { position: fixed; inset: 0; z-index: 30; background: #000b; display: flex; align-items: flex-end; justify-content: center;
+  padding: calc(12px + var(--sat)) calc(12px + var(--sar)) calc(12px + var(--sab)) calc(12px + var(--sal)); overscroll-behavior: contain; }
+.tour-card { width: min(440px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.tour-card h2 { font-size: 18px; margin: 6px 0 6px; }
+.tour-card p { margin: 0 0 14px; color: var(--text); font-size: 15px; line-height: 1.45; }
+.tour-top { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+.tour-skip { color: var(--muted); font-size: 14px; padding: 4px 2px; }
+.tour-dots { display: flex; gap: 6px; margin-bottom: 14px; }
+.tour-dots span { width: 6px; height: 6px; border-radius: 50%; background: var(--line); }
+.tour-dots span.on { background: var(--us); }
+.tour-btns { display: flex; gap: 8px; }
+.tour-btns .btn { flex: 1; text-align: center; padding: 10px; font-size: 15px; }
+.tour-btns .btn:disabled { opacity: .4; }
+@media (min-width: 768px) { .tour-bg { align-items: center; } }
