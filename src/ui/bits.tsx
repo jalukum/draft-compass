@@ -6,8 +6,8 @@ export function Portrait({ b, size = 56, tint = true, dim = false }: { b: Brawle
   const [broken, setBroken] = useState(false);
   return (
     <span
-      class={`portrait${dim ? ' dim' : ''}`}
-      style={{ width: `${size}px`, height: `${size}px`, background: tint ? b.rarityColor : undefined }}
+      class={`portrait${dim ? ' dim' : ''}${tint ? ' framed' : ''}`}
+      style={{ width: `${size}px`, height: `${size}px`, '--rar': b.rarityColor } as any}
     >
       {broken || !b.img ? (
         <span class="portrait-fallback">{b.name.slice(0, 2)}</span>
