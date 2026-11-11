@@ -178,11 +178,13 @@ input, select, textarea { font-size: 16px !important; }
 .winbar-us { background: var(--us); height: 100%; }
 .top-right { display: flex; gap: 6px; align-items: center; }
 .btn.help { width: 34px; padding: 6px 0; text-align: center; font-weight: 700; }
-.tour { position: fixed; inset: 0; z-index: 30; overscroll-behavior: contain; }
+.tour { position: fixed; inset: 0; z-index: 30; pointer-events: none; }
 .tour-safe { position: fixed; top: var(--sat); bottom: var(--sab); left: var(--sal); right: var(--sar); pointer-events: none; visibility: hidden; }
-.tour-dim { position: fixed; inset: 0; display: block; }
+.tour-dim { position: fixed; inset: 0; display: block; pointer-events: none; }
+.tour-shade { fill: #000; fill-opacity: .74; pointer-events: visiblePainted; }
+.tour-ring { pointer-events: none; }
 .tour-ring { fill: none; stroke: var(--us); stroke-width: 2; }
-.tour-card { position: fixed; z-index: 31; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 6px 24px #0008; }
+.tour-card { position: fixed; z-index: 31; pointer-events: auto; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 6px 24px #0008; }
 .tour-arrow { position: absolute; width: 0; height: 0; margin-left: -9px; border-left: 9px solid transparent; border-right: 9px solid transparent; }
 .tour-arrow.up { top: -9px; border-bottom: 9px solid var(--us); }
 .tour-arrow.down { bottom: -9px; border-top: 9px solid var(--us); }
