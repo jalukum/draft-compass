@@ -178,9 +178,14 @@ input, select, textarea { font-size: 16px !important; }
 .winbar-us { background: var(--us); height: 100%; }
 .top-right { display: flex; gap: 6px; align-items: center; }
 .btn.help { width: 34px; padding: 6px 0; text-align: center; font-weight: 700; }
-.tour-bg { position: fixed; inset: 0; z-index: 30; background: #000b; display: flex; align-items: flex-end; justify-content: center;
-  padding: calc(12px + var(--sat)) calc(12px + var(--sar)) calc(12px + var(--sab)) calc(12px + var(--sal)); overscroll-behavior: contain; }
-.tour-card { width: min(440px, 100%); background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; }
+.tour { position: fixed; inset: 0; z-index: 30; overscroll-behavior: contain; }
+.tour-safe { position: fixed; top: var(--sat); bottom: var(--sab); left: var(--sal); right: var(--sar); pointer-events: none; visibility: hidden; }
+.tour-dim { position: fixed; inset: 0; display: block; }
+.tour-ring { fill: none; stroke: var(--us); stroke-width: 2; }
+.tour-card { position: fixed; z-index: 31; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; box-shadow: 0 6px 24px #0008; }
+.tour-arrow { position: absolute; width: 0; height: 0; margin-left: -9px; border-left: 9px solid transparent; border-right: 9px solid transparent; }
+.tour-arrow.up { top: -9px; border-bottom: 9px solid var(--us); }
+.tour-arrow.down { bottom: -9px; border-top: 9px solid var(--us); }
 .tour-card h2 { font-size: 18px; margin: 6px 0 6px; }
 .tour-card p { margin: 0 0 14px; color: var(--text); font-size: 15px; line-height: 1.45; }
 .tour-top { display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
@@ -191,4 +196,9 @@ input, select, textarea { font-size: 16px !important; }
 .tour-btns { display: flex; gap: 8px; }
 .tour-btns .btn { flex: 1; text-align: center; padding: 10px; font-size: 15px; }
 .tour-btns .btn:disabled { opacity: .4; }
-@media (min-width: 768px) { .tour-bg { align-items: center; } }
+
+/* Maps tab: map layout image */
+.map-img { display: block; width: 100%; background: #0b0d11; border: 1px solid var(--line); border-radius: 10px; padding: 8px; margin: 8px 0 12px; cursor: zoom-in; }
+.map-img img { display: block; margin: 0 auto; max-width: 100%; max-height: min(46vh, 420px); object-fit: contain; }
+.sheet-bg.map-big { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; background: #000e; padding: calc(12px + var(--sat)) calc(12px + var(--sar)) calc(12px + var(--sab)) calc(12px + var(--sal)); }
+.map-big img { max-width: 100%; max-height: calc(100% - 32px); object-fit: contain; }

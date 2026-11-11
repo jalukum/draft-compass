@@ -1,8 +1,8 @@
-import { useEffect, useMemo, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { APP } from './config';
 import { useCatalog, useDraft, useStats } from './store';
 import type { Brawler, GameMap, MapStats } from './data/types';
-import { applyBan, applyPick, emptyDraft, MAX_BANS, nextPicker, removeFrom, type Side } from './engine/draft';
+import { applyBan, applyPick, emptyDraft, MAX_BANS, nextPicker, removeFrom, type DraftState, type Side } from './engine/draft';
 import { autoLanes, laneEdge, LANES, suggest } from './engine/meta';
 import { winChance } from './engine/winchance';
 import { fmtDate, Portrait } from './ui/bits';
@@ -18,14 +18,23 @@ function readRoute() {
 }
 
 export function App() {
-  const [route, setRoute] = useState(readRoute);
+  const [realRoute, setRoute] = useState(readRoute);
+  // Spotlight tour: shows on first launch, replay from "?". While it runs, the app renders a
+  // temporary demo draft; the user's real draft and route are never touched.
   const [tour, setTour] = useState(() => { try { return !localStorage.getItem('dc:tutorialDone'); } catch { return false; } });
+  const [tourStep, setTourStep] = useState(0);
+  const tourScroll = useRef(0);
   useEffect(() => {
-    const on = () => setTour(true);
+    const on = () => { tourScroll.current = scrollY; setTourStep(0); setTour(true); };
     addEventListener('dc-help', on);
     return () => removeEventListener('dc-help', on);
   }, []);
-  const tourEl = tour && <Tutorial onDone={() => { try { localStorage.setItem('dc:tutorialDone', '1'); } catch { /* private mode */ } setTour(false); }} />;
+  const endTour = () => {
+    try { localStorage.setItem('dc:tutorialDone', '1'); } catch { /* private mode */ }
+    setTour(false); setTourStep(0);
+    requestAnimationFrame(() => scrollTo({ top: tourScroll.current, behavior: 'instant' as ScrollBehavior }));
+  };
+  const tourEl = tour && <Tour step={tourStep} setStep={setTourStep} onDone={endTour} />;
   useEffect(() => {
     const on = () => { setRoute(readRoute()); scrollTo(0, 0); };
     addEventListener('hashchange', on);
@@ -33,7 +42,7 @@ export function App() {
   }, []);
   const cat = useCatalog();
   const stats = useStats();
-  const [draft, setDraft] = useDraft();
+  const [realDraft, setRealDraft] = useDraft();
 
   // Current Ranked pool = maps with Ranked games in the last 7 days of our sample.
   const pool: PoolMap[] = useMemo(() => {
@@ -48,9 +57,15 @@ export function App() {
     }).sort((a, b) => a.mode.localeCompare(b.mode) || a.name.localeCompare(b.name));
   }, [stats]);
 
+  const allBrawlers = cat.catalog?.brawlers ?? [];
+  const demo = useMemo(() => (tour ? demoDrafts(pool, stats, allBrawlers) : null), [tour, pool, stats, allBrawlers]);
+  const draft: DraftState = demo ? demo[Math.min(tourStep, demo.length - 1)] : realDraft;
+  const setDraft: typeof setRealDraft = tour ? () => {} : setRealDraft;
+  const route = tour ? { tab: 'draft' as const, slug: null } : realRoute;
+
   const map = pool.find((m) => m.slug === draft.mapSlug) ?? null;
   const st: MapStats | null = map && stats ? stats.maps[map.slug] ?? null : null;
-  const brawlers = cat.catalog?.brawlers ?? [];
+  const brawlers = allBrawlers;
   const byId = useMemo(() => new Map(brawlers.map((b) => [b.id, b])), [brawlers]);
   const taken = new Set([...draft.bans, ...draft.ally, ...draft.opp]);
   const picks = draft.ally.length + draft.opp.length;
@@ -109,7 +124,7 @@ export function App() {
     </section>
   );
   const bansBlock = (
-    <section class="block">
+    <section class="block" data-tour="bans">
       <h2><span class="step">2</span> Bans <span class="count">{draft.bans.length}/{MAX_BANS}</span></h2>
       {draft.bans.length > 0 && (
         <div class="chips">
@@ -131,6 +146,7 @@ export function App() {
   const picksBlock = (
     <section class="block">
       <h2><span class="step">3</span> Picks</h2>
+      <div data-tour="picks">
       <div class="order">
         <span>First pick</span>
         <div class="seg">
@@ -143,12 +159,13 @@ export function App() {
       </div>
       <Team label="Us" side="ally" ids={draft.ally} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'ally', id))} />
       <Team label="Them" side="opp" ids={draft.opp} byId={byId} onRemove={(id) => setDraft((d) => removeFrom(d, 'opp', id))} />
+      </div>
       {draft.ally.length > 0 && draft.opp.length > 0 && <WinBar p={winChance(st, draft.ally, draft.opp)} final={picks === 6} />}
       {wide && pickSearch && <div class="pick-search">{pickSearch}</div>}
     </section>
   );
   const suggBlock = sugg.length > 0 && (
-    <section class="block">
+    <section class="block" data-tour="sugg">
       <h2 class={`sugg-head ${next === 'opp' ? 'them' : 'us'}`}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}<span class="cols-label">Win % · Score</span></h2>
       <ol class="sugg">
         {sugg.map((x) => (
@@ -241,7 +258,7 @@ function MapSearch({ maps, onPick }: { maps: PoolMap[]; onPick: (m: PoolMap) => 
     <div class="search">
       <input type="search" placeholder={`Search ${maps.length} Ranked maps`} value={q}
         onInput={(e) => setQ((e.target as HTMLInputElement).value)}
-        onKeyDown={(e) => { if (e.key === 'Enter' && hits[0]) onPick(hits[0]); }} aria-label="Search maps" />
+        onKeyDown={(e) => { if (e.key === 'Enter' && hits[0]) onPick(hits[0]); }} aria-label="Search maps" data-tour="map" />
       <MapList maps={hits} onPick={onPick} />
       {!hits.length && <p class="hint">No Ranked map matches.</p>}
     </div>
@@ -318,7 +335,7 @@ function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally
     setSel(null);
   };
   return (
-    <section class="block">
+    <section class="block" data-tour="lanes">
       <h2><span class="step">4</span> Lane matchups</h2>
       <p class="hint">Tap two brawlers on the same side to swap lanes.</p>
       <div class="lanes">
@@ -349,7 +366,7 @@ function Nav({ tab }: { tab: 'draft' | 'maps' }) {
   return (
     <nav class="nav">
       <a href="#/draft" class={tab === 'draft' ? 'on' : ''}>Draft</a>
-      <a href="#/maps" class={tab === 'maps' ? 'on' : ''}>Maps</a>
+      <a href="#/maps" class={tab === 'maps' ? 'on' : ''} data-tour="maps">Maps</a>
     </nav>
   );
 }
@@ -378,6 +395,7 @@ function MapsTab({ pool, stats, brawlers, slug, wide, onDraft }: {
           {map.modeIcon && <img src={map.modeIcon} alt="" width={26} height={26} />}
           <div class="grow"><b>{map.name}</b><small>{map.mode} · {map.games.toLocaleString()} games</small></div>
         </div>
+        {map.img && <MapImage src={map.img} name={map.name} />}
         <h3>Top 10 picks</h3>
         <ol class="sugg top10">
           {top.map((x, i) => (
@@ -400,35 +418,165 @@ function MapsTab({ pool, stats, brawlers, slug, wide, onDraft }: {
 function WinBar({ p, final }: { p: number; final: boolean }) {
   const pct = Math.round(p * 100);
   return (
-    <div class="winbar" aria-label={`Win chance ${pct}%`}>
+    <div class="winbar" data-tour="win" aria-label={`Win chance ${pct}%`}>
       <div class="winbar-label"><span>{final ? 'Win chance' : 'Win chance so far'} <b class={pct >= 53 ? 'good' : pct <= 47 ? 'bad' : ''}>{pct}%</b></span><span class="muted">Them {100 - pct}%</span></div>
       <div class="winbar-track"><span class="winbar-us" style={{ width: `${pct}%` }} /></div>
     </div>
   );
 }
 
-const STEPS = [
-  { title: 'Pick the map', text: 'Search or tap one of the current Ranked maps to start a draft.' },
-  { title: 'Add bans', text: 'Type a brawler into the ban search bar and tap it; tap a ban again to remove it.' },
-  { title: 'Picks alternate 1-2-2-1', text: 'Set who picks first; tapping a suggestion or searching a brawler always fills whoever\'s turn it is, like Ranked.' },
-  { title: 'Read the suggestions', text: 'Each row shows a score and the brawler\'s win % on the map; on their turn the list switches to "Likely enemy picks".' },
-  { title: 'Win chance and lanes', text: 'The bar shows your team\'s win chance, lanes show each matchup (tap two of your brawlers to swap), and the Maps tab lists the top 10 per map.' },
+/** Maps tab: the actual map layout from Brawlify's CDN, tap for a full-screen view (no zoom animation). */
+function MapImage({ src, name }: { src: string; name: string }) {
+  const [big, setBig] = useState(false);
+  return (
+    <>
+      <button type="button" class="map-img" onClick={() => setBig(true)} aria-label={`View the ${name} layout larger`}>
+        <img src={src} alt={`${name} layout`} />
+      </button>
+      {big && (
+        <div class="sheet-bg map-big" role="dialog" aria-modal="true" aria-label={`${name} layout`} onClick={() => setBig(false)}>
+          <img src={src} alt={`${name} layout`} />
+          <span class="muted">Tap anywhere to close</span>
+        </div>
+      )}
+    </>
+  );
+}
+
+// ---- Spotlight tour ---------------------------------------------------------
+const STEPS: { title: string; text: string; targets: string[] }[] = [
+  { title: 'Pick the map', text: 'Search or tap one of the current Ranked maps to start a draft.', targets: ['map'] },
+  { title: 'Add bans', text: 'Search a brawler here and tap it to ban it. Tap a ban to remove it.', targets: ['bans'] },
+  { title: 'Picks go 1-2-2-1', text: 'Choose who picks first. Every pick fills whoever\'s turn it is, just like Ranked.', targets: ['picks'] },
+  { title: 'Suggestions', text: 'Best picks for the current turn, with win % on this map and a score. Tap one to pick it. On their turn it shows likely enemy picks.', targets: ['sugg'] },
+  { title: 'Win chance and lanes', text: 'The bar is your team\'s chance to win. Lanes show each matchup; tap two of your brawlers to swap lanes.', targets: ['win', 'lanes'] },
+  { title: 'Maps tab', text: 'Top 10 picks and the layout for every Ranked map.', targets: ['maps'] },
 ];
 
-function Tutorial({ onDone }: { onDone: () => void }) {
-  const [i, setI] = useState(0);
-  const s = STEPS[i];
-  const last = i === STEPS.length - 1;
+/** Temporary example drafts for the tour (Hard Rock Mine, top picks from our own data). */
+function demoDrafts(pool: PoolMap[], stats: ReturnType<typeof useStats>, brawlers: Brawler[]): DraftState[] {
+  const m = pool.find((p) => p.slug === 'hard-rock-mine-gem-grab') ?? pool[0];
+  const base: DraftState = { ...emptyDraft(null), firstPick: 'ally', turn: 'ally' };
+  const onMap = { ...base, mapSlug: m?.slug ?? null };
+  if (!m || !stats || !brawlers.length) return [base, onMap, onMap, onMap, onMap, onMap];
+  const st = stats.maps[m.slug] ?? null;
+  const bans = suggest({ brawlers, map: m, stats: st, bans: [], mine: [], theirs: [] }).slice(0, 2).map((x) => x.brawler.id);
+  const ally: number[] = [], opp: number[] = [];
+  const snap = () => ({ ...onMap, bans: [...bans], ally: [...ally], opp: [...opp], turn: nextPicker('ally', ally.length, opp.length) ?? 'ally' });
+  const pickOne = () => {
+    const s = nextPicker('ally', ally.length, opp.length);
+    if (!s) return;
+    const taken = new Set([...bans, ...ally, ...opp]);
+    const mine = s === 'ally' ? ally : opp;
+    const x = suggest({ brawlers, map: m, stats: st, bans, mine, theirs: s === 'ally' ? opp : ally }).find((y) => !taken.has(y.brawler.id));
+    if (x) mine.push(x.brawler.id);
+  };
+  const banned = snap();
+  for (let k = 0; k < 3; k++) pickOne();
+  const mid = snap();
+  for (let k = 0; k < 3; k++) pickOne();
+  const full = snap();
+  return [base, banned, mid, mid, full, full];
+}
+
+interface Box { top: number; left: number; width: number; height: number }
+interface TourLayout { holes: Box[]; card: { top: number; left: number; width: number }; arrow: { x: number; dir: 'up' | 'down' } | null }
+
+function Tour({ step, setStep, onDone }: { step: number; setStep: (n: number) => void; onDone: () => void }) {
+  const s = STEPS[step];
+  const last = step === STEPS.length - 1;
+  const cardRef = useRef<HTMLDivElement>(null);
+  const safeRef = useRef<HTMLDivElement>(null);
+  const nextRef = useRef<HTMLButtonElement>(null);
+  const scrolled = useRef(-1);
+  const [lay, setLay] = useState<TourLayout | null>(null);
+  const [vp, setVp] = useState({ w: innerWidth, h: innerHeight });
+
+  useLayoutEffect(() => {
+    const PAD = 6, GAP = 14;
+    const compute = () => {
+      const safe = safeRef.current?.getBoundingClientRect();
+      if (!safe) return;
+      const cardH = cardRef.current?.offsetHeight || 210;
+      const cardW = Math.min(400, safe.width - 24);
+      const els = s.targets.flatMap((t) => [...document.querySelectorAll<HTMLElement>(`[data-tour="${t}"]`)]);
+      const measure = () => els.map((e) => e.getBoundingClientRect()).filter((r) => r.width > 0 && r.height > 0);
+      let rs = measure();
+      const maxH = Math.max(80, safe.height - cardH - GAP - 2 * PAD - 24);
+      const union = (list: DOMRect[]) => {
+        const top = Math.min(...list.map((r) => r.top)), left = Math.min(...list.map((r) => r.left));
+        const bottom = Math.max(...list.map((r) => Math.min(r.bottom, r.top + maxH))), right = Math.max(...list.map((r) => r.right));
+        return { top, left, bottom, right };
+      };
+      // Scroll the target into view once per step, instantly (no smooth scroll).
+      if (rs.length && scrolled.current !== step) {
+        scrolled.current = step;
+        const u = union(rs);
+        scrollBy({ top: u.top - PAD - (safe.top + 12), behavior: 'instant' as ScrollBehavior });
+        rs = measure();
+      }
+      let next: TourLayout;
+      if (!rs.length) {
+        next = { holes: [], card: { top: safe.top + (safe.height - cardH) / 2, left: safe.left + (safe.width - cardW) / 2, width: cardW }, arrow: null };
+      } else {
+        const holes = rs.map((r) => ({ top: r.top - PAD, left: r.left - PAD, width: r.width + 2 * PAD, height: Math.min(r.height, maxH) + 2 * PAD }));
+        const u = union(rs);
+        const uTop = u.top - PAD, uBot = u.bottom + PAD;
+        const below = safe.bottom - uBot, above = uTop - safe.top;
+        let top: number, dir: 'up' | 'down';
+        if (below >= cardH + GAP + 8) { top = uBot + GAP; dir = 'up'; }
+        else if (above >= cardH + GAP + 8) { top = uTop - GAP - cardH; dir = 'down'; }
+        else if (below >= above) { top = safe.bottom - 8 - cardH; dir = 'up'; }
+        else { top = safe.top + 8; dir = 'down'; }
+        // Point at the highlighted box nearest the card (matters when there are two).
+        const near = holes.reduce((m, h) => (dir === 'up' ? (h.top + h.height > m.top + m.height ? h : m) : (h.top < m.top ? h : m)));
+        const ax = near.left + near.width / 2;
+        const left = Math.min(Math.max(ax - cardW / 2, safe.left + 12), safe.right - 12 - cardW);
+        next = { holes, card: { top: Math.round(top), left: Math.round(left), width: Math.round(cardW) }, arrow: { x: Math.round(Math.min(Math.max(ax - left, 22), cardW - 22)), dir } };
+      }
+      setLay((p) => (JSON.stringify(p) === JSON.stringify(next) ? p : next));
+      setVp((p) => (p.w === innerWidth && p.h === innerHeight ? p : { w: innerWidth, h: innerHeight }));
+    };
+    compute();
+    const t = setInterval(compute, 200);
+    addEventListener('scroll', compute, { passive: true });
+    addEventListener('resize', compute);
+    return () => { clearInterval(t); removeEventListener('scroll', compute); removeEventListener('resize', compute); };
+  }, [step]);
+
+  useEffect(() => { nextRef.current?.focus({ preventScroll: true }); }, [step]);
+  useEffect(() => {
+    const k = (e: KeyboardEvent) => { if (e.key === 'Escape') onDone(); };
+    addEventListener('keydown', k);
+    return () => removeEventListener('keydown', k);
+  }, [onDone]);
+
   return (
-    <div class="tour-bg" role="dialog" aria-modal="true" aria-label="How to use Draft Compass">
-      <div class="tour-card">
-        <div class="tour-top"><span class="muted">{i + 1} of {STEPS.length}</span><button type="button" class="tour-skip" onClick={onDone}>Skip</button></div>
+    <div class="tour" role="dialog" aria-modal="true" aria-label="How to use Draft Compass">
+      <div class="tour-safe" ref={safeRef} />
+      <svg class="tour-dim" width={vp.w} height={vp.h} viewBox={`0 0 ${vp.w} ${vp.h}`} aria-hidden="true">
+        <defs>
+          <mask id="tour-mask">
+            <rect x="0" y="0" width={vp.w} height={vp.h} fill="#fff" />
+            {lay?.holes.map((h) => <rect x={h.left} y={h.top} width={h.width} height={h.height} rx="10" fill="#000" />)}
+          </mask>
+        </defs>
+        <rect x="0" y="0" width={vp.w} height={vp.h} fill="#000" fill-opacity="0.74" mask="url(#tour-mask)" />
+        {lay?.holes.map((h) => <rect class="tour-ring" data-ring="1" x={h.left} y={h.top} width={h.width} height={h.height} rx="10" />)}
+      </svg>
+      <div class="tour-card" ref={cardRef} data-step={step + 1}
+        style={lay ? { top: `${lay.card.top}px`, left: `${lay.card.left}px`, width: `${lay.card.width}px` } : { visibility: 'hidden' }}>
+        {lay?.arrow && <span class={`tour-arrow ${lay.arrow.dir}`} style={{ left: `${lay.arrow.x}px` }} />}
+        <div class="tour-top">
+          <span class="muted">{step + 1} of {STEPS.length}{step >= 1 && step <= 4 ? ' · example draft' : ''}</span>
+          <button type="button" class="tour-skip" onClick={onDone}>Skip</button>
+        </div>
         <h2>{s.title}</h2>
         <p>{s.text}</p>
-        <div class="tour-dots">{STEPS.map((_, k) => <span class={k === i ? 'on' : ''} />)}</div>
+        <div class="tour-dots">{STEPS.map((_, k) => <span class={k === step ? 'on' : ''} />)}</div>
         <div class="tour-btns">
-          <button type="button" class="btn" disabled={i === 0} onClick={() => setI(i - 1)}>Back</button>
-          <button type="button" class="btn primary" onClick={() => (last ? onDone() : setI(i + 1))}>{last ? 'Done' : 'Next'}</button>
+          <button type="button" class="btn" disabled={step === 0} onClick={() => setStep(step - 1)}>Back</button>
+          <button type="button" class="btn primary" ref={nextRef} onClick={() => (last ? onDone() : setStep(step + 1))}>{last ? 'Done' : 'Next'}</button>
         </div>
       </div>
     </div>
