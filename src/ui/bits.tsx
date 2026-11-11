@@ -66,7 +66,8 @@ export function Sheet({ title, onClose, children }: { title: string; onClose: ()
 
 export const fmtDate = (iso?: string) => {
   if (!iso) return 'unknown';
-  const d = new Date(iso);
+  const m = iso.match(/^(\d{4})-(\d{2})-(\d{2})$/); // plain dates are calendar days, not UTC midnight
+  const d = m ? new Date(+m[1], +m[2] - 1, +m[3]) : new Date(iso);
   return isNaN(+d) ? iso : d.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
 };
 

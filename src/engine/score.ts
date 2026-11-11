@@ -1,4 +1,4 @@
-import type { Brawler, GameMap, MapStats } from '../data/types';
+import { pairStat, type Brawler, type GameMap, type MapStats } from '../data/types';
 import { matchup, MODE_LABEL, modeFit, modeKey, roleGroup, teamQuality, type ModeKey } from './heuristics';
 import { RANGE_LABEL, TAG_LABEL, traitsOf, type Tag } from './traits';
 import type { Weights } from './weights';
@@ -38,10 +38,25 @@ export interface EngineInput {
   stats?: MapStats | null;
   /** Minimum battles before stats count fully. */
   statsMinSample?: number;
+  /** Minimum battles on the map before rows are labelled "Ladder data". */
+  statsLabelSample?: number;
 }
 
 const clamp = (x: number, lo = -1, hi = 1) => Math.max(lo, Math.min(hi, x));
 export const toScore = (total: number) => Math.round(100 / (1 + Math.exp(-3.5 * total)));
+
+/**
+ * Blend a model value with an observed pair win rate. The data's say grows with games
+ * (half weight at PAIR_HALF games), so thin pairs lean on the model.
+ */
+const PAIR_HALF = 40;
+function pairBlend(model: number, st: MapStats | null | undefined, table: 'matchups' | 'synergy', a: number, b: number) {
+  const r = st ? pairStat(st[table], a, b, table === 'matchups') : null;
+  if (!r) return { v: model, n: 0 };
+  const data = clamp((r[1] - 50) / 10);
+  const w = r[0] / (r[0] + PAIR_HALF);
+  return { v: (1 - w) * model + w * data, n: r[0], wr: r[1] };
+}
 
 const tagWords = (tags: Tag[]) => tags.map((t) => TAG_LABEL[t].toLowerCase());
 
@@ -81,7 +96,10 @@ function compSignal(b: Brawler, team: Brawler[], inp: EngineInput, ctx: Ctx): Si
   if (team.length === 0) return { key: 'comp', label: 'Team fit', value: null, weight: 0, note: 'No teammates picked yet.' };
   const before = teamQuality(team, ctx.mk);
   const after = teamQuality([...team, b], ctx.mk);
-  const v = clamp((after.score - before.score - 0.2) / 0.4);
+  let v = clamp((after.score - before.score - 0.2) / 0.4);
+  // Observed same-team results on this map nudge the shape read.
+  const syn = team.map((t) => pairBlend(0, inp.stats, 'synergy', b.id, t.id)).filter((x) => x.n > 0);
+  if (syn.length) v = clamp(v + syn.reduce((s, x) => s + x.v, 0) / team.length);
   const groupsBefore = new Set(team.map(roleGroup));
   const g = roleGroup(b);
   const gName = { front: 'frontline', control: 'control/support', damage: 'damage' }[g];
@@ -93,13 +111,14 @@ function compSignal(b: Brawler, team: Brawler[], inp: EngineInput, ctx: Ctx): Si
 
 function counterSignal(b: Brawler, enemies: Brawler[], inp: EngineInput, ctx: Ctx): Signal {
   if (enemies.length === 0) return { key: 'counter', label: 'Matchups', value: null, weight: 0, note: 'No enemy picks to read yet.' };
-  const edges = enemies.map((e) => ({ e, v: matchup(b, e, ctx.mk) }));
+  const edges = enemies.map((e) => ({ e, ...pairBlend(matchup(b, e, ctx.mk), inp.stats, 'matchups', b.id, e.id) }));
   const v = clamp(edges.reduce((s, x) => s + x.v, 0) / edges.length * 1.6);
   edges.sort((x, y) => y.v - x.v);
   const best = edges[0], worst = edges[edges.length - 1];
   const bits: string[] = [];
-  if (best.v > 0.15) bits.push(`Good into ${best.e.name}.`);
-  if (worst.v < -0.15) bits.push(`Careful: ${worst.e.name} pressures it.`);
+  const seen = (x: typeof best) => (x.n >= 20 && x.wr !== undefined ? ` (${x.wr.toFixed(0)}% in ${x.n} games)` : '');
+  if (best.v > 0.15) bits.push(`Good into ${best.e.name}${seen(best)}.`);
+  if (worst.v < -0.15) bits.push(`Careful: ${worst.e.name} pressures it${seen(worst)}.`);
   if (!bits.length) bits.push('Even trades against their picks.');
   return { key: 'counter', label: 'Matchups', value: v, weight: inp.weights.counter, note: bits.join(' ') };
 }
@@ -124,7 +143,10 @@ function safetySignal(b: Brawler, enemies: Brawler[], inp: EngineInput, ctx: Ctx
 
 function confidenceOf(b: Brawler, inp: EngineInput, s: Signal): Confidence {
   if (!traitsOf(b).curated) return 'thin';
-  if (inp.stats && s.value !== null && inp.stats.sample >= (inp.statsMinSample ?? 1000)) return 'stats';
+  // "Ladder data" once the map has a usable sample and this brawler was seen often enough.
+  // (The stats weight itself keeps scaling up to statsMinSample games.)
+  const games = inp.stats?.brawlers[String(b.id)]?.games;
+  if (inp.stats && s.value !== null && inp.stats.sample >= (inp.statsLabelSample ?? 250) && (games === undefined || games >= 30)) return 'stats';
   if (inp.stats && s.value === null) return 'thin';
   return 'model';
 }
@@ -192,7 +214,7 @@ function strength(team: Brawler[], enemy: Brawler[], mk: ModeKey, stats?: MapSta
   const fit = team.reduce((s, b) => s + modeFit(b, mk).value, 0) / team.length;
   const comp = teamQuality(team, mk).score / 1.5;
   let mu = 0;
-  for (const a of team) for (const e of enemy) mu += matchup(a, e, mk);
+  for (const a of team) for (const e of enemy) mu += pairBlend(matchup(a, e, mk), stats, 'matchups', a.id, e.id).v;
   mu /= team.length * enemy.length;
   let st = 0;
   if (stats) {

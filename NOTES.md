@@ -1,6 +1,6 @@
 # Draft Compass: build notes
 
-Private build for Jaluku. Unofficial fan app, not affiliated with Supercell.
+Built for Jaluku. Unofficial fan app, not affiliated with Supercell.
 Last updated 10 Nov 2026 (America/Chicago).
 
 ## What the catalog actually gives us (BrawlAPI, checked 10 Nov 2026)
@@ -16,26 +16,51 @@ So BrawlAPI currently publishes **no per-map win/use rates and no dates for them
 
 - shows maps as "In catalog" (not disabled) vs "Vaulted". BrawlAPI has no live rotation (`/events` is empty), so "active" only means "not retired".
 - scores from its own role model and labels that **Role model** / **Thin data**, never as ladder stats.
-- already has a `stats` signal wired through the engine and UI. Load a snapshot in **Me → Import stats JSON** (format below), or have a phase‑2 pipeline publish one, and scores, labels and the "updated on" date switch over automatically.
+- already has a `stats` signal wired through the engine and UI. Load a snapshot in **Me → Import stats JSON** (format below), or let the daily sampler publish one (below), and scores, labels and the "updated on" date switch over automatically.
 
 The catalog also lists some maps several times (re-releases); the app keeps one per name+mode, preferring the active entry.
 
-### Stats snapshot format (for phase 2 or a hand import)
+### Stats snapshot format (published daily, or a hand import)
+
+The app fetches `<BASE>/data/stats-latest.json` on load (network-first, not precached). A file imported in
+**Me → Import stats JSON** overrides it until you tap **Use daily snapshot**.
 
 ```json
 {
-  "source": "Jaluku's battle-log sampler",
-  "updatedAt": "2026-11-10",
+  "source": "our daily Ranked sample",
+  "updatedAt": "2026-11-11",
+  "generatedAt": "2026-11-11T10:09:12.000Z",
+  "window": { "days": 6, "from": "2026-11-06", "to": "2026-11-11" },
+  "sample": { "games": 21000, "playersReadLastRun": 1990, "maps": 40, "rankHist": { "18": 900 } },
+  "perDay": { "2026-11-10": 5000 },
+  "banData": false,
   "maps": {
     "hard-rock-mine-gem-grab": {
+      "name": "Hard Rock Mine", "mode": "Gem Grab", "mapId": 15000007,
       "sample": 4200,
-      "brawlers": { "16000000": { "winRate": 52.1, "useRate": 4.3 } }
+      "brawlers": { "16000000": { "winRate": 52.1, "useRate": 14.3, "games": 600, "banRate": null } },
+      "matchups": { "16000000": { "16000003": [120, 47.5] } },
+      "synergy":  { "16000000": { "16000035": [40, 55.0] } }
     }
   }
 }
 ```
 
-The map key is the app's map slug (`<map name>-<mode>`, lower-case, dashes). The brawler key is the BrawlAPI/official brawler id. Rates are percentages. Under 1,000 games the stats weight is scaled down.
+- Only `source`, `updatedAt` and `maps[*].sample/brawlers[*].winRate/useRate` are required; everything else is optional, so old hand-made files still import.
+- Map key = the app's map slug (`<map name>-<mode>`, lower-case, dashes). Brawler key = official/BrawlAPI id.
+- `sample` = Ranked games on the map in the window. `useRate` = % of those games where the brawler was picked (either team). `winRate` is smoothed toward 50% (as if 20 extra even games).
+- `matchups[a][b]` = `[games, a's win %]` with a and b on opposite teams; `synergy[a][b]` = `[games, win %]` on the same team. Stored once per pair with the lower id first (`pairStat()` in `src/data/types.ts` reads either way round). Pairs need ≥ 8 games and are smoothed toward 50% (prior 10).
+- **Bans:** battle logs record picks only, so `banRate` is `null` and `banData` is `false`. Ban advice stays model-based.
+- Under 1,000 games a map's stats weight is scaled down (√(sample/1000)) and rows are labelled by the model, not "Ladder data".
+
+### How the sampler works (`scripts/collect-stats.mjs`)
+
+- Players: top 200 of the global list plus the top 200 of US, BR, MX, DE, FR, ES, TR, RU, KR, JP, GB player rankings, deduped and capped at 2,000 (`MAX_PLAYERS`). `SNOWBALL=1` would also add players met in Ranked games (off by default).
+- Each player's battle log (last 25 games). Games with `battle.type` `soloRanked` or `teamRanked`, two teams of three, win or loss (draws skipped). In real data, `type: "ranked"` is *trophy* ladder and is ignored. In Ranked games `brawler.trophies` holds the player's Ranked tier number; the snapshot keeps a histogram of the per-game average (`rankHist`).
+- Dedupe key: battle time + the six player tags. Mirror picks are left out of matchups.
+- Each game is filed under the UTC day it was played and added to `data/daily/<day>.json`. A run only counts games played after the previous run's cutoff (`data/state.json`), so days are never double counted, and the first run reaches back as far as the logs go.
+- The published file merges the last 28 days (`WINDOW_DAYS`). Older day files and dated copies are pruned.
+- Concurrency 6 with retries and exponential backoff on 429/5xx; 404s (players whose logs are hidden) are skipped.
 
 ## Scoring engine (src/engine)
 
@@ -83,7 +108,7 @@ Tests: `tests/engine.test.ts` (23 tests).
 
 - Static build in `dist/`. For GitHub Pages: `BASE_PATH=/<repo-name>/ npm run build`. Routing is hash-based (`#/draft`, `#/maps`, `#/brawlers`, `#/me`, deep link `#/draft?map=<slug>`), so Pages needs no 404 trick.
 - Service worker (Workbox via vite-plugin-pwa): precaches the shell, fonts, icons and a bundled catalog snapshot (`public/catalog-snapshot.json`, refreshed with `npm run snapshot`). BrawlAPI responses are stale-while-revalidate; Brawlify art is cache-first for 30 days. The app works offline after the first visit.
-- Nothing published yet: no GitHub repo, no Pages, no Worker.
+- Published to GitHub Pages from `jalukum/draft-compass` by `.github/workflows/daily.yml` (daily sampler + deploy). No Worker yet.
 
 ## Renaming
 

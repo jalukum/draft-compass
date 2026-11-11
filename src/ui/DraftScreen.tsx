@@ -158,7 +158,7 @@ export function DraftScreen({ catalog, draft, setDraft, settings, setSettings, s
             </ol>
             <button type="button" class="btn ghost wide" onClick={() => setShowAll((v) => !v)}>{showAll ? 'Show top 8' : 'Show more'}</button>
             <p class="fine">
-              {mapStats ? `Ladder stats: ${stats!.source}, ${fmtDate(stats!.updatedAt)}, ${mapStats.sample.toLocaleString()} games.` : 'No ladder stats for this map yet, so scores come from our role model (mode fit, team shape, matchups). Treat them as low confidence.'}
+              {mapStats ? `Ladder stats: ${stats!.source}, ${fmtDate(stats!.generatedAt ?? stats!.updatedAt)}, ${mapStats.sample.toLocaleString()} games.` : 'No ladder stats for this map yet, so scores come from our role model (mode fit, team shape, matchups). Treat them as low confidence.'}
             </p>
           </div>
         )}
@@ -175,7 +175,7 @@ export function DraftScreen({ catalog, draft, setDraft, settings, setSettings, s
             <dt>Map</dt><dd>{map.name}</dd>
             <dt>Mode</dt><dd>{map.mode}{map.ranked ? ' (in our Ranked pool list)' : ''}</dd>
             <dt>Catalog status</dt><dd>{map.active ? 'Listed as active' : 'Disabled / vaulted'}</dd>
-            <dt>Ladder stats</dt><dd>{mapStats ? `${mapStats.sample.toLocaleString()} games · ${stats!.source} · ${fmtDate(stats!.updatedAt)}` : 'None yet. BrawlAPI returns empty stats for this map, and our own battle-log pipeline is phase 2.'}</dd>
+            <dt>Ladder stats</dt><dd>{mapStats ? `${mapStats.sample.toLocaleString()} games · ${stats!.source} · ${fmtDate(stats!.generatedAt ?? stats!.updatedAt)}` : 'None yet for this map. Our daily Ranked sample has no games on it in the current window.'}</dd>
             <dt>Catalog updated</dt><dd>{fmtDate(catalog.fetchedAt)} ({catalog.source})</dd>
           </dl>
         </Sheet>

@@ -17,7 +17,7 @@ export function MapsScreen({ catalog, settings, stats, onDraft }: { catalog: Cat
   return (
     <div class="page">
       <h1 class="page-title">Maps</h1>
-      <p class="hint">Browse the catalog. Ladder win/use tables per map come in phase 2, once there's a battle-log pipeline. For now each map shows our role-model openers.</p>
+      <p class="hint">Browse the catalog. Maps in our daily Ranked sample blend ladder win and use rates into the openers; the rest use our role model.</p>
       <MapFilters f={f} />
       <MapGrid maps={f.list} onPick={setSel} />
       {sel && (

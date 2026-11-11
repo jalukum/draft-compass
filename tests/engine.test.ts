@@ -188,3 +188,39 @@ describe('brawler sorting', () => {
     expect(pinned.slice(1).flatMap((x) => x.items).some((x) => x.name === 'Zed')).toBe(false);
   });
 });
+
+describe('ladder pair stats', () => {
+  const flat = (): MapStats => ({ sample: 3000, brawlers: Object.fromEntries(ALL.map((b) => [String(b.id), { winRate: 50, useRate: 3 }])) });
+  it('pairStat reads a pair from either side', async () => {
+    const { pairStat } = await import('../src/data/types');
+    const t = { '1': { '2': [100, 60] as [number, number] } };
+    expect(pairStat(t, 1, 2, true)).toEqual([100, 60]);
+    expect(pairStat(t, 2, 1, true)).toEqual([100, 40]);
+    expect(pairStat(t, 2, 1, false)).toEqual([100, 60]);
+    expect(pairStat(t, 1, 3, true)).toBeNull();
+  });
+  it('observed matchups move the counter signal, more with more games', () => {
+    const [a, e] = [R.piper, R.bull];
+    const withPair = (n: number, wr: number): MapStats => {
+      const st = flat();
+      const [lo, hi] = a.id < e.id ? [a.id, e.id] : [e.id, a.id];
+      st.matchups = { [String(lo)]: { [String(hi)]: [n, a.id < e.id ? wr : 100 - wr] } };
+      return st;
+    };
+    const cv = (st: MapStats) => recommend(base({ stats: st, theirs: [e.id] })).find((r) => r.brawler.id === a.id)!.signals.find((s) => s.key === 'counter')!.value!;
+    const model = cv(flat());
+    expect(cv(withPair(200, 30))).toBeLessThan(cv(withPair(10, 30)));
+    expect(cv(withPair(10, 30))).toBeLessThan(model);
+    expect(cv(withPair(200, 70))).toBeGreaterThan(model);
+  });
+  it('labels Ladder data only with enough map games and brawler games', () => {
+    const st = flat();
+    const lbl = (sample: number, games?: number) => {
+      const s2 = { ...st, sample, brawlers: { ...st.brawlers, [String(R.piper.id)]: { winRate: 55, useRate: 5, games } } };
+      return recommend(base({ stats: s2 })).find((r) => r.brawler.id === R.piper.id)!.confidence;
+    };
+    expect(lbl(400, 60)).toBe('stats');
+    expect(lbl(400, 10)).toBe('model');
+    expect(lbl(100, 60)).toBe('model');
+  });
+});

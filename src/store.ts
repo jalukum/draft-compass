@@ -110,16 +110,27 @@ export function useCatalog(): CatalogState {
   return { catalog, error, refreshing, refresh };
 }
 
-// ---- Optional stats snapshot (phase 2 pipeline or hand import) ------------
-export function useStats(): [StatsSnapshot | null, (s: StatsSnapshot | null) => void] {
-  const [s, setS] = useState<StatsSnapshot | null>(() => {
+// ---- Stats snapshot: the daily published file, or a hand-imported one -------
+export type StatsOrigin = 'published' | 'imported' | null;
+export function useStats(): [StatsSnapshot | null, (s: StatsSnapshot | null) => void, StatsOrigin] {
+  const [imported, setImported] = useState<StatsSnapshot | null>(() => {
     try { const v = localStorage.getItem(key('stats')); return v ? JSON.parse(v) : null; } catch { return null; }
   });
+  const [published, setPublished] = useState<StatsSnapshot | null>(null);
+  useEffect(() => {
+    let off = false;
+    fetch(`${import.meta.env.BASE_URL}data/stats-latest.json`, { cache: 'no-cache' })
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (!off && j) setPublished(validateStats(j)); })
+      .catch(() => { /* offline or not published yet */ });
+    return () => { off = true; };
+  }, []);
   const set = (v: StatsSnapshot | null) => {
     if (v) save('stats', v); else localStorage.removeItem(key('stats'));
-    setS(v);
+    setImported(v);
   };
-  return [s, set];
+  const s = imported ?? published;
+  return [s, set, imported ? 'imported' : published ? 'published' : null];
 }
 
 export function validateStats(j: any): StatsSnapshot {
@@ -127,5 +138,5 @@ export function validateStats(j: any): StatsSnapshot {
   for (const [slug, m] of Object.entries<any>(j.maps)) {
     if (typeof m.sample !== 'number' || typeof m.brawlers !== 'object') throw new Error(`Map ${slug} needs "sample" and "brawlers"`);
   }
-  return { source: String(j.source ?? 'imported file'), updatedAt: String(j.updatedAt ?? new Date().toISOString()), maps: j.maps };
+  return { ...j, source: String(j.source ?? 'imported file'), updatedAt: String(j.updatedAt ?? new Date().toISOString()), maps: j.maps };
 }

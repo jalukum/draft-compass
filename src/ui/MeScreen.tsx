@@ -8,9 +8,9 @@ const W_LABEL: Record<keyof Weights, string> = {
   stats: 'Ladder stats', modeFit: 'Mode fit', comp: 'Team fit', counter: 'Matchups', safety: 'Blind-pick safety',
 };
 
-export function MeScreen({ catalog, cat, settings, setSettings, stats, setStats, onTour }: {
+export function MeScreen({ catalog, cat, settings, setSettings, stats, statsOrigin, setStats, onTour }: {
   catalog: Catalog; cat: CatalogState; settings: Settings; setSettings: (u: (p: Settings) => Settings) => void;
-  stats: StatsSnapshot | null; setStats: (s: StatsSnapshot | null) => void; onTour: () => void;
+  stats: StatsSnapshot | null; statsOrigin: 'published' | 'imported' | null; setStats: (s: StatsSnapshot | null) => void; onTour: () => void;
 }) {
   const set = <K extends keyof Settings>(k: K, v: Settings[K]) => setSettings((s) => ({ ...s, [k]: v }));
   const favs = settings.favorites.map((id) => catalog.brawlers.find((b) => b.id === id)).filter(Boolean);
@@ -64,7 +64,9 @@ export function MeScreen({ catalog, cat, settings, setSettings, stats, setStats,
         <dl class="facts">
           <dt>Catalog updated</dt><dd>{fmtDate(catalog.fetchedAt)} · {catalog.source === 'live' ? 'live from BrawlAPI' : catalog.source === 'saved' ? 'saved copy' : 'built-in copy'}</dd>
           <dt>Catalog size</dt><dd>{catalog.brawlers.length} brawlers · {catalog.maps.filter((m) => m.active).length} active maps</dd>
-          <dt>Ladder stats</dt><dd>{stats ? `${stats.source} · ${fmtDate(stats.updatedAt)} · ${Object.keys(stats.maps).length} maps` : 'None loaded (BrawlAPI publishes no per-map stats right now).'}</dd>
+          <dt>Ladder stats</dt><dd>{stats ? `${statsOrigin === 'imported' ? 'Imported file' : 'Daily snapshot'} · updated ${fmtDate(stats.generatedAt ?? stats.updatedAt)} · ${Object.keys(stats.maps).length} maps` : 'Not loaded yet (the daily snapshot loads when you are online).'}</dd>
+          {stats?.window && <><dt>Sample</dt><dd>{(stats.sample?.games ?? 0).toLocaleString()} Ranked games played {fmtDate(stats.window.from)} to {fmtDate(stats.window.to)}</dd></>}
+          {stats && <><dt>Bans</dt><dd>{stats.banData ? 'Included' : 'Not available: battle logs only record picks, so ban advice comes from the model.'}</dd></>}
         </dl>
         {cat.error && <p class="warn">{cat.error}</p>}
         <div class="btn-row">
@@ -73,7 +75,7 @@ export function MeScreen({ catalog, cat, settings, setSettings, stats, setStats,
             Import stats JSON
             <input type="file" accept="application/json,.json" class="visually-hidden" onChange={(e) => { const f = (e.target as HTMLInputElement).files?.[0]; if (f) importStats(f); }} />
           </label>
-          {stats && <button type="button" class="btn ghost" onClick={() => setStats(null)}>Clear stats</button>}
+          {statsOrigin === 'imported' && <button type="button" class="btn ghost" onClick={() => setStats(null)}>Use daily snapshot</button>}
         </div>
       </section>
 

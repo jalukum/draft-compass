@@ -35,8 +35,15 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
+        // Ladder stats change daily: fetched network-first below, not precached.
+        globIgnores: ['data/**'],
         navigateFallback: `${base}index.html`,
         runtimeCaching: [
+          {
+            urlPattern: ({ url }) => url.pathname.endsWith('/data/stats-latest.json'),
+            handler: 'NetworkFirst',
+            options: { cacheName: 'ladder-stats', networkTimeoutSeconds: 6, expiration: { maxEntries: 2 } },
+          },
           {
             urlPattern: ({ url }) => url.hostname === 'api.brawlapi.com',
             handler: 'StaleWhileRevalidate',

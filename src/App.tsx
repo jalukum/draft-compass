@@ -28,7 +28,7 @@ export function App() {
   const cat = useCatalog();
   const [settings, setSettings] = useSettings();
   const [draft, setDraft] = useDraft();
-  const [stats, setStats] = useStats();
+  const [stats, setStats, statsOrigin] = useStats();
   const [route, setRoute] = useState(parseHash);
   const [tour, setTour] = useState(false);
 
@@ -72,7 +72,7 @@ export function App() {
         ) : route.tab === 'brawlers' ? (
           <BrawlersScreen catalog={cat.catalog} settings={settings} setSettings={setSettings} />
         ) : (
-          <MeScreen catalog={cat.catalog} cat={cat} settings={settings} setSettings={setSettings} stats={stats} setStats={setStats} onTour={() => { go('draft'); setTimeout(() => setTour(true), 50); }} />
+          <MeScreen catalog={cat.catalog} cat={cat} settings={settings} setSettings={setSettings} stats={stats} statsOrigin={statsOrigin} setStats={setStats} onTour={() => { go('draft'); setTimeout(() => setTour(true), 50); }} />
         )}
         <footer class="fan-note">Unofficial fan app, not affiliated with Supercell. Game art © Supercell, used under the Fan Content Policy.</footer>
       </main>
