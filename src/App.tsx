@@ -139,13 +139,14 @@ export function App() {
   );
   const suggBlock = sugg.length > 0 && (
     <section class="block">
-      <h2 class={next === 'opp' ? 'them' : 'us'}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}</h2>
+      <h2 class={`sugg-head ${next === 'opp' ? 'them' : 'us'}`}>{next === 'ally' ? 'Best picks for us' : 'Likely enemy picks'}<span class="cols-label">Win % · Score</span></h2>
       <ol class="sugg">
         {sugg.map((x) => (
           <li>
             <button type="button" onClick={() => pickNow(x.brawler.id)} aria-label={`Pick ${x.brawler.name} for ${next === 'ally' ? 'us' : 'them'}, score ${x.score}`}>
               <Portrait b={x.brawler} size={36} />
               <span class="grow">{x.brawler.name}</span>
+              <span class="wr" title="Win rate on this map">{x.winRate === null ? '–' : `${x.winRate.toFixed(1)}%`}</span>
               <span class={`score ${x.score >= 70 ? 'hi' : x.score >= 50 ? 'mid' : 'lo'}`}>{x.score}</span>
             </button>
           </li>
@@ -307,7 +308,7 @@ function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally
               <button type="button" class={`lane-b ally ${sel?.side === 'ally' && sel.i === i ? 'sel' : ''}`} onClick={() => tap('ally', i)}>
                 {a ? <><Portrait b={a} size={30} /><span>{a.name}</span></> : <span class="muted">—</span>}
               </button>
-              <span class={`lane-score ${pct === null ? '' : pct >= 53 ? 'hi' : pct <= 47 ? 'lo' : 'mid'}`}>{pct === null ? '' : `${pct}`}</span>
+              <span class={`lane-score ${pct === null ? '' : pct >= 53 ? 'hi' : pct <= 47 ? 'lo' : 'mid'}`}>{pct === null ? '' : `${pct}%`}</span>
               <button type="button" class={`lane-b opp ${sel?.side === 'opp' && sel.i === i ? 'sel' : ''}`} onClick={() => tap('opp', i)}>
                 {e ? <><span>{e.name}</span><Portrait b={e} size={30} /></> : <span class="muted">—</span>}
               </button>
@@ -315,7 +316,7 @@ function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally
           );
         })}
       </div>
-      <p class="hint">Number = our side's chance to win that matchup, from Ranked games on this map.</p>
+      <p class="hint">% = our side's chance to win that matchup, from Ranked games on this map.</p>
     </section>
   );
 }

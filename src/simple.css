@@ -153,3 +153,7 @@ a { color: var(--muted); }
 @media (min-width: 1280px) {
   .app { max-width: 1200px; }
 }
+.wr { font-size: 13px; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 46px; text-align: right; }
+.sugg-head { display: flex; align-items: baseline; }
+.sugg-head .cols-label { margin-left: auto; font-size: 11px; color: var(--muted); font-weight: 400; text-transform: uppercase; letter-spacing: .04em; }
+.lane { grid-template-columns: 42px 1fr 52px 1fr; }
