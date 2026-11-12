@@ -1,0 +1,205 @@
+{
+  "updatedAt": "2026-11-11",
+  "asOfUpdate": "November 2026 (content 3 Nov 2026; maintenance 11 Nov 2026)",
+  "notes": "Brawlers who have received Buffies. Official policy: when a brawler gets Buffies, its Epic and Mythic gears are removed and refunded. The official /brawlers API can lag those removals (e.g. it still listed Super Charge on Lou and Pet Power on Mr. P after 3 Nov 2026). The current gear catalog is official gears minus Epic/Mythic on this list. Confirmed 11 Nov 2026 from 12 high-ladder player profiles: the union of buffies flags matched these 33 ids, and no Power 11 copy on a Buffie brawler still owned an Epic or Mythic gear.",
+  "brawlers": [
+    {
+      "id": 16000000,
+      "name": "SHELLY",
+      "clawMachine": "Ranger Ranch",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000001,
+      "name": "COLT",
+      "clawMachine": "Ranger Ranch",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000005,
+      "name": "SPIKE",
+      "clawMachine": "Ranger Ranch",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000011,
+      "name": "MORTIS",
+      "clawMachine": "Mortis' Mortuary",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000020,
+      "name": "FRANK",
+      "clawMachine": "Mortis' Mortuary",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000030,
+      "name": "EMZ",
+      "clawMachine": "Mortis' Mortuary",
+      "added": "2025-12-16"
+    },
+    {
+      "id": 16000002,
+      "name": "BULL",
+      "clawMachine": "Bull's Diner",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000012,
+      "name": "CROW",
+      "clawMachine": "Bull's Diner",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000026,
+      "name": "BIBI",
+      "clawMachine": "Bull's Diner",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000008,
+      "name": "NITA",
+      "clawMachine": "Rumble Jungle",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000014,
+      "name": "BO",
+      "clawMachine": "Rumble Jungle",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000023,
+      "name": "LEON",
+      "clawMachine": "Rumble Jungle",
+      "added": "2026-02-25"
+    },
+    {
+      "id": 16000039,
+      "name": "COLETTE",
+      "clawMachine": "Gift Shop",
+      "added": "2026-04-22"
+    },
+    {
+      "id": 16000043,
+      "name": "EDGAR",
+      "clawMachine": "Gift Shop",
+      "added": "2026-04-22"
+    },
+    {
+      "id": 16000050,
+      "name": "GRIFF",
+      "clawMachine": "Gift Shop",
+      "added": "2026-04-22"
+    },
+    {
+      "id": 16000004,
+      "name": "RICO",
+      "clawMachine": "Starrcade",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000003,
+      "name": "BROCK",
+      "clawMachine": "Starrcade",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000027,
+      "name": "8-BIT",
+      "clawMachine": "Starrcade",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000032,
+      "name": "MAX",
+      "clawMachine": "Super City",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000038,
+      "name": "SURGE",
+      "clawMachine": "Super City",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000052,
+      "name": "MEG",
+      "clawMachine": "Super City",
+      "added": "2026-06-30"
+    },
+    {
+      "id": 16000013,
+      "name": "POCO",
+      "clawMachine": "Poco's Bandstand",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000010,
+      "name": "EL PRIMO",
+      "clawMachine": "Poco's Bandstand",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000040,
+      "name": "AMBER",
+      "clawMachine": "Poco's Bandstand",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000061,
+      "name": "GUS",
+      "clawMachine": "Ghost Station",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000073,
+      "name": "CHUCK",
+      "clawMachine": "Ghost Station",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000086,
+      "name": "SHADE",
+      "clawMachine": "Ghost Station",
+      "added": "2026-09-01"
+    },
+    {
+      "id": 16000031,
+      "name": "MR. P",
+      "clawMachine": "Snowtel",
+      "added": "2026-11-03"
+    },
+    {
+      "id": 16000041,
+      "name": "LOU",
+      "clawMachine": "Snowtel",
+      "added": "2026-11-03"
+    },
+    {
+      "id": 16000035,
+      "name": "GALE",
+      "clawMachine": "Snowtel",
+      "added": "2026-11-03"
+    },
+    {
+      "id": 16000065,
+      "name": "MANDY",
+      "clawMachine": "Candy Stand",
+      "added": "2026-11-03"
+    },
+    {
+      "id": 16000063,
+      "name": "CHESTER",
+      "clawMachine": "Candy Stand",
+      "added": "2026-11-03"
+    },
+    {
+      "id": 16000082,
+      "name": "BERRY",
+      "clawMachine": "Candy Stand",
+      "added": "2026-11-03"
+    }
+  ]
+}

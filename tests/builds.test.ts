@@ -41,3 +41,37 @@ describe('builds snapshot', () => {
     expect(names).toEqual(['REY', 'RUBY', 'THUNDER FROGS']);
   });
 });
+
+describe('builds vs current official catalog', () => {
+  it('rejects any gadget, star power or gear that a brawler cannot equip now', async () => {
+    const { execFileSync } = await import('node:child_process');
+    const { fileURLToPath } = await import('node:url');
+    const { dirname, join } = await import('node:path');
+    const root = join(dirname(fileURLToPath(import.meta.url)), '..');
+    const out = execFileSync('node', ['scripts/validate-builds.mjs'], { cwd: root, encoding: 'utf8' });
+    expect(out).toMatch(/matches the current official catalog/);
+  });
+
+  it('does not recommend removed Epic or Mythic gears on Buffie brawlers', () => {
+    const official = JSON.parse(readFileSync(new URL('../data/official-kits.json', import.meta.url), 'utf8')) as {
+      brawlers: { id: number; name: string; gears: { id: number; name: string }[] }[];
+    };
+    const buffies = JSON.parse(readFileSync(new URL('../data/buffie-brawlers.json', import.meta.url), 'utf8')) as {
+      brawlers: { id: number; name: string }[];
+    };
+    const byId = new Map(official.brawlers.map((b) => [b.id, b]));
+    const superRare = new Set(['SPEED', 'HEALTH', 'DAMAGE', 'VISION', 'SHIELD', 'GADGET COOLDOWN']);
+    // Official /brawlers can lag Buffie removals — the snapshot still lists these, but builds must not use them.
+    const lou = byId.get(16000041)!;
+    expect(lou.gears.some((g) => g.name === 'SUPER CHARGE')).toBe(true);
+    const mrP = byId.get(16000031)!;
+    expect(mrP.gears.some((g) => g.name === 'PET POWER')).toBe(true);
+    for (const b of buffies.brawlers) {
+      const rec = raw.builds[String(b.id)];
+      if (!rec) continue;
+      for (const g of rec.gears) {
+        expect(superRare.has(g.name), `${b.name} ${g.name}`).toBe(true);
+      }
+    }
+  });
+});

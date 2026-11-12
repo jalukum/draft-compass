@@ -1,0 +1,5697 @@
+{
+  "fetchedAt": "2026-11-12T05:40:33.000Z",
+  "source": "https://bsproxy.royaleapi.dev/v1/brawlers",
+  "count": 111,
+  "brawlers": [
+    {
+      "id": 16000000,
+      "name": "SHELLY",
+      "gadgets": [
+        {
+          "id": 23000255,
+          "name": "FAST FORWARD"
+        },
+        {
+          "id": 23000288,
+          "name": "CLAY PIGEONS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000076,
+          "name": "SHELL SHOCK"
+        },
+        {
+          "id": 23000135,
+          "name": "BAND-AID"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000001,
+      "name": "COLT",
+      "gadgets": [
+        {
+          "id": 23000273,
+          "name": "SPEEDLOADER"
+        },
+        {
+          "id": 23000319,
+          "name": "SILVER BULLET"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000077,
+          "name": "SLICK BOOTS"
+        },
+        {
+          "id": 23000138,
+          "name": "MAGNUM SPECIAL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000002,
+      "name": "BULL",
+      "gadgets": [
+        {
+          "id": 23000272,
+          "name": "T-BONE MISSILE"
+        },
+        {
+          "id": 23000310,
+          "name": "STOMPER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000078,
+          "name": "BERSERKER"
+        },
+        {
+          "id": 23000137,
+          "name": "TOUGH GUY"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000003,
+      "name": "BROCK",
+      "gadgets": [
+        {
+          "id": 23000245,
+          "name": "ROCKET LACES"
+        },
+        {
+          "id": 23000316,
+          "name": "ROCKET FUEL"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000079,
+          "name": "MORE ROCKETS!"
+        },
+        {
+          "id": 23000150,
+          "name": "ROCKET NO. 4"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000004,
+      "name": "RICO",
+      "gadgets": [
+        {
+          "id": 23000246,
+          "name": "MULTIBALL LAUNCHER"
+        },
+        {
+          "id": 23000409,
+          "name": "MULTIBALL"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000080,
+          "name": "SUPER BOUNCY"
+        },
+        {
+          "id": 23000156,
+          "name": "ROBO RETREAT"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000005,
+      "name": "SPIKE",
+      "gadgets": [
+        {
+          "id": 23000247,
+          "name": "POPPING PINCUSHION"
+        },
+        {
+          "id": 23000406,
+          "name": "LIFE PLANT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000081,
+          "name": "FERTILIZE"
+        },
+        {
+          "id": 23000151,
+          "name": "CURVEBALL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000010,
+          "name": "STICKY SPIKES"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000006,
+      "name": "BARLEY",
+      "gadgets": [
+        {
+          "id": 23000250,
+          "name": "STICKY SYRUP MIXER"
+        },
+        {
+          "id": 23000293,
+          "name": "HERBAL TONIC"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000082,
+          "name": "MEDICAL USE"
+        },
+        {
+          "id": 23000158,
+          "name": "EXTRA NOXIOUS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000007,
+      "name": "JESSIE",
+      "gadgets": [
+        {
+          "id": 23000251,
+          "name": "SPARK PLUG"
+        },
+        {
+          "id": 23000295,
+          "name": "RECOIL SPRING"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000083,
+          "name": "ENERGIZE"
+        },
+        {
+          "id": 23000149,
+          "name": "SHOCKY"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000008,
+      "name": "NITA",
+      "gadgets": [
+        {
+          "id": 23000249,
+          "name": "BEAR PAWS"
+        },
+        {
+          "id": 23000314,
+          "name": "FAUX FUR"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000084,
+          "name": "BEAR WITH ME"
+        },
+        {
+          "id": 23000136,
+          "name": "HYPER BEAR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000009,
+      "name": "DYNAMIKE",
+      "gadgets": [
+        {
+          "id": 23000258,
+          "name": "FIDGET SPINNER"
+        },
+        {
+          "id": 23000294,
+          "name": "SATCHEL CHARGE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000085,
+          "name": "DYNA-JUMP"
+        },
+        {
+          "id": 23000155,
+          "name": "DEMOLITION"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000010,
+      "name": "EL PRIMO",
+      "gadgets": [
+        {
+          "id": 23000264,
+          "name": "SUPLEX SUPPLEMENT"
+        },
+        {
+          "id": 23000292,
+          "name": "ASTEROID BELT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000086,
+          "name": "EL FUEGO"
+        },
+        {
+          "id": 23000140,
+          "name": "METEOR RUSH"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000011,
+      "name": "MORTIS",
+      "gadgets": [
+        {
+          "id": 23000265,
+          "name": "COMBO SPINNER"
+        },
+        {
+          "id": 23000290,
+          "name": "CREATURE OF THE NIGHT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000087,
+          "name": "CREEPY HARVEST"
+        },
+        {
+          "id": 23000154,
+          "name": "COILED SNAKE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        },
+        {
+          "id": 62000018,
+          "name": "BAT STORM"
+        }
+      ]
+    },
+    {
+      "id": 16000012,
+      "name": "CROW",
+      "gadgets": [
+        {
+          "id": 23000243,
+          "name": "INSTAPOISON"
+        },
+        {
+          "id": 23000286,
+          "name": "SLOWING TOXIN"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000088,
+          "name": "EXTRA TOXIC"
+        },
+        {
+          "id": 23000143,
+          "name": "CARRION CROW"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000009,
+          "name": "ENDURING TOXINS"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000013,
+      "name": "POCO",
+      "gadgets": [
+        {
+          "id": 23000267,
+          "name": "TUNING FORK"
+        },
+        {
+          "id": 23000350,
+          "name": "PROTECTIVE TUNES"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000089,
+          "name": "DA CAPO!"
+        },
+        {
+          "id": 23000144,
+          "name": "SCREECHING SOLO"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000014,
+      "name": "BO",
+      "gadgets": [
+        {
+          "id": 23000263,
+          "name": "SUPER TOTEM"
+        },
+        {
+          "id": 23000289,
+          "name": "TRIPWIRE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000090,
+          "name": "CIRCLING EAGLE"
+        },
+        {
+          "id": 23000148,
+          "name": "SNARE A BEAR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000015,
+      "name": "PIPER",
+      "gadgets": [
+        {
+          "id": 23000268,
+          "name": "AUTO AIMER"
+        },
+        {
+          "id": 23000291,
+          "name": "HOMEMADE RECIPE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000091,
+          "name": "AMBUSH"
+        },
+        {
+          "id": 23000152,
+          "name": "SNAPPY SNIPING"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000016,
+      "name": "PAM",
+      "gadgets": [
+        {
+          "id": 23000257,
+          "name": "PULSE MODULATOR"
+        },
+        {
+          "id": 23000404,
+          "name": "SCRAPSUCKER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000092,
+          "name": "MAMA'S HUG"
+        },
+        {
+          "id": 23000139,
+          "name": "MAMA'S SQUEEZE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000016,
+          "name": "SUPER TURRET"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000017,
+      "name": "TARA",
+      "gadgets": [
+        {
+          "id": 23000266,
+          "name": "PSYCHIC ENHANCER"
+        },
+        {
+          "id": 23000356,
+          "name": "SUPPORT FROM BEYOND"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000093,
+          "name": "BLACK PORTAL"
+        },
+        {
+          "id": 23000160,
+          "name": "HEALING SHADE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000018,
+      "name": "DARRYL",
+      "gadgets": [
+        {
+          "id": 23000260,
+          "name": "RECOILING ROTATOR"
+        },
+        {
+          "id": 23000313,
+          "name": "TAR BARREL"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000094,
+          "name": "STEEL HOOPS"
+        },
+        {
+          "id": 23000157,
+          "name": "ROLLING RELOAD"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000019,
+      "name": "PENNY",
+      "gadgets": [
+        {
+          "id": 23000248,
+          "name": "SALTY BARREL"
+        },
+        {
+          "id": 23000287,
+          "name": "TRUSTY SPYGLASS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000099,
+          "name": "HEAVY COFFERS"
+        },
+        {
+          "id": 23000142,
+          "name": "MASTER BLASTER"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000020,
+      "name": "FRANK",
+      "gadgets": [
+        {
+          "id": 23000261,
+          "name": "ACTIVE NOISE CANCELING"
+        },
+        {
+          "id": 23000351,
+          "name": "IRRESISTIBLE ATTRACTION"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000104,
+          "name": "POWER GRAB"
+        },
+        {
+          "id": 23000153,
+          "name": "SPONGE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000021,
+      "name": "GENE",
+      "gadgets": [
+        {
+          "id": 23000252,
+          "name": "LAMP BLOWOUT"
+        },
+        {
+          "id": 23000352,
+          "name": "VENGEFUL SPIRITS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000109,
+          "name": "MAGIC PUFFS"
+        },
+        {
+          "id": 23000159,
+          "name": "SPIRIT SLAP"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000008,
+          "name": "TALK TO THE HAND"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000022,
+      "name": "TICK",
+      "gadgets": [
+        {
+          "id": 23000253,
+          "name": "MINE MANIA"
+        },
+        {
+          "id": 23000355,
+          "name": "LAST HURRAH"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000114,
+          "name": "WELL OILED"
+        },
+        {
+          "id": 23000161,
+          "name": "AUTOMA-TICK RELOAD"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000007,
+          "name": "THICC HEAD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000023,
+      "name": "LEON",
+      "gadgets": [
+        {
+          "id": 23000276,
+          "name": "CLONE PROJECTOR"
+        },
+        {
+          "id": 23000408,
+          "name": "LOLLIPOP DROP"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000119,
+          "name": "SMOKE TRAILS"
+        },
+        {
+          "id": 23000141,
+          "name": "INVISIHEAL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000011,
+          "name": "LINGERING SMOKE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000024,
+      "name": "ROSA",
+      "gadgets": [
+        {
+          "id": 23000242,
+          "name": "GROW LIGHT"
+        },
+        {
+          "id": 23000348,
+          "name": "UNFRIENDLY BUSHES"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000124,
+          "name": "PLANT LIFE"
+        },
+        {
+          "id": 23000147,
+          "name": "THORNY GLOVES"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000025,
+      "name": "CARL",
+      "gadgets": [
+        {
+          "id": 23000262,
+          "name": "HEAT EJECTOR"
+        },
+        {
+          "id": 23000317,
+          "name": "FLYING HOOK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000129,
+          "name": "POWER THROW"
+        },
+        {
+          "id": 23000145,
+          "name": "PROTECTIVE PIROUETTE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000026,
+      "name": "BIBI",
+      "gadgets": [
+        {
+          "id": 23000275,
+          "name": "VITAMIN BOOSTER"
+        },
+        {
+          "id": 23000458,
+          "name": "EXTRA STICKY"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000134,
+          "name": "HOME RUN"
+        },
+        {
+          "id": 23000146,
+          "name": "BATTING STANCE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000027,
+      "name": "8-BIT",
+      "gadgets": [
+        {
+          "id": 23000259,
+          "name": "CHEAT CARTRIDGE"
+        },
+        {
+          "id": 23000318,
+          "name": "EXTRA CREDITS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000168,
+          "name": "BOOSTED BOOSTER"
+        },
+        {
+          "id": 23000181,
+          "name": "PLUGGED IN"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000028,
+      "name": "SANDY",
+      "gadgets": [
+        {
+          "id": 23000270,
+          "name": "SLEEP STIMULATOR"
+        },
+        {
+          "id": 23000405,
+          "name": "SWEET DREAMS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000186,
+          "name": "RUDE SANDS"
+        },
+        {
+          "id": 23000187,
+          "name": "HEALING WINDS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000012,
+          "name": "EXHAUSTING STORM"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000029,
+      "name": "BEA",
+      "gadgets": [
+        {
+          "id": 23000271,
+          "name": "HONEY MOLASSES"
+        },
+        {
+          "id": 23000312,
+          "name": "RATTLED HIVE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000192,
+          "name": "INSTA BEALOAD"
+        },
+        {
+          "id": 23000193,
+          "name": "HONEYCOMB"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000030,
+      "name": "EMZ",
+      "gadgets": [
+        {
+          "id": 23000274,
+          "name": "FRIENDZONER"
+        },
+        {
+          "id": 23000459,
+          "name": "ACID SPRAY"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000198,
+          "name": "BAD KARMA"
+        },
+        {
+          "id": 23000199,
+          "name": "HYPE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000031,
+      "name": "MR. P",
+      "gadgets": [
+        {
+          "id": 23000269,
+          "name": "SERVICE BELL"
+        },
+        {
+          "id": 23000349,
+          "name": "PORTER REINFORCEMENTS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000204,
+          "name": "HANDLE WITH CARE"
+        },
+        {
+          "id": 23000205,
+          "name": "REVOLVING DOOR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000032,
+      "name": "MAX",
+      "gadgets": [
+        {
+          "id": 23000254,
+          "name": "PHASE SHIFTER"
+        },
+        {
+          "id": 23000311,
+          "name": "SNEAKY SNEAKERS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000210,
+          "name": "SUPER CHARGED"
+        },
+        {
+          "id": 23000211,
+          "name": "RUN N GUN"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000034,
+      "name": "JACKY",
+      "gadgets": [
+        {
+          "id": 23000256,
+          "name": "PNEUMATIC BOOSTER"
+        },
+        {
+          "id": 23000486,
+          "name": "REBUILD"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000222,
+          "name": "COUNTER CRUSH"
+        },
+        {
+          "id": 23000223,
+          "name": "HARDY HARD HAT"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000035,
+      "name": "GALE",
+      "gadgets": [
+        {
+          "id": 23000277,
+          "name": "NORTH WIND WALL"
+        },
+        {
+          "id": 23000407,
+          "name": "TWISTER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000228,
+          "name": "BLUSTERY BLOW"
+        },
+        {
+          "id": 23000229,
+          "name": "FREEZING SNOW"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000036,
+      "name": "NANI",
+      "gadgets": [
+        {
+          "id": 23000278,
+          "name": "WARPIN' TIME"
+        },
+        {
+          "id": 23000353,
+          "name": "RETURN TO SENDER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000234,
+          "name": "AUTOFOCUS"
+        },
+        {
+          "id": 23000235,
+          "name": "TEMPERED STEEL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000037,
+      "name": "SPROUT",
+      "gadgets": [
+        {
+          "id": 23000244,
+          "name": "GARDEN MULCHER"
+        },
+        {
+          "id": 23000315,
+          "name": "TRANSPLANT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000240,
+          "name": "OVERGROWTH"
+        },
+        {
+          "id": 23000241,
+          "name": "PHOTOSYNTHESIS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000038,
+      "name": "SURGE",
+      "gadgets": [
+        {
+          "id": 23000285,
+          "name": "POWER SURGE"
+        },
+        {
+          "id": 23000485,
+          "name": "POWER SHIELD"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000283,
+          "name": "TO THE MAX!"
+        },
+        {
+          "id": 23000284,
+          "name": "SERVE ICE COLD"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000039,
+      "name": "COLETTE",
+      "gadgets": [
+        {
+          "id": 23000302,
+          "name": "NA-AH!"
+        },
+        {
+          "id": 23000457,
+          "name": "GOTCHA!"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000300,
+          "name": "PUSH IT"
+        },
+        {
+          "id": 23000301,
+          "name": "MASS TAX"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000040,
+      "name": "AMBER",
+      "gadgets": [
+        {
+          "id": 23000309,
+          "name": "FIRE STARTERS"
+        },
+        {
+          "id": 23000488,
+          "name": "DANCING FLAMES"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000307,
+          "name": "WILD FLAMES"
+        },
+        {
+          "id": 23000308,
+          "name": "SCORCHIN' SIPHON"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000013,
+          "name": "STICKY OIL"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000041,
+      "name": "LOU",
+      "gadgets": [
+        {
+          "id": 23000326,
+          "name": "ICE BLOCK"
+        },
+        {
+          "id": 23000400,
+          "name": "AVALANCHE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000324,
+          "name": "COLD SNAP"
+        },
+        {
+          "id": 23000325,
+          "name": "HYPOTHERMIA"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000042,
+      "name": "BYRON",
+      "gadgets": [
+        {
+          "id": 23000333,
+          "name": "SHOT IN THE ARM"
+        },
+        {
+          "id": 23000461,
+          "name": "BOOSTER SHOTS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000331,
+          "name": "MALAISE"
+        },
+        {
+          "id": 23000332,
+          "name": "INJECTION"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000043,
+      "name": "EDGAR",
+      "gadgets": [
+        {
+          "id": 23000340,
+          "name": "LET'S FLY"
+        },
+        {
+          "id": 23000403,
+          "name": "HARDCORE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000338,
+          "name": "HARD LANDING"
+        },
+        {
+          "id": 23000339,
+          "name": "FISTICUFFS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000044,
+      "name": "RUFFS",
+      "gadgets": [
+        {
+          "id": 23000347,
+          "name": "TAKE COVER"
+        },
+        {
+          "id": 23000402,
+          "name": "AIR SUPPORT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000345,
+          "name": "AIR SUPERIORITY"
+        },
+        {
+          "id": 23000346,
+          "name": "FIELD PROMOTION"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000045,
+      "name": "STU",
+      "gadgets": [
+        {
+          "id": 23000364,
+          "name": "SPEED ZONE"
+        },
+        {
+          "id": 23000401,
+          "name": "BREAKTHROUGH"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000362,
+          "name": "ZERO DRAG"
+        },
+        {
+          "id": 23000363,
+          "name": "GASO-HEAL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000046,
+      "name": "BELLE",
+      "gadgets": [
+        {
+          "id": 23000371,
+          "name": "NEST EGG"
+        },
+        {
+          "id": 23000463,
+          "name": "REVERSE POLARITY"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000369,
+          "name": "POSITIVE FEEDBACK"
+        },
+        {
+          "id": 23000370,
+          "name": "GROUNDED"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000047,
+      "name": "SQUEAK",
+      "gadgets": [
+        {
+          "id": 23000378,
+          "name": "WINDUP"
+        },
+        {
+          "id": 23000462,
+          "name": "RESIDUE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000376,
+          "name": "CHAIN REACTION"
+        },
+        {
+          "id": 23000377,
+          "name": "SUPER STICKY"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000048,
+      "name": "GROM",
+      "gadgets": [
+        {
+          "id": 23000385,
+          "name": "WATCHTOWER"
+        },
+        {
+          "id": 23000460,
+          "name": "RADIO CHECK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000383,
+          "name": "FOOT PATROL"
+        },
+        {
+          "id": 23000384,
+          "name": "X-FACTOR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000049,
+      "name": "BUZZ",
+      "gadgets": [
+        {
+          "id": 23000392,
+          "name": "RESERVE BUOY"
+        },
+        {
+          "id": 23000490,
+          "name": "X-RAY-SHADES"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000390,
+          "name": "TOUGHER TORPEDO"
+        },
+        {
+          "id": 23000391,
+          "name": "EYES SHARP"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000050,
+      "name": "GRIFF",
+      "gadgets": [
+        {
+          "id": 23000399,
+          "name": "PIGGY BANK"
+        },
+        {
+          "id": 23000487,
+          "name": "COIN SHOWER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000397,
+          "name": "KEEP THE CHANGE"
+        },
+        {
+          "id": 23000398,
+          "name": "BUSINESS RESILIENCE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000051,
+      "name": "ASH",
+      "gadgets": [
+        {
+          "id": 23000416,
+          "name": "CHILL PILL"
+        },
+        {
+          "id": 23000465,
+          "name": "ROTTEN BANANA"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000414,
+          "name": "FIRST BASH"
+        },
+        {
+          "id": 23000415,
+          "name": "MAD AS HECK"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000052,
+      "name": "MEG",
+      "gadgets": [
+        {
+          "id": 23000423,
+          "name": "JOLTING VOLTS"
+        },
+        {
+          "id": 23000489,
+          "name": "REPURPOSE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000421,
+          "name": "FORCE FIELD"
+        },
+        {
+          "id": 23000422,
+          "name": "HEAVY METAL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000053,
+      "name": "LOLA",
+      "gadgets": [
+        {
+          "id": 23000433,
+          "name": "FREEZE FRAME"
+        },
+        {
+          "id": 23000456,
+          "name": "STUNT DOUBLE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000431,
+          "name": "IMPROVISE"
+        },
+        {
+          "id": 23000432,
+          "name": "SEALED WITH A KISS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000054,
+      "name": "FANG",
+      "gadgets": [
+        {
+          "id": 23000440,
+          "name": "CORN-FU"
+        },
+        {
+          "id": 23000464,
+          "name": "ROUNDHOUSE KICK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000438,
+          "name": "FRESH KICKS"
+        },
+        {
+          "id": 23000439,
+          "name": "DIVINE SOLES"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000056,
+      "name": "EVE",
+      "gadgets": [
+        {
+          "id": 23000454,
+          "name": "GOTTA GO!"
+        },
+        {
+          "id": 23000455,
+          "name": "MOTHERLY LOVE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000452,
+          "name": "UNNATURAL ORDER"
+        },
+        {
+          "id": 23000453,
+          "name": "HAPPY SURPRISE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000015,
+          "name": "QUADRUPLETS"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000057,
+      "name": "JANET",
+      "gadgets": [
+        {
+          "id": 23000472,
+          "name": "DROP THE BASS"
+        },
+        {
+          "id": 23000473,
+          "name": "BACKSTAGE PASS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000470,
+          "name": "STAGE VIEW"
+        },
+        {
+          "id": 23000471,
+          "name": "VOCAL WARM UP"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000058,
+      "name": "BONNIE",
+      "gadgets": [
+        {
+          "id": 23000480,
+          "name": "SUGAR RUSH"
+        },
+        {
+          "id": 23000481,
+          "name": "CRASH TEST"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000478,
+          "name": "BLACK POWDER"
+        },
+        {
+          "id": 23000479,
+          "name": "WISDOM TOOTH"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000059,
+      "name": "OTIS",
+      "gadgets": [
+        {
+          "id": 23000497,
+          "name": "DORMANT STAR"
+        },
+        {
+          "id": 23000498,
+          "name": "PHAT SPLATTER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000495,
+          "name": "STENCIL GLUE"
+        },
+        {
+          "id": 23000496,
+          "name": "INK REFILLS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000060,
+      "name": "SAM",
+      "gadgets": [
+        {
+          "id": 23000505,
+          "name": "MAGNETIC FIELD"
+        },
+        {
+          "id": 23000506,
+          "name": "PULSE REPELLENT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000503,
+          "name": "HEARTY RECOVERY"
+        },
+        {
+          "id": 23000504,
+          "name": "REMOTE RECHARGE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000061,
+      "name": "GUS",
+      "gadgets": [
+        {
+          "id": 23000513,
+          "name": "KOOKY POPPER"
+        },
+        {
+          "id": 23000514,
+          "name": "KNOCKBACK SPIRIT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000511,
+          "name": "HEALTH BONANZA"
+        },
+        {
+          "id": 23000512,
+          "name": "SPIRIT ANIMAL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000062,
+      "name": "BUSTER",
+      "gadgets": [
+        {
+          "id": 23000521,
+          "name": "UTILITY BELT"
+        },
+        {
+          "id": 23000522,
+          "name": "SLO-MO REPLAY"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000519,
+          "name": "BLOCKBUSTER"
+        },
+        {
+          "id": 23000520,
+          "name": "KEVLAR VEST"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000063,
+      "name": "CHESTER",
+      "gadgets": [
+        {
+          "id": 23000529,
+          "name": "PRANKSTER'S SURPRISE"
+        },
+        {
+          "id": 23000530,
+          "name": "CANDY BEANS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000527,
+          "name": "SINGLE BELL'O'MANIA"
+        },
+        {
+          "id": 23000528,
+          "name": "JESTER'S PRIVILEGE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000064,
+      "name": "GRAY",
+      "gadgets": [
+        {
+          "id": 23000537,
+          "name": "WALKING CANE"
+        },
+        {
+          "id": 23000538,
+          "name": "GRAND PIANO"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000535,
+          "name": "FAKE INJURY"
+        },
+        {
+          "id": 23000536,
+          "name": "NEW PERSPECTIVE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000065,
+      "name": "MANDY",
+      "gadgets": [
+        {
+          "id": 23000545,
+          "name": "CARAMELIZE"
+        },
+        {
+          "id": 23000546,
+          "name": "COOKIE CRUMBS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000543,
+          "name": "IN MY SIGHTS"
+        },
+        {
+          "id": 23000544,
+          "name": "GOBSTOPPER"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000066,
+      "name": "R-T",
+      "gadgets": [
+        {
+          "id": 23000555,
+          "name": "OUT OF LINE"
+        },
+        {
+          "id": 23000556,
+          "name": "HACKS!"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000553,
+          "name": "QUICK MATHS"
+        },
+        {
+          "id": 23000554,
+          "name": "RECORDING"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000067,
+      "name": "WILLOW",
+      "gadgets": [
+        {
+          "id": 23000563,
+          "name": "SPELLBOUND"
+        },
+        {
+          "id": 23000564,
+          "name": "DIVE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000561,
+          "name": "LOVE IS BLIND"
+        },
+        {
+          "id": 23000562,
+          "name": "OBSESSION"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000068,
+      "name": "MAISIE",
+      "gadgets": [
+        {
+          "id": 23000571,
+          "name": "DISENGAGE!"
+        },
+        {
+          "id": 23000572,
+          "name": "FINISH THEM!"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000569,
+          "name": "PINPOINT PRECISION"
+        },
+        {
+          "id": 23000570,
+          "name": "TREMORS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000069,
+      "name": "HANK",
+      "gadgets": [
+        {
+          "id": 23000579,
+          "name": "WATER BALLOONS"
+        },
+        {
+          "id": 23000580,
+          "name": "BARRICADE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000577,
+          "name": "IT'S GONNA BLOW"
+        },
+        {
+          "id": 23000578,
+          "name": "TAKE COVER!"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000070,
+      "name": "CORDELIUS",
+      "gadgets": [
+        {
+          "id": 23000587,
+          "name": "REPLANTING"
+        },
+        {
+          "id": 23000588,
+          "name": "POISON MUSHROOM"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000585,
+          "name": "COMBOSHROOMS"
+        },
+        {
+          "id": 23000586,
+          "name": "MUSHROOM KINGDOM"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000071,
+      "name": "DOUG",
+      "gadgets": [
+        {
+          "id": 23000595,
+          "name": "DOUBLE SAUSAGE"
+        },
+        {
+          "id": 23000596,
+          "name": "EXTRA MUSTARD"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000593,
+          "name": "FAST FOOD"
+        },
+        {
+          "id": 23000594,
+          "name": "SELF SERVICE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000072,
+      "name": "PEARL",
+      "gadgets": [
+        {
+          "id": 23000603,
+          "name": "OVERCOOKED"
+        },
+        {
+          "id": 23000604,
+          "name": "MADE WITH LOVE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000601,
+          "name": "HEAT RETENTION"
+        },
+        {
+          "id": 23000602,
+          "name": "HEAT SHIELD"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000073,
+      "name": "CHUCK",
+      "gadgets": [
+        {
+          "id": 23000611,
+          "name": "REROUTING"
+        },
+        {
+          "id": 23000612,
+          "name": "GHOST TRAIN"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000609,
+          "name": "PIT STOP"
+        },
+        {
+          "id": 23000610,
+          "name": "TICKETS PLEASE!"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000074,
+      "name": "CHARLIE",
+      "gadgets": [
+        {
+          "id": 23000625,
+          "name": "SPIDERS"
+        },
+        {
+          "id": 23000626,
+          "name": "PERSONAL SPACE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000623,
+          "name": "DIGESTIVE"
+        },
+        {
+          "id": 23000624,
+          "name": "SLIMY"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000075,
+      "name": "MICO",
+      "gadgets": [
+        {
+          "id": 23000639,
+          "name": "CLIPPING SCREAM"
+        },
+        {
+          "id": 23000640,
+          "name": "PRESTO"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000637,
+          "name": "MONKEY BUSINESS"
+        },
+        {
+          "id": 23000638,
+          "name": "RECORD SMASH"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000076,
+      "name": "KIT",
+      "gadgets": [
+        {
+          "id": 23000648,
+          "name": "CARDBOARD BOX"
+        },
+        {
+          "id": 23000649,
+          "name": "CHEESEBURGER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000646,
+          "name": "POWER HUNGRY"
+        },
+        {
+          "id": 23000647,
+          "name": "OVERLY ATTACHED"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000077,
+      "name": "LARRY & LAWRIE",
+      "gadgets": [
+        {
+          "id": 23000661,
+          "name": "ORDER: SWAP"
+        },
+        {
+          "id": 23000662,
+          "name": "ORDER: FALL BACK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000659,
+          "name": "PROTOCOL: PROTECT"
+        },
+        {
+          "id": 23000660,
+          "name": "PROTOCOL: ASSIST"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000078,
+      "name": "MELODIE",
+      "gadgets": [
+        {
+          "id": 23000669,
+          "name": "PERFECT PITCH"
+        },
+        {
+          "id": 23000670,
+          "name": "INTERLUDE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000667,
+          "name": "FAST BEATS"
+        },
+        {
+          "id": 23000668,
+          "name": "EXTENDED MIX"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000079,
+      "name": "ANGELO",
+      "gadgets": [
+        {
+          "id": 23000677,
+          "name": "STINGING FLIGHT"
+        },
+        {
+          "id": 23000678,
+          "name": "MASTER FLETCHER"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000675,
+          "name": "EMPOWER"
+        },
+        {
+          "id": 23000676,
+          "name": "FLOW"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000080,
+      "name": "DRACO",
+      "gadgets": [
+        {
+          "id": 23000736,
+          "name": "UPPER CUT"
+        },
+        {
+          "id": 23000737,
+          "name": "LAST STAND"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000734,
+          "name": "EXPOSE"
+        },
+        {
+          "id": 23000735,
+          "name": "SHREDDING"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000081,
+      "name": "LILY",
+      "gadgets": [
+        {
+          "id": 23000754,
+          "name": "VANISH"
+        },
+        {
+          "id": 23000755,
+          "name": "REPOT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000752,
+          "name": "SPIKY"
+        },
+        {
+          "id": 23000753,
+          "name": "VIGILANCE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000082,
+      "name": "BERRY",
+      "gadgets": [
+        {
+          "id": 23000766,
+          "name": "FRIENDSHIP IS GREAT"
+        },
+        {
+          "id": 23000767,
+          "name": "SECRET FORMULA"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000764,
+          "name": "FLOOR IS FINE"
+        },
+        {
+          "id": 23000765,
+          "name": "STICKY TOPPINGS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000083,
+      "name": "CLANCY",
+      "gadgets": [
+        {
+          "id": 23000774,
+          "name": "SNAPPY SHOOTING"
+        },
+        {
+          "id": 23000775,
+          "name": "TACTICAL RETREAT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000772,
+          "name": "RECON"
+        },
+        {
+          "id": 23000773,
+          "name": "PUMPING UP"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000084,
+      "name": "MOE",
+      "gadgets": [
+        {
+          "id": 23000806,
+          "name": "DODGY DIGGING"
+        },
+        {
+          "id": 23000807,
+          "name": "RAT RACE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000804,
+          "name": "SKIPPING STONES"
+        },
+        {
+          "id": 23000805,
+          "name": "SPEEDING TICKET"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000085,
+      "name": "KENJI",
+      "gadgets": [
+        {
+          "id": 23000817,
+          "name": "DASHI DASH"
+        },
+        {
+          "id": 23000818,
+          "name": "HOSOMAKI HEALING"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000815,
+          "name": "STUDIED THE BLADE"
+        },
+        {
+          "id": 23000816,
+          "name": "NIGIRI NEMESIS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000086,
+      "name": "SHADE",
+      "gadgets": [
+        {
+          "id": 23000834,
+          "name": "LONGARMS"
+        },
+        {
+          "id": 23000835,
+          "name": "JUMP SCARE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000832,
+          "name": "SPOOKY SPEEDSTER"
+        },
+        {
+          "id": 23000833,
+          "name": "HARDENED HOODIE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000087,
+      "name": "JUJU",
+      "gadgets": [
+        {
+          "id": 23000850,
+          "name": "VOODOO CHILE"
+        },
+        {
+          "id": 23000851,
+          "name": "ELEMENTALIST"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000848,
+          "name": "GUARDED GRIS-GRIS"
+        },
+        {
+          "id": 23000849,
+          "name": "NUMBING NEEDLES"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000089,
+      "name": "MEEPLE",
+      "gadgets": [
+        {
+          "id": 23000877,
+          "name": "MANSIONS OF MEEPLE"
+        },
+        {
+          "id": 23000878,
+          "name": "RAGEQUIT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000875,
+          "name": "DO NOT PASS GO"
+        },
+        {
+          "id": 23000876,
+          "name": "RULE BENDING"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000090,
+      "name": "OLLIE",
+      "gadgets": [
+        {
+          "id": 23000885,
+          "name": "REGULATE"
+        },
+        {
+          "id": 23000886,
+          "name": "ALL EYEZ ON ME"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000883,
+          "name": "KICK, PUSH"
+        },
+        {
+          "id": 23000884,
+          "name": "RENEGADE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000091,
+      "name": "LUMI",
+      "gadgets": [
+        {
+          "id": 23000907,
+          "name": "HIT THE LIGHTS"
+        },
+        {
+          "id": 23000908,
+          "name": "GRIM AND FROSTBITTEN"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000905,
+          "name": "42% BURNT"
+        },
+        {
+          "id": 23000906,
+          "name": "HALF-TIME"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000092,
+      "name": "FINX",
+      "gadgets": [
+        {
+          "id": 23000917,
+          "name": "BACK TO THE FINXTURE"
+        },
+        {
+          "id": 23000918,
+          "name": "NO ESCAPE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000915,
+          "name": "HIEROGLYPH HALT"
+        },
+        {
+          "id": 23000916,
+          "name": "PRIMER"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000093,
+      "name": "JAE-YONG",
+      "gadgets": [
+        {
+          "id": 23000931,
+          "name": "WEEKEND WARRIOR"
+        },
+        {
+          "id": 23000932,
+          "name": "TIME FOR A SLOW SONG"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000929,
+          "name": "THE CROWD GOES MILD"
+        },
+        {
+          "id": 23000930,
+          "name": "EXTRA HIGH NOTE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000094,
+      "name": "KAZE",
+      "gadgets": [
+        {
+          "id": 23000940,
+          "name": "GRACIOUS HOST"
+        },
+        {
+          "id": 23000941,
+          "name": "HENSOJUTSU"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000938,
+          "name": "ADVANCED TECHNIQUES"
+        },
+        {
+          "id": 23000939,
+          "name": "GRATUITY INCLUDED"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000095,
+      "name": "ALLI",
+      "gadgets": [
+        {
+          "id": 23000991,
+          "name": "FEED THE GATORS"
+        },
+        {
+          "id": 23000992,
+          "name": "COLD-BLOODED"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000989,
+          "name": "LIZARD LIMBS"
+        },
+        {
+          "id": 23000990,
+          "name": "YOU BETTER RUN, YOU BETTER TAKE COVER"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000096,
+      "name": "TRUNK",
+      "gadgets": [
+        {
+          "id": 23001000,
+          "name": "FOR THE QUEEN!"
+        },
+        {
+          "id": 23001001,
+          "name": "WORKER ANTS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23000998,
+          "name": "NEW INSECT OVERLORDS"
+        },
+        {
+          "id": 23000999,
+          "name": "COLONY SCOUTS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000097,
+      "name": "MINA",
+      "gadgets": [
+        {
+          "id": 23001041,
+          "name": "WINDMILL"
+        },
+        {
+          "id": 23001042,
+          "name": "CAPO-WHAT?"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001039,
+          "name": "ZUM ZUM ZUM"
+        },
+        {
+          "id": 23001040,
+          "name": "BLOWN AWAY"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000098,
+      "name": "ZIGGY",
+      "gadgets": [
+        {
+          "id": 23001049,
+          "name": "ELECTRIC SHUFFLE"
+        },
+        {
+          "id": 23001050,
+          "name": "NOW YOU SEE ME..."
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001047,
+          "name": "THUNDERSTRUCK"
+        },
+        {
+          "id": 23001048,
+          "name": "THE GREAT ZIGGINI"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000099,
+      "name": "PIERCE",
+      "gadgets": [
+        {
+          "id": 23001062,
+          "name": "BOTTOMLESS MAGS"
+        },
+        {
+          "id": 23001063,
+          "name": "YOU ONLY BRAWL TWICE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001060,
+          "name": "MISSION: SWIMPOSSIBLE"
+        },
+        {
+          "id": 23001061,
+          "name": "SLIP 'N SNIPE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000100,
+      "name": "GIGI",
+      "gadgets": [
+        {
+          "id": 23001070,
+          "name": "LONGER STRINGS"
+        },
+        {
+          "id": 23001071,
+          "name": "DISAPPEARING ACT"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001068,
+          "name": "PLIÉ PROTECTION"
+        },
+        {
+          "id": 23001069,
+          "name": "A HELPING HAND"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000101,
+      "name": "GLOWY",
+      "gadgets": [
+        {
+          "id": 23001183,
+          "name": "SLIPPERY SAVIOR"
+        },
+        {
+          "id": 23001184,
+          "name": "MORE LUMENS!"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001181,
+          "name": "BIOTIC ECOSYSTEM"
+        },
+        {
+          "id": 23001182,
+          "name": "PARASITISM"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000102,
+      "name": "SIRIUS",
+      "gadgets": [
+        {
+          "id": 23001191,
+          "name": "A STARR IS BORN"
+        },
+        {
+          "id": 23001192,
+          "name": "MASTER OF SHADOWS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001189,
+          "name": "DUSK RUNNERS"
+        },
+        {
+          "id": 23001190,
+          "name": "THE DARKEST STARR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000103,
+      "name": "NAJIA",
+      "gadgets": [
+        {
+          "id": 23001218,
+          "name": "POISON PUDDLES"
+        },
+        {
+          "id": 23001219,
+          "name": "NAJIA JAR"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001216,
+          "name": "POISONOUS PROTECTOR"
+        },
+        {
+          "id": 23001217,
+          "name": "VENOMOUS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000104,
+      "name": "DAMIAN",
+      "gadgets": [
+        {
+          "id": 23001247,
+          "name": "SPIRITUAL HEALING"
+        },
+        {
+          "id": 23001248,
+          "name": "WALL OF SOUND"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001245,
+          "name": "CROWDKILL"
+        },
+        {
+          "id": 23001246,
+          "name": "VULGAR DISPLAY OF PUNCH"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000105,
+      "name": "STARR NOVA",
+      "gadgets": [
+        {
+          "id": 23001255,
+          "name": "FLOATY TIME"
+        },
+        {
+          "id": 23001256,
+          "name": "SHINING STARR OF FRIENDSHIP AND JUSTICE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001253,
+          "name": "POWER LEVEL: MAXIMUM"
+        },
+        {
+          "id": 23001254,
+          "name": "MYSTICAL STARR TECHNIQUE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000106,
+      "name": "BOLT",
+      "gadgets": [
+        {
+          "id": 23001281,
+          "name": "OIL CHANGE"
+        },
+        {
+          "id": 23001282,
+          "name": "BOUNCY BALL"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001279,
+          "name": "TOSS UP"
+        },
+        {
+          "id": 23001280,
+          "name": "UNSTOPPABALL"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000107,
+      "name": "NORI",
+      "gadgets": [
+        {
+          "id": 23001297,
+          "name": "SUSHI SNACK"
+        },
+        {
+          "id": 23001298,
+          "name": "GONNA NEED A BIGGER NET"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001295,
+          "name": "BIG HAUL"
+        },
+        {
+          "id": 23001296,
+          "name": "HIS MOTHER'S SON"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000108,
+      "name": "WENDY",
+      "gadgets": [
+        {
+          "id": 23001320,
+          "name": "WIND-POWERED"
+        },
+        {
+          "id": 23001321,
+          "name": "GREEN GRENADE"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001318,
+          "name": "SLOWING SHIELD"
+        },
+        {
+          "id": 23001319,
+          "name": "SOLAR SHIELD"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000109,
+      "name": "COSMO",
+      "gadgets": [
+        {
+          "id": 23001444,
+          "name": "PLANETARY PUSHBACK"
+        },
+        {
+          "id": 23001445,
+          "name": "TELESCOPE TRAP"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001442,
+          "name": "PRECESSION"
+        },
+        {
+          "id": 23001443,
+          "name": "AMMO ATTRACTOR"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000110,
+      "name": "VINCE",
+      "gadgets": [
+        {
+          "id": 23001452,
+          "name": "HOT COFFEE"
+        },
+        {
+          "id": 23001453,
+          "name": "METAMOTHOSIS"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001450,
+          "name": "COME TO PAPA"
+        },
+        {
+          "id": 23001451,
+          "name": "BUG BANDAGE"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000111,
+      "name": "THUNDER FROGS",
+      "gadgets": [
+        {
+          "id": 23001498,
+          "name": "DOUBLE JUMPERS"
+        },
+        {
+          "id": 23001499,
+          "name": "SOOTHING SHOCK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001496,
+          "name": "LEECH LANDING"
+        },
+        {
+          "id": 23001497,
+          "name": "SWAMP STOMPS"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000112,
+      "name": "REY",
+      "gadgets": [
+        {
+          "id": 23001507,
+          "name": "QUEEN'S GAMBIT"
+        },
+        {
+          "id": 23001508,
+          "name": "REY LOPEZ"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001505,
+          "name": "CLOCK MANAGEMENT"
+        },
+        {
+          "id": 23001506,
+          "name": "EN PASSANT"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    },
+    {
+      "id": 16000113,
+      "name": "RUBY",
+      "gadgets": [
+        {
+          "id": 23001515,
+          "name": "SHUFFLE AND CUT"
+        },
+        {
+          "id": 23001516,
+          "name": "STACK THE DECK"
+        }
+      ],
+      "starPowers": [
+        {
+          "id": 23001513,
+          "name": "LUCKY NUMBER"
+        },
+        {
+          "id": 23001514,
+          "name": "DOUBLE OR NOTHING"
+        }
+      ],
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ]
+    }
+  ]
+}

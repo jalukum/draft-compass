@@ -10,7 +10,8 @@
     "snapshot": "node scripts/snapshot-catalog.mjs",
     "icons": "node scripts/make-icons.mjs",
     "shots": "node scripts/shots.mjs",
-    "collect": "node scripts/collect-stats.mjs"
+    "collect": "node scripts/collect-stats.mjs",
+    "validate-builds": "node scripts/validate-builds.mjs"
   },
   "keywords": [],
   "author": "",

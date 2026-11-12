@@ -1,29 +1,46 @@
 {
   "updatedAt": "2026-11-11",
-  "generatedAt": "2026-11-12T05:09:29.000Z",
+  "generatedAt": "2026-11-12T05:41:08.000Z",
   "sources": [
+    {
+      "name": "Official Brawl Stars API",
+      "url": "https://bsproxy.royaleapi.dev/v1/brawlers",
+      "usedFor": "Authoritative current gadget, star power and per-brawler gear lists. Epic and Mythic gears on brawlers who have Buffies are treated as removed even when /brawlers still lists them (documented lag after the 3 Nov 2026 Snowtel/Candy Stand Buffies).",
+      "asOf": "2026-11-11"
+    },
     {
       "name": "Brawl Time Ninja",
       "url": "https://brawltime.ninja",
       "pages": [
         "https://brawltime.ninja/tier-list/gadgets",
-        "https://brawltime.ninja/tier-list/starpowers"
+        "https://brawltime.ninja/tier-list/starpowers",
+        "https://brawltime.ninja/tier-list/brawler/brock",
+        "https://brawltime.ninja/tier-list/brawler/rico",
+        "https://brawltime.ninja/tier-list/brawler/el_primo",
+        "https://brawltime.ninja/tier-list/brawler/8-bit",
+        "https://brawltime.ninja/tier-list/brawler/mr__p",
+        "https://brawltime.ninja/tier-list/brawler/amber",
+        "https://brawltime.ninja/tier-list/brawler/lou",
+        "https://brawltime.ninja/tier-list/brawler/edgar",
+        "https://brawltime.ninja/tier-list/brawler/griff"
       ],
-      "usedFor": "Gadget and star power win rates among players who own only one of that item (the official API does not record equipped kits). Published list season 2026-11-09 (26 Oct–9 Nov 2026), last updated 12 Nov 2026 around 03:43 UTC. Sample: about 4.26 million gadget picks and 4.12 million star-power picks.",
-      "asOf": "2026-11-12"
+      "usedFor": "Gadget and star power win rates among players who own only one of that item. Gear replacements for brawlers whose Epic/Mythic gears were removed: the two most-used valid Super Rare gears on that brawler’s current Brawl Time Ninja page (removed gears skipped). Current-season (2026-11-23, started 9 Nov 2026) gadget/star-power splits were used when refreshing those nine brawlers.",
+      "asOf": "2026-11-11"
     },
     {
       "name": "Noff.gg",
       "url": "https://www.noff.gg/brawl-stars/builds",
-      "usedFor": "Per-brawler gear pick rates, and a cross-check of gadget and star power, from each “Best … Build (November 2026)” page (community-submitted builds, 22–852 per brawler).",
+      "usedFor": "Per-brawler gear pick rates and a gadget/star-power cross-check on “Best … Build (November 2026)” pages, used only where those pages still match the current update. Noff still recommended removed Epic/Mythic gears (and some pre-rework gadget names), so those gear picks were dropped and replaced from post-update Brawl Time Ninja usage.",
       "asOf": "2026-11-11"
     }
   ],
-  "notes": "Names and ids match the official Brawl Stars API /brawlers catalog. Gadget and star power: use the item both sources name; if they disagree, take Brawl Time Ninja when its win-rate lead is at least 2 percentage points and that option has at least 5,000 picks and 35% of the two-option sample (avoids crowning a small-sample spike); otherwise take Noff when it has at least 20 builds and a 55%+ pick rate (or 30 builds and 52%+). If Noff still lists a retired gadget name after a rework (e.g. Lou, Chester), the official/Brawl Time Ninja name is used. Gears come from Noff, because Brawl Time Ninja’s public gear tier list is not broken down per brawler. Thunder Frogs, Rey and Ruby are upcoming and have no published competitive builds yet. This file is a curated snapshot, not refreshed by the daily job (Brawl Time Ninja asks for a key for automated project access).",
+  "notes": "Names and ids match the official Brawl Stars API /brawlers catalog, after subtracting Epic and Mythic gears from the 33 brawlers who have Buffies (those gears are removed and refunded; the official API still listed Super Charge on Lou and Pet Power on Mr. P after the 3 Nov 2026 update). Gadget and star power: use the item both sources name; if they disagree, take Brawl Time Ninja when its win-rate lead is at least 2 percentage points and that option has at least 5,000 picks and 35% of the two-option sample; otherwise take Noff when it has at least 20 builds and a 55%+ pick rate (or 30 builds and 52%+). On 11 Nov 2026, nine brawlers still had removed Epic or Mythic gears in this file (taken from pre-update Noff). Those gears were replaced with the two most-used valid Super Rare gears on each brawler’s current Brawl Time Ninja page (Shield and Damage in every case), confirmed by ownership on 12 Power 11 high-ladder profiles. For those same nine, current-season (2026-11-23) Brawl Time Ninja gadget/star-power win rates were applied when the lead was at least 2 percentage points: Rico Multiball and Robo Retreat, El Primo Meteor Rush, 8-Bit Extra Credits, Mr. P Handle With Care. Coverage: 108 of 111 official catalog brawlers. Thunder Frogs, Rey and Ruby are upcoming and have no published competitive builds yet.",
   "window": {
-    "brawlTimeNinjaSeason": "2026-11-09",
-    "brawlTimeNinjaSeasonRange": "2026-10-26 to 2026-11-09",
-    "noffLabel": "November 2026"
+    "officialUpdate": "November 2026 release (content 3 Nov 2026; maintenance balance 11 Nov 2026)",
+    "brawlTimeNinjaSeason": "2026-11-23",
+    "brawlTimeNinjaSeasonRange": "2026-11-09 to 2026-11-23",
+    "brawlTimeNinjaListSeasonUsedForUnchangedKits": "2026-11-09",
+    "noffLabel": "November 2026 (gears used only when they still exist after the November update)"
   },
   "missing": [
     {
@@ -129,8 +146,8 @@
       },
       "gears": [
         {
-          "id": 62000005,
-          "name": "RELOAD SPEED"
+          "id": 62000002,
+          "name": "DAMAGE"
         },
         {
           "id": 62000004,
@@ -140,22 +157,22 @@
       "source": {
         "gadget": "both",
         "starPower": "both",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000004": {
       "gadget": {
-        "id": 23000246,
-        "name": "MULTIBALL LAUNCHER"
+        "id": 23000409,
+        "name": "MULTIBALL"
       },
       "starPower": {
-        "id": 23000080,
-        "name": "SUPER BOUNCY"
+        "id": 23000156,
+        "name": "ROBO RETREAT"
       },
       "gears": [
         {
-          "id": 62000005,
-          "name": "RELOAD SPEED"
+          "id": 62000004,
+          "name": "SHIELD"
         },
         {
           "id": 62000002,
@@ -163,9 +180,9 @@
         }
       ],
       "source": {
-        "gadget": "noff.gg",
-        "starPower": "noff.gg",
-        "gears": "noff.gg"
+        "gadget": "brawltime.ninja",
+        "starPower": "brawltime.ninja",
+        "gears": "brawltime.ninja"
       }
     },
     "16000005": {
@@ -299,13 +316,13 @@
         "name": "SUPLEX SUPPLEMENT"
       },
       "starPower": {
-        "id": 23000086,
-        "name": "EL FUEGO"
+        "id": 23000140,
+        "name": "METEOR RUSH"
       },
       "gears": [
         {
-          "id": 62000006,
-          "name": "SUPER CHARGE"
+          "id": 62000004,
+          "name": "SHIELD"
         },
         {
           "id": 62000002,
@@ -314,8 +331,8 @@
       ],
       "source": {
         "gadget": "noff.gg",
-        "starPower": "noff.gg",
-        "gears": "noff.gg"
+        "starPower": "brawltime.ninja",
+        "gears": "brawltime.ninja"
       }
     },
     "16000011": {
@@ -720,8 +737,8 @@
     },
     "16000027": {
       "gadget": {
-        "id": 23000259,
-        "name": "CHEAT CARTRIDGE"
+        "id": 23000318,
+        "name": "EXTRA CREDITS"
       },
       "starPower": {
         "id": 23000168,
@@ -729,18 +746,18 @@
       },
       "gears": [
         {
-          "id": 62000005,
-          "name": "RELOAD SPEED"
-        },
-        {
           "id": 62000002,
           "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
         }
       ],
       "source": {
-        "gadget": "noff.gg",
+        "gadget": "brawltime.ninja",
         "starPower": "both",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000028": {
@@ -824,13 +841,13 @@
         "name": "PORTER REINFORCEMENTS"
       },
       "starPower": {
-        "id": 23000205,
-        "name": "REVOLVING DOOR"
+        "id": 23000204,
+        "name": "HANDLE WITH CARE"
       },
       "gears": [
         {
-          "id": 62000014,
-          "name": "PET POWER"
+          "id": 62000004,
+          "name": "SHIELD"
         },
         {
           "id": 62000002,
@@ -839,8 +856,8 @@
       ],
       "source": {
         "gadget": "brawltime.ninja",
-        "starPower": "noff.gg",
-        "gears": "noff.gg"
+        "starPower": "brawltime.ninja",
+        "gears": "brawltime.ninja"
       }
     },
     "16000032": {
@@ -1029,18 +1046,18 @@
       },
       "gears": [
         {
-          "id": 62000005,
-          "name": "RELOAD SPEED"
+          "id": 62000004,
+          "name": "SHIELD"
         },
         {
-          "id": 62000013,
-          "name": "STICKY OIL"
+          "id": 62000002,
+          "name": "DAMAGE"
         }
       ],
       "source": {
         "gadget": "both",
         "starPower": "noff.gg",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000041": {
@@ -1054,18 +1071,18 @@
       },
       "gears": [
         {
-          "id": 62000006,
-          "name": "SUPER CHARGE"
-        },
-        {
           "id": 62000004,
           "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
         }
       ],
       "source": {
         "gadget": "brawltime.ninja",
         "starPower": "both",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000042": {
@@ -1108,14 +1125,14 @@
           "name": "SHIELD"
         },
         {
-          "id": 62000006,
-          "name": "SUPER CHARGE"
+          "id": 62000002,
+          "name": "DAMAGE"
         }
       ],
       "source": {
         "gadget": "noff.gg",
         "starPower": "both",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000044": {
@@ -1279,8 +1296,8 @@
       },
       "gears": [
         {
-          "id": 62000005,
-          "name": "RELOAD SPEED"
+          "id": 62000004,
+          "name": "SHIELD"
         },
         {
           "id": 62000002,
@@ -1290,7 +1307,7 @@
       "source": {
         "gadget": "noff.gg",
         "starPower": "both",
-        "gears": "noff.gg"
+        "gears": "brawltime.ninja"
       }
     },
     "16000051": {

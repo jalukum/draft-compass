@@ -10,9 +10,9 @@ mkdirSync(out, { recursive: true });
 
 const browser = await chromium.launch({ executablePath: '/usr/bin/google-chrome', args: ['--no-sandbox'] });
 const devices = [
-  { file: 'v11-kits-iphone.png', w: 393, h: 852, mobile: true, scale: 3, safe: { top: 59, bottom: 34 } },
-  { file: 'v11-kits-ipad.png', w: 820, h: 1180, mobile: true, scale: 2, safe: { top: 24, bottom: 20 } },
-  { file: 'v11-kits-desktop.png', w: 1440, h: 900, mobile: false, scale: 1 },
+  { file: 'v12-kits-iphone.png', w: 393, h: 852, mobile: true, scale: 3, safe: { top: 59, bottom: 34 } },
+  { file: 'v12-kits-ipad.png', w: 820, h: 1180, mobile: true, scale: 2, safe: { top: 24, bottom: 20 } },
+  { file: 'v12-kits-desktop.png', w: 1440, h: 900, mobile: false, scale: 1 },
 ];
 
 async function draft(page) {
