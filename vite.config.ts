@@ -36,7 +36,9 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,svg,png,woff2,json}'],
         // Ladder stats change daily: fetched network-first below, not precached.
-        globIgnores: ['data/**'],
+        // Ladder stats change daily: fetched network-first, not precached.
+        // builds.json is a curated snapshot and should be precached with the shell.
+        globIgnores: ['data/stats-latest.json', 'data/history/**'],
         navigateFallback: `${base}index.html`,
         runtimeCaching: [
           {

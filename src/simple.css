@@ -76,11 +76,17 @@ a { color: var(--muted); }
 .lanes { display: grid; gap: 6px; }
 .lane { display: grid; grid-template-columns: 42px 1fr 44px 1fr; gap: 6px; align-items: center; }
 .lane-name { font-size: 12px; color: var(--muted); text-transform: capitalize; }
-.lane-b { display: flex; align-items: center; gap: 6px; padding: 5px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); min-width: 0; font-size: 13px; height: 42px; }
-.lane-b span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lane-b { display: flex; align-items: center; gap: 6px; padding: 5px; border-radius: 8px; border: 1px solid var(--line); background: var(--bg); min-width: 0; font-size: 13px; min-height: 42px; height: auto; }
+.lane-bname { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lane-meta { min-width: 0; display: flex; flex-direction: column; gap: 2px; }
 .lane-b.opp { justify-content: flex-end; text-align: right; }
+.lane-b.opp .lane-meta { align-items: flex-end; }
 .lane-b.ally { border-color: #3b82f655; } .lane-b.opp { border-color: #ef444455; }
 .lane-b.sel { outline: 2px solid var(--text); }
+.lane-kit { display: flex; flex-wrap: nowrap; gap: 2px 5px; font-size: 10.5px; color: var(--muted); line-height: 1.2; }
+.lane-kit .ki { display: inline-flex; align-items: center; gap: 3px; min-width: 0; }
+.lane-kit img { width: 14px; height: 14px; object-fit: contain; flex: none; }
+.lane-kit .kit-name { display: none; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; max-width: 9.5em; }
 .lane-score { text-align: center; font-weight: 700; font-variant-numeric: tabular-nums; border-radius: 6px; padding: 4px 0; }
 .lane-score.hi { background: #22c55e22; color: var(--good); }
 .lane-score.mid { background: #eab30822; color: var(--ok); }
@@ -140,6 +146,8 @@ a { color: var(--muted); }
   .nav a.on { background: var(--line); box-shadow: none; }
   .top h1 { font-size: 20px; }
   .maplist { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: start; }
+  .lane-kit { flex-wrap: wrap; }
+  .lane-kit .kit-name { display: inline; }
 }
 @media (min-width: 900px) {
   .app { max-width: 1120px; }

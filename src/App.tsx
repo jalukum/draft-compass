@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'preact/hooks';
 import { APP } from './config';
-import { useCatalog, useDraft, useStats } from './store';
-import type { Brawler, GameMap, MapStats } from './data/types';
+import { useBuilds, useCatalog, useDraft, useStats } from './store';
+import type { Brawler, BrawlerBuild, GameMap, MapStats } from './data/types';
 import { applyBan, applyPick, emptyDraft, MAX_BANS, nextPicker, removeFrom, type Side } from './engine/draft';
 import { autoLanes, laneEdge, LANES, suggest } from './engine/meta';
 import { winChance } from './engine/winchance';
@@ -227,6 +227,8 @@ function About() {
               <a href="https://supercell.com/en/fan-content-policy/" target="_blank" rel="noopener">Supercell's Fan Content Policy</a>.</p>
             <p>Stats come from our own daily sample of Ranked battle logs (official Brawl Stars API). Brawler catalog from{' '}
               <a href="https://brawlapi.com" target="_blank" rel="noopener">BrawlAPI</a>; art via Brawlify.</p>
+            <p>Builds based on: <a href="https://brawltime.ninja" target="_blank" rel="noopener">Brawl Time Ninja</a> and{' '}
+              <a href="https://www.noff.gg/brawl-stars/builds" target="_blank" rel="noopener">Noff.gg</a> (November 2026).</p>
           </div>
         </div>
       )}
@@ -305,10 +307,57 @@ function Team({ label, side, ids, byId, onRemove }: { label: string; side: Side;
   );
 }
 
+/** Title-case an official catalog name (CLAY PIGEONS → Clay Pigeons) for the UI. */
+function prettyKit(s: string) {
+  return s.toLowerCase().replace(/(^|[\s\-/])([a-z])/g, (_, a, b) => a + b.toUpperCase());
+}
+const kitIcon = (kind: 'gadget' | 'starPower' | 'gear', id: number) =>
+  kind === 'gadget' ? `https://cdn.brawlify.com/gadgets/regular/${id}.png`
+  : kind === 'starPower' ? `https://cdn.brawlify.com/star-powers/regular/${id}.png`
+  : `https://cdn.brawlify.com/gears/regular/${id}.png`;
+
+function Kit({ build }: { build?: BrawlerBuild | null }) {
+  if (!build) return null;
+  const bits = [
+    build.gadget && { kind: 'gadget' as const, ...build.gadget },
+    build.starPower && { kind: 'starPower' as const, ...build.starPower },
+    ...(build.gears ?? []).map((g) => ({ kind: 'gear' as const, ...g })),
+  ].filter((x): x is { kind: 'gadget' | 'starPower' | 'gear'; id: number; name: string } => !!x);
+  if (!bits.length) return null;
+  const label = bits.map((b) => prettyKit(b.name)).join(', ');
+  return (
+    <span class="lane-kit" title={label} aria-label={label}>
+      {bits.map((b) => (
+        <span class="ki">
+          <img src={kitIcon(b.kind, b.id)} alt="" width={14} height={14} loading="lazy" decoding="async"
+            onError={(e) => { (e.currentTarget as HTMLImageElement).style.display = 'none'; }} />
+          <span class="kit-name">{prettyKit(b.name)}</span>
+        </span>
+      ))}
+    </span>
+  );
+}
+
+function LaneBrawler({ b, side, selected, onClick, build }: {
+  b: Brawler | null; side: Side; selected: boolean; onClick: () => void; build?: BrawlerBuild | null;
+}) {
+  return (
+    <button type="button" class={`lane-b ${side}${selected ? ' sel' : ''}`} onClick={onClick}
+      aria-label={b ? `${b.name}${build ? `, ${prettyKit(build.gadget.name)}, ${prettyKit(build.starPower.name)}, ${build.gears.map((g) => prettyKit(g.name)).join(' and ')}` : ''}` : 'Empty'}>
+      {b
+        ? (side === 'ally'
+          ? <><Portrait b={b} size={30} /><span class="lane-meta"><span class="lane-bname">{b.name}</span><Kit build={build} /></span></>
+          : <><span class="lane-meta"><span class="lane-bname">{b.name}</span><Kit build={build} /></span><Portrait b={b} size={30} /></>)
+        : <span class="muted">—</span>}
+    </button>
+  );
+}
+
 function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally: Brawler[]; opp: Brawler[] }) {
   const [them, setThem] = useState(() => autoLanes(opp, map, st));
   const [us, setUs] = useState(() => autoLanes(ally, map, st, autoLanes(opp, map, st)));
   const [sel, setSel] = useState<{ side: Side; i: number } | null>(null);
+  const builds = useBuilds();
   const tap = (side: Side, i: number) => {
     if (!sel || sel.side !== side) { setSel({ side, i }); return; }
     if (sel.i !== i) {
@@ -329,13 +378,9 @@ function Lanes({ map, st, ally, opp }: { map: GameMap; st: MapStats | null; ally
           return (
             <div class="lane">
               <span class="lane-name">{lane}</span>
-              <button type="button" class={`lane-b ally ${sel?.side === 'ally' && sel.i === i ? 'sel' : ''}`} onClick={() => tap('ally', i)}>
-                {a ? <><Portrait b={a} size={30} /><span>{a.name}</span></> : <span class="muted">—</span>}
-              </button>
+              <LaneBrawler b={a} side="ally" selected={sel?.side === 'ally' && sel.i === i || false} onClick={() => tap('ally', i)} build={a ? builds?.builds[String(a.id)] : undefined} />
               <span class={`lane-score ${pct === null ? '' : pct >= 53 ? 'hi' : pct <= 47 ? 'lo' : 'mid'}`}>{pct === null ? '' : `${pct}%`}</span>
-              <button type="button" class={`lane-b opp ${sel?.side === 'opp' && sel.i === i ? 'sel' : ''}`} onClick={() => tap('opp', i)}>
-                {e ? <><span>{e.name}</span><Portrait b={e} size={30} /></> : <span class="muted">—</span>}
-              </button>
+              <LaneBrawler b={e} side="opp" selected={sel?.side === 'opp' && sel.i === i || false} onClick={() => tap('opp', i)} build={e ? builds?.builds[String(e.id)] : undefined} />
             </div>
           );
         })}

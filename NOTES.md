@@ -1,7 +1,7 @@
 # Draft Compass: build notes
 
 Built for Jaluku. Unofficial fan app, not affiliated with Supercell.
-Last updated 10 Nov 2026 (America/Chicago).
+Last updated 11 Nov 2026 (America/Chicago).
 
 ## What the catalog actually gives us (BrawlAPI, checked 10 Nov 2026)
 
@@ -56,7 +56,19 @@ Score 1–99 for each brawler that is still available, for the side whose turn i
 - **Synergy:** the same, for brawlers on our team.
 - The hand-made role/mode-fit model (`heuristics.ts`, `traits.ts`) only nudges brawlers with under 30 games on the map.
 
-**Lanes:** each team is placed left/mid/right by role (controllers, supports and long range mid; tanks mid in Brawl Ball). Our side is then arranged to win the most lane matchups. Each lane shows our chance to win that matchup (head-to-head data, shrunk toward the win-rate expectation). Tap two brawlers on one side to swap them.
+**Lanes:** each team is placed left/mid/right by role (controllers, supports and long range mid; tanks mid in Brawl Ball). Our side is then arranged to win the most lane matchups. Each lane shows our chance to win that matchup (head-to-head data, shrunk toward the win-rate expectation). Tap two brawlers on one side to swap them. Under each picked brawler, a compact kit row shows the recommended gadget, star power and two gears (icons on the phone; icons and names from 768 px up). No source line is shown in the matchups.
+
+### Recommended kits (`public/data/builds.json`)
+
+The official API does not record which gadget, star power or gears were equipped in a battle, so kits are not taken from our Ranked sample. The snapshot in `public/data/builds.json` (keyed by brawler id, names and ids matching official `/brawlers`) was curated on 11 Nov 2026 (America/Chicago) from:
+
+- **Brawl Time Ninja** gadget and star-power tier lists (https://brawltime.ninja/tier-list/gadgets and `/starpowers`), November 2026. Win rates among players who own only one gadget or star power for that brawler. Published list season `2026-11-09` (26 Oct–9 Nov 2026), last updated 12 Nov 2026 around 03:43 UTC. Sample: about 4.26 million gadget picks and 4.12 million star-power picks.
+- **Noff.gg** “Best … Build (November 2026)” pages (https://www.noff.gg/brawl-stars/builds). Community-submitted build pick rates (22–852 builds per brawler) for the two gears, and a cross-check of gadget and star power.
+
+Resolution for gadget and star power: use the item both sources name; if they disagree, take Brawl Time Ninja when its win-rate lead is at least 2 percentage points and that option has at least 5,000 picks and 35% of the two-option sample (so a small-sample spike does not win); otherwise take Noff when it has at least 20 builds and a 55%+ pick rate (or 30 builds and 52%+). If Noff still lists a retired name after a rework (seen for Lou and Chester gadgets), the official / Brawl Time Ninja name is used. Gears come from Noff, because Brawl Time Ninja’s public gear tier list is not broken down per brawler. Coverage: 108 of 111 official catalog brawlers. Thunder Frogs, Rey and Ruby are upcoming and have no published competitive builds yet.
+
+This file is a curated snapshot. It is not refreshed by the daily job — Brawl Time Ninja asks for a key for automated project access (`/about#automated-access`) and disallows `/api/klicker` in robots.txt. A short “Builds based on: Brawl Time Ninja and Noff.gg (November 2026).” line sits in the Maps tab About sheet only.
+
 
 ### Team win chance (`src/engine/winchance.ts`)
 

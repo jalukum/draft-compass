@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'preact/hooks';
 import { APP, DATA } from './config';
 import { fetchLiveRaw, normalizeCatalog } from './data/catalog';
-import type { Catalog, StatsSnapshot } from './data/types';
+import type { BuildsFile, Catalog, StatsSnapshot } from './data/types';
 import { emptyDraft, type DraftState } from './engine/draft';
 
 const key = (k: string) => `${APP.storagePrefix}:${k}`;
@@ -99,6 +99,20 @@ export function useStats(): StatsSnapshot | null {
     fetch(`${import.meta.env.BASE_URL}data/stats-latest.json`, { cache: 'no-cache' })
       .then((r) => (r.ok ? r.json() : null))
       .then((j) => { if (!off && j) setS(j as StatsSnapshot); })
+      .catch(() => { /* offline and never cached */ });
+    return () => { off = true; };
+  }, []);
+  return s;
+}
+
+// ---- Recommended kits: curated snapshot next to the app --------------------
+export function useBuilds(): BuildsFile | null {
+  const [s, setS] = useState<BuildsFile | null>(null);
+  useEffect(() => {
+    let off = false;
+    fetch(`${import.meta.env.BASE_URL}data/builds.json`)
+      .then((r) => (r.ok ? r.json() : null))
+      .then((j) => { if (!off && j) setS(j as BuildsFile); })
       .catch(() => { /* offline and never cached */ });
     return () => { off = true; };
   }, []);

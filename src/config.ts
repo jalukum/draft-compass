@@ -10,7 +10,7 @@ export const APP = {
   storagePrefix: 'dc',
   themeColor: '#0f1115',
   backgroundColor: '#0f1115',
-  version: '0.2.0',
+  version: '0.3.0',
 } as const;
 
 export const DATA = {

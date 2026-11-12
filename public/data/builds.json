@@ -1,0 +1,2747 @@
+{
+  "updatedAt": "2026-11-11",
+  "generatedAt": "2026-11-12T05:09:29.000Z",
+  "sources": [
+    {
+      "name": "Brawl Time Ninja",
+      "url": "https://brawltime.ninja",
+      "pages": [
+        "https://brawltime.ninja/tier-list/gadgets",
+        "https://brawltime.ninja/tier-list/starpowers"
+      ],
+      "usedFor": "Gadget and star power win rates among players who own only one of that item (the official API does not record equipped kits). Published list season 2026-11-09 (26 Oct–9 Nov 2026), last updated 12 Nov 2026 around 03:43 UTC. Sample: about 4.26 million gadget picks and 4.12 million star-power picks.",
+      "asOf": "2026-11-12"
+    },
+    {
+      "name": "Noff.gg",
+      "url": "https://www.noff.gg/brawl-stars/builds",
+      "usedFor": "Per-brawler gear pick rates, and a cross-check of gadget and star power, from each “Best … Build (November 2026)” page (community-submitted builds, 22–852 per brawler).",
+      "asOf": "2026-11-11"
+    }
+  ],
+  "notes": "Names and ids match the official Brawl Stars API /brawlers catalog. Gadget and star power: use the item both sources name; if they disagree, take Brawl Time Ninja when its win-rate lead is at least 2 percentage points and that option has at least 5,000 picks and 35% of the two-option sample (avoids crowning a small-sample spike); otherwise take Noff when it has at least 20 builds and a 55%+ pick rate (or 30 builds and 52%+). If Noff still lists a retired gadget name after a rework (e.g. Lou, Chester), the official/Brawl Time Ninja name is used. Gears come from Noff, because Brawl Time Ninja’s public gear tier list is not broken down per brawler. Thunder Frogs, Rey and Ruby are upcoming and have no published competitive builds yet. This file is a curated snapshot, not refreshed by the daily job (Brawl Time Ninja asks for a key for automated project access).",
+  "window": {
+    "brawlTimeNinjaSeason": "2026-11-09",
+    "brawlTimeNinjaSeasonRange": "2026-10-26 to 2026-11-09",
+    "noffLabel": "November 2026"
+  },
+  "missing": [
+    {
+      "id": 16000111,
+      "name": "THUNDER FROGS",
+      "reason": "upcoming, no published competitive build data yet"
+    },
+    {
+      "id": 16000112,
+      "name": "REY",
+      "reason": "upcoming, no published competitive build data yet"
+    },
+    {
+      "id": 16000113,
+      "name": "RUBY",
+      "reason": "upcoming, no published competitive build data yet"
+    }
+  ],
+  "builds": {
+    "16000000": {
+      "gadget": {
+        "id": 23000288,
+        "name": "CLAY PIGEONS"
+      },
+      "starPower": {
+        "id": 23000135,
+        "name": "BAND-AID"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000001": {
+      "gadget": {
+        "id": 23000273,
+        "name": "SPEEDLOADER"
+      },
+      "starPower": {
+        "id": 23000138,
+        "name": "MAGNUM SPECIAL"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000002": {
+      "gadget": {
+        "id": 23000310,
+        "name": "STOMPER"
+      },
+      "starPower": {
+        "id": 23000137,
+        "name": "TOUGH GUY"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000003": {
+      "gadget": {
+        "id": 23000245,
+        "name": "ROCKET LACES"
+      },
+      "starPower": {
+        "id": 23000150,
+        "name": "ROCKET NO. 4"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000004": {
+      "gadget": {
+        "id": 23000246,
+        "name": "MULTIBALL LAUNCHER"
+      },
+      "starPower": {
+        "id": 23000080,
+        "name": "SUPER BOUNCY"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000005": {
+      "gadget": {
+        "id": 23000406,
+        "name": "LIFE PLANT"
+      },
+      "starPower": {
+        "id": 23000151,
+        "name": "CURVEBALL"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000006": {
+      "gadget": {
+        "id": 23000250,
+        "name": "STICKY SYRUP MIXER"
+      },
+      "starPower": {
+        "id": 23000082,
+        "name": "MEDICAL USE"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000007": {
+      "gadget": {
+        "id": 23000295,
+        "name": "RECOIL SPRING"
+      },
+      "starPower": {
+        "id": 23000083,
+        "name": "ENERGIZE"
+      },
+      "gears": [
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000008": {
+      "gadget": {
+        "id": 23000249,
+        "name": "BEAR PAWS"
+      },
+      "starPower": {
+        "id": 23000136,
+        "name": "HYPER BEAR"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000009": {
+      "gadget": {
+        "id": 23000294,
+        "name": "SATCHEL CHARGE"
+      },
+      "starPower": {
+        "id": 23000085,
+        "name": "DYNA-JUMP"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000010": {
+      "gadget": {
+        "id": 23000264,
+        "name": "SUPLEX SUPPLEMENT"
+      },
+      "starPower": {
+        "id": 23000086,
+        "name": "EL FUEGO"
+      },
+      "gears": [
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000011": {
+      "gadget": {
+        "id": 23000290,
+        "name": "CREATURE OF THE NIGHT"
+      },
+      "starPower": {
+        "id": 23000154,
+        "name": "COILED SNAKE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000012": {
+      "gadget": {
+        "id": 23000286,
+        "name": "SLOWING TOXIN"
+      },
+      "starPower": {
+        "id": 23000088,
+        "name": "EXTRA TOXIC"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000013": {
+      "gadget": {
+        "id": 23000267,
+        "name": "TUNING FORK"
+      },
+      "starPower": {
+        "id": 23000144,
+        "name": "SCREECHING SOLO"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000014": {
+      "gadget": {
+        "id": 23000263,
+        "name": "SUPER TOTEM"
+      },
+      "starPower": {
+        "id": 23000148,
+        "name": "SNARE A BEAR"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000015": {
+      "gadget": {
+        "id": 23000268,
+        "name": "AUTO AIMER"
+      },
+      "starPower": {
+        "id": 23000152,
+        "name": "SNAPPY SNIPING"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000016": {
+      "gadget": {
+        "id": 23000404,
+        "name": "SCRAPSUCKER"
+      },
+      "starPower": {
+        "id": 23000139,
+        "name": "MAMA'S SQUEEZE"
+      },
+      "gears": [
+        {
+          "id": 62000016,
+          "name": "SUPER TURRET"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000017": {
+      "gadget": {
+        "id": 23000356,
+        "name": "SUPPORT FROM BEYOND"
+      },
+      "starPower": {
+        "id": 23000093,
+        "name": "BLACK PORTAL"
+      },
+      "gears": [
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000018": {
+      "gadget": {
+        "id": 23000260,
+        "name": "RECOILING ROTATOR"
+      },
+      "starPower": {
+        "id": 23000094,
+        "name": "STEEL HOOPS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000019": {
+      "gadget": {
+        "id": 23000248,
+        "name": "SALTY BARREL"
+      },
+      "starPower": {
+        "id": 23000099,
+        "name": "HEAVY COFFERS"
+      },
+      "gears": [
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000020": {
+      "gadget": {
+        "id": 23000351,
+        "name": "IRRESISTIBLE ATTRACTION"
+      },
+      "starPower": {
+        "id": 23000104,
+        "name": "POWER GRAB"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000021": {
+      "gadget": {
+        "id": 23000252,
+        "name": "LAMP BLOWOUT"
+      },
+      "starPower": {
+        "id": 23000159,
+        "name": "SPIRIT SLAP"
+      },
+      "gears": [
+        {
+          "id": 62000008,
+          "name": "TALK TO THE HAND"
+        },
+        {
+          "id": 62000003,
+          "name": "VISION"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000022": {
+      "gadget": {
+        "id": 23000355,
+        "name": "LAST HURRAH"
+      },
+      "starPower": {
+        "id": 23000114,
+        "name": "WELL OILED"
+      },
+      "gears": [
+        {
+          "id": 62000007,
+          "name": "THICC HEAD"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000023": {
+      "gadget": {
+        "id": 23000276,
+        "name": "CLONE PROJECTOR"
+      },
+      "starPower": {
+        "id": 23000141,
+        "name": "INVISIHEAL"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000024": {
+      "gadget": {
+        "id": 23000242,
+        "name": "GROW LIGHT"
+      },
+      "starPower": {
+        "id": 23000124,
+        "name": "PLANT LIFE"
+      },
+      "gears": [
+        {
+          "id": 62000000,
+          "name": "SPEED"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "brawltime.ninja",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000025": {
+      "gadget": {
+        "id": 23000317,
+        "name": "FLYING HOOK"
+      },
+      "starPower": {
+        "id": 23000145,
+        "name": "PROTECTIVE PIROUETTE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000026": {
+      "gadget": {
+        "id": 23000275,
+        "name": "VITAMIN BOOSTER"
+      },
+      "starPower": {
+        "id": 23000134,
+        "name": "HOME RUN"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000027": {
+      "gadget": {
+        "id": 23000259,
+        "name": "CHEAT CARTRIDGE"
+      },
+      "starPower": {
+        "id": 23000168,
+        "name": "BOOSTED BOOSTER"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000028": {
+      "gadget": {
+        "id": 23000405,
+        "name": "SWEET DREAMS"
+      },
+      "starPower": {
+        "id": 23000186,
+        "name": "RUDE SANDS"
+      },
+      "gears": [
+        {
+          "id": 62000012,
+          "name": "EXHAUSTING STORM"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000029": {
+      "gadget": {
+        "id": 23000312,
+        "name": "RATTLED HIVE"
+      },
+      "starPower": {
+        "id": 23000192,
+        "name": "INSTA BEALOAD"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000030": {
+      "gadget": {
+        "id": 23000274,
+        "name": "FRIENDZONER"
+      },
+      "starPower": {
+        "id": 23000198,
+        "name": "BAD KARMA"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000031": {
+      "gadget": {
+        "id": 23000349,
+        "name": "PORTER REINFORCEMENTS"
+      },
+      "starPower": {
+        "id": 23000205,
+        "name": "REVOLVING DOOR"
+      },
+      "gears": [
+        {
+          "id": 62000014,
+          "name": "PET POWER"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "brawltime.ninja",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000032": {
+      "gadget": {
+        "id": 23000254,
+        "name": "PHASE SHIFTER"
+      },
+      "starPower": {
+        "id": 23000211,
+        "name": "RUN N GUN"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000034": {
+      "gadget": {
+        "id": 23000256,
+        "name": "PNEUMATIC BOOSTER"
+      },
+      "starPower": {
+        "id": 23000222,
+        "name": "COUNTER CRUSH"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000035": {
+      "gadget": {
+        "id": 23000277,
+        "name": "NORTH WIND WALL"
+      },
+      "starPower": {
+        "id": 23000229,
+        "name": "FREEZING SNOW"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "brawltime.ninja",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000036": {
+      "gadget": {
+        "id": 23000353,
+        "name": "RETURN TO SENDER"
+      },
+      "starPower": {
+        "id": 23000235,
+        "name": "TEMPERED STEEL"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000037": {
+      "gadget": {
+        "id": 23000315,
+        "name": "TRANSPLANT"
+      },
+      "starPower": {
+        "id": 23000240,
+        "name": "OVERGROWTH"
+      },
+      "gears": [
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000038": {
+      "gadget": {
+        "id": 23000485,
+        "name": "POWER SHIELD"
+      },
+      "starPower": {
+        "id": 23000284,
+        "name": "SERVE ICE COLD"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000039": {
+      "gadget": {
+        "id": 23000457,
+        "name": "GOTCHA!"
+      },
+      "starPower": {
+        "id": 23000300,
+        "name": "PUSH IT"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000040": {
+      "gadget": {
+        "id": 23000488,
+        "name": "DANCING FLAMES"
+      },
+      "starPower": {
+        "id": 23000307,
+        "name": "WILD FLAMES"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000013,
+          "name": "STICKY OIL"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000041": {
+      "gadget": {
+        "id": 23000400,
+        "name": "AVALANCHE"
+      },
+      "starPower": {
+        "id": 23000325,
+        "name": "HYPOTHERMIA"
+      },
+      "gears": [
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "brawltime.ninja",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000042": {
+      "gadget": {
+        "id": 23000461,
+        "name": "BOOSTER SHOTS"
+      },
+      "starPower": {
+        "id": 23000332,
+        "name": "INJECTION"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000043": {
+      "gadget": {
+        "id": 23000340,
+        "name": "LET'S FLY"
+      },
+      "starPower": {
+        "id": 23000338,
+        "name": "HARD LANDING"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000044": {
+      "gadget": {
+        "id": 23000347,
+        "name": "TAKE COVER"
+      },
+      "starPower": {
+        "id": 23000345,
+        "name": "AIR SUPERIORITY"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000045": {
+      "gadget": {
+        "id": 23000401,
+        "name": "BREAKTHROUGH"
+      },
+      "starPower": {
+        "id": 23000363,
+        "name": "GASO-HEAL"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000046": {
+      "gadget": {
+        "id": 23000463,
+        "name": "REVERSE POLARITY"
+      },
+      "starPower": {
+        "id": 23000369,
+        "name": "POSITIVE FEEDBACK"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000047": {
+      "gadget": {
+        "id": 23000378,
+        "name": "WINDUP"
+      },
+      "starPower": {
+        "id": 23000376,
+        "name": "CHAIN REACTION"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000048": {
+      "gadget": {
+        "id": 23000460,
+        "name": "RADIO CHECK"
+      },
+      "starPower": {
+        "id": 23000384,
+        "name": "X-FACTOR"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000049": {
+      "gadget": {
+        "id": 23000392,
+        "name": "RESERVE BUOY"
+      },
+      "starPower": {
+        "id": 23000391,
+        "name": "EYES SHARP"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000050": {
+      "gadget": {
+        "id": 23000399,
+        "name": "PIGGY BANK"
+      },
+      "starPower": {
+        "id": 23000398,
+        "name": "BUSINESS RESILIENCE"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000051": {
+      "gadget": {
+        "id": 23000416,
+        "name": "CHILL PILL"
+      },
+      "starPower": {
+        "id": 23000414,
+        "name": "FIRST BASH"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000052": {
+      "gadget": {
+        "id": 23000423,
+        "name": "JOLTING VOLTS"
+      },
+      "starPower": {
+        "id": 23000421,
+        "name": "FORCE FIELD"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "brawltime.ninja",
+        "gears": "noff.gg"
+      }
+    },
+    "16000053": {
+      "gadget": {
+        "id": 23000456,
+        "name": "STUNT DOUBLE"
+      },
+      "starPower": {
+        "id": 23000431,
+        "name": "IMPROVISE"
+      },
+      "gears": [
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000054": {
+      "gadget": {
+        "id": 23000464,
+        "name": "ROUNDHOUSE KICK"
+      },
+      "starPower": {
+        "id": 23000438,
+        "name": "FRESH KICKS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000056": {
+      "gadget": {
+        "id": 23000454,
+        "name": "GOTTA GO!"
+      },
+      "starPower": {
+        "id": 23000453,
+        "name": "HAPPY SURPRISE"
+      },
+      "gears": [
+        {
+          "id": 62000015,
+          "name": "QUADRUPLETS"
+        },
+        {
+          "id": 62000005,
+          "name": "RELOAD SPEED"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000057": {
+      "gadget": {
+        "id": 23000472,
+        "name": "DROP THE BASS"
+      },
+      "starPower": {
+        "id": 23000471,
+        "name": "VOCAL WARM UP"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000058": {
+      "gadget": {
+        "id": 23000480,
+        "name": "SUGAR RUSH"
+      },
+      "starPower": {
+        "id": 23000478,
+        "name": "BLACK POWDER"
+      },
+      "gears": [
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000059": {
+      "gadget": {
+        "id": 23000498,
+        "name": "PHAT SPLATTER"
+      },
+      "starPower": {
+        "id": 23000496,
+        "name": "INK REFILLS"
+      },
+      "gears": [
+        {
+          "id": 62000006,
+          "name": "SUPER CHARGE"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000060": {
+      "gadget": {
+        "id": 23000505,
+        "name": "MAGNETIC FIELD"
+      },
+      "starPower": {
+        "id": 23000503,
+        "name": "HEARTY RECOVERY"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000061": {
+      "gadget": {
+        "id": 23000513,
+        "name": "KOOKY POPPER"
+      },
+      "starPower": {
+        "id": 23000512,
+        "name": "SPIRIT ANIMAL"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000062": {
+      "gadget": {
+        "id": 23000522,
+        "name": "SLO-MO REPLAY"
+      },
+      "starPower": {
+        "id": 23000520,
+        "name": "KEVLAR VEST"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000063": {
+      "gadget": {
+        "id": 23000529,
+        "name": "PRANKSTER'S SURPRISE"
+      },
+      "starPower": {
+        "id": 23000527,
+        "name": "SINGLE BELL'O'MANIA"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "brawltime.ninja",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000064": {
+      "gadget": {
+        "id": 23000537,
+        "name": "WALKING CANE"
+      },
+      "starPower": {
+        "id": 23000536,
+        "name": "NEW PERSPECTIVE"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000065": {
+      "gadget": {
+        "id": 23000546,
+        "name": "COOKIE CRUMBS"
+      },
+      "starPower": {
+        "id": 23000543,
+        "name": "IN MY SIGHTS"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000066": {
+      "gadget": {
+        "id": 23000555,
+        "name": "OUT OF LINE"
+      },
+      "starPower": {
+        "id": 23000554,
+        "name": "RECORDING"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000067": {
+      "gadget": {
+        "id": 23000564,
+        "name": "DIVE"
+      },
+      "starPower": {
+        "id": 23000561,
+        "name": "LOVE IS BLIND"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000068": {
+      "gadget": {
+        "id": 23000571,
+        "name": "DISENGAGE!"
+      },
+      "starPower": {
+        "id": 23000570,
+        "name": "TREMORS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000069": {
+      "gadget": {
+        "id": 23000580,
+        "name": "BARRICADE"
+      },
+      "starPower": {
+        "id": 23000577,
+        "name": "IT'S GONNA BLOW"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000001,
+          "name": "HEALTH"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000070": {
+      "gadget": {
+        "id": 23000588,
+        "name": "POISON MUSHROOM"
+      },
+      "starPower": {
+        "id": 23000585,
+        "name": "COMBOSHROOMS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000071": {
+      "gadget": {
+        "id": 23000596,
+        "name": "EXTRA MUSTARD"
+      },
+      "starPower": {
+        "id": 23000594,
+        "name": "SELF SERVICE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000072": {
+      "gadget": {
+        "id": 23000603,
+        "name": "OVERCOOKED"
+      },
+      "starPower": {
+        "id": 23000602,
+        "name": "HEAT SHIELD"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000073": {
+      "gadget": {
+        "id": 23000611,
+        "name": "REROUTING"
+      },
+      "starPower": {
+        "id": 23000610,
+        "name": "TICKETS PLEASE!"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "brawltime.ninja",
+        "gears": "noff.gg"
+      }
+    },
+    "16000074": {
+      "gadget": {
+        "id": 23000625,
+        "name": "SPIDERS"
+      },
+      "starPower": {
+        "id": 23000623,
+        "name": "DIGESTIVE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000075": {
+      "gadget": {
+        "id": 23000639,
+        "name": "CLIPPING SCREAM"
+      },
+      "starPower": {
+        "id": 23000637,
+        "name": "MONKEY BUSINESS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000076": {
+      "gadget": {
+        "id": 23000648,
+        "name": "CARDBOARD BOX"
+      },
+      "starPower": {
+        "id": 23000646,
+        "name": "POWER HUNGRY"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000077": {
+      "gadget": {
+        "id": 23000662,
+        "name": "ORDER: FALL BACK"
+      },
+      "starPower": {
+        "id": 23000659,
+        "name": "PROTOCOL: PROTECT"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000078": {
+      "gadget": {
+        "id": 23000670,
+        "name": "INTERLUDE"
+      },
+      "starPower": {
+        "id": 23000667,
+        "name": "FAST BEATS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000079": {
+      "gadget": {
+        "id": 23000677,
+        "name": "STINGING FLIGHT"
+      },
+      "starPower": {
+        "id": 23000675,
+        "name": "EMPOWER"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000080": {
+      "gadget": {
+        "id": 23000737,
+        "name": "LAST STAND"
+      },
+      "starPower": {
+        "id": 23000735,
+        "name": "SHREDDING"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000081": {
+      "gadget": {
+        "id": 23000754,
+        "name": "VANISH"
+      },
+      "starPower": {
+        "id": 23000752,
+        "name": "SPIKY"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000017,
+          "name": "GADGET COOLDOWN"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000082": {
+      "gadget": {
+        "id": 23000766,
+        "name": "FRIENDSHIP IS GREAT"
+      },
+      "starPower": {
+        "id": 23000764,
+        "name": "FLOOR IS FINE"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000083": {
+      "gadget": {
+        "id": 23000774,
+        "name": "SNAPPY SHOOTING"
+      },
+      "starPower": {
+        "id": 23000773,
+        "name": "PUMPING UP"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000084": {
+      "gadget": {
+        "id": 23000806,
+        "name": "DODGY DIGGING"
+      },
+      "starPower": {
+        "id": 23000804,
+        "name": "SKIPPING STONES"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000085": {
+      "gadget": {
+        "id": 23000818,
+        "name": "HOSOMAKI HEALING"
+      },
+      "starPower": {
+        "id": 23000816,
+        "name": "NIGIRI NEMESIS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000086": {
+      "gadget": {
+        "id": 23000834,
+        "name": "LONGARMS"
+      },
+      "starPower": {
+        "id": 23000833,
+        "name": "HARDENED HOODIE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000087": {
+      "gadget": {
+        "id": 23000851,
+        "name": "ELEMENTALIST"
+      },
+      "starPower": {
+        "id": 23000849,
+        "name": "NUMBING NEEDLES"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000089": {
+      "gadget": {
+        "id": 23000877,
+        "name": "MANSIONS OF MEEPLE"
+      },
+      "starPower": {
+        "id": 23000875,
+        "name": "DO NOT PASS GO"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000090": {
+      "gadget": {
+        "id": 23000885,
+        "name": "REGULATE"
+      },
+      "starPower": {
+        "id": 23000884,
+        "name": "RENEGADE"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000091": {
+      "gadget": {
+        "id": 23000908,
+        "name": "GRIM AND FROSTBITTEN"
+      },
+      "starPower": {
+        "id": 23000906,
+        "name": "HALF-TIME"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000092": {
+      "gadget": {
+        "id": 23000917,
+        "name": "BACK TO THE FINXTURE"
+      },
+      "starPower": {
+        "id": 23000915,
+        "name": "HIEROGLYPH HALT"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000093": {
+      "gadget": {
+        "id": 23000931,
+        "name": "WEEKEND WARRIOR"
+      },
+      "starPower": {
+        "id": 23000929,
+        "name": "THE CROWD GOES MILD"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "brawltime.ninja",
+        "gears": "noff.gg"
+      }
+    },
+    "16000094": {
+      "gadget": {
+        "id": 23000940,
+        "name": "GRACIOUS HOST"
+      },
+      "starPower": {
+        "id": 23000938,
+        "name": "ADVANCED TECHNIQUES"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000095": {
+      "gadget": {
+        "id": 23000992,
+        "name": "COLD-BLOODED"
+      },
+      "starPower": {
+        "id": 23000990,
+        "name": "YOU BETTER RUN, YOU BETTER TAKE COVER"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000096": {
+      "gadget": {
+        "id": 23001000,
+        "name": "FOR THE QUEEN!"
+      },
+      "starPower": {
+        "id": 23000998,
+        "name": "NEW INSECT OVERLORDS"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000097": {
+      "gadget": {
+        "id": 23001042,
+        "name": "CAPO-WHAT?"
+      },
+      "starPower": {
+        "id": 23001039,
+        "name": "ZUM ZUM ZUM"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000098": {
+      "gadget": {
+        "id": 23001049,
+        "name": "ELECTRIC SHUFFLE"
+      },
+      "starPower": {
+        "id": 23001047,
+        "name": "THUNDERSTRUCK"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "brawltime.ninja",
+        "gears": "noff.gg"
+      }
+    },
+    "16000099": {
+      "gadget": {
+        "id": 23001063,
+        "name": "YOU ONLY BRAWL TWICE"
+      },
+      "starPower": {
+        "id": 23001060,
+        "name": "MISSION: SWIMPOSSIBLE"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000100": {
+      "gadget": {
+        "id": 23001070,
+        "name": "LONGER STRINGS"
+      },
+      "starPower": {
+        "id": 23001069,
+        "name": "A HELPING HAND"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000101": {
+      "gadget": {
+        "id": 23001183,
+        "name": "SLIPPERY SAVIOR"
+      },
+      "starPower": {
+        "id": 23001182,
+        "name": "PARASITISM"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000102": {
+      "gadget": {
+        "id": 23001191,
+        "name": "A STARR IS BORN"
+      },
+      "starPower": {
+        "id": 23001190,
+        "name": "THE DARKEST STARR"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000103": {
+      "gadget": {
+        "id": 23001218,
+        "name": "POISON PUDDLES"
+      },
+      "starPower": {
+        "id": 23001216,
+        "name": "POISONOUS PROTECTOR"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000104": {
+      "gadget": {
+        "id": 23001247,
+        "name": "SPIRITUAL HEALING"
+      },
+      "starPower": {
+        "id": 23001246,
+        "name": "VULGAR DISPLAY OF PUNCH"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000105": {
+      "gadget": {
+        "id": 23001256,
+        "name": "SHINING STARR OF FRIENDSHIP AND JUSTICE"
+      },
+      "starPower": {
+        "id": 23001253,
+        "name": "POWER LEVEL: MAXIMUM"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000106": {
+      "gadget": {
+        "id": 23001281,
+        "name": "OIL CHANGE"
+      },
+      "starPower": {
+        "id": 23001280,
+        "name": "UNSTOPPABALL"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000107": {
+      "gadget": {
+        "id": 23001297,
+        "name": "SUSHI SNACK"
+      },
+      "starPower": {
+        "id": 23001295,
+        "name": "BIG HAUL"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "both",
+        "starPower": "both",
+        "gears": "noff.gg"
+      }
+    },
+    "16000108": {
+      "gadget": {
+        "id": 23001320,
+        "name": "WIND-POWERED"
+      },
+      "starPower": {
+        "id": 23001319,
+        "name": "SOLAR SHIELD"
+      },
+      "gears": [
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        },
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000109": {
+      "gadget": {
+        "id": 23001445,
+        "name": "TELESCOPE TRAP"
+      },
+      "starPower": {
+        "id": 23001443,
+        "name": "AMMO ATTRACTOR"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    },
+    "16000110": {
+      "gadget": {
+        "id": 23001453,
+        "name": "METAMOTHOSIS"
+      },
+      "starPower": {
+        "id": 23001451,
+        "name": "BUG BANDAGE"
+      },
+      "gears": [
+        {
+          "id": 62000004,
+          "name": "SHIELD"
+        },
+        {
+          "id": 62000002,
+          "name": "DAMAGE"
+        }
+      ],
+      "source": {
+        "gadget": "noff.gg",
+        "starPower": "noff.gg",
+        "gears": "noff.gg"
+      }
+    }
+  }
+}

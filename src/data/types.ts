@@ -75,3 +75,24 @@ export interface StatsSnapshot {
   /** keyed by map slug */
   maps: Record<string, MapStats>;
 }
+
+/** Recommended gadget / star power / two gears for one brawler. */
+export interface KitItem {
+  id: number;
+  name: string;
+}
+export interface BrawlerBuild {
+  gadget: KitItem;
+  starPower: KitItem;
+  gears: KitItem[];
+  source?: { gadget?: string; starPower?: string; gears?: string };
+}
+export interface BuildsFile {
+  updatedAt: string;
+  generatedAt?: string;
+  sources: { name: string; url: string; usedFor?: string; asOf?: string; pages?: string[] }[];
+  notes?: string;
+  window?: { brawlTimeNinjaSeason?: string; brawlTimeNinjaSeasonRange?: string; noffLabel?: string };
+  missing?: { id: number; name: string; reason: string }[];
+  builds: Record<string, BrawlerBuild>;
+}
